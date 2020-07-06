@@ -6,8 +6,9 @@ import unicodedata
 
 try: from hashlib import md5
 except: from md5 import new as md5
-
-import os, urllib2
+from six.moves.urllib.request import Request
+from six.moves.urllib.request import urlopen
+import os
 
 import six
 
@@ -304,7 +305,7 @@ def langToCountry(lang):
         return LANG_COUNTRY[lang]
     return 'UNK'
 
-class HeadRequest(urllib2.Request):
+class HeadRequest(Request):
     def get_method(self):
         return "HEAD"
 
@@ -316,7 +317,7 @@ def getFileSize(filepath):
         return None
     if filepath.startswith('http://'):
         try:
-            resp = urllib2.urlopen(HeadRequest(filepath))
+            resp = urlopen(HeadRequest(filepath))
             return  long(resp.info().get('Content-Length'))
         except Exception:
             return None

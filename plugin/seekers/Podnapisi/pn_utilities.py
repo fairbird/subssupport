@@ -48,9 +48,9 @@ def dec2hex(n, l=0):
             s = "0" + s
     return s
 
-def invert(six.string_types):
-    asal = [six.string_types[i:i + 2]
-            for i in range(0, len(six.string_types), 2)]
+def invert(_basestring):
+    asal = [_basestring[i:i + 2]
+            for i in range(0, len(_basestring), 2)]
     asal.reverse()
     return ''.join(asal)
 
