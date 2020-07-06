@@ -172,6 +172,6 @@ class SerialZoneClient(object):
 					except:
 						subtitle_version['file_size'] = -1
 					subtitle['versions'].append(subtitle_version)
-			# print subtitle
+			# print(subtitle)
 			subtitles.append(subtitle)
 		return subtitles

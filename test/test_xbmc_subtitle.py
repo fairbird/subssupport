@@ -8,8 +8,6 @@ import os
 import sys
 import time
 import unittest
-import ConfigParser
-
 test = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join (test, '..', 'plugin'))
 
@@ -42,7 +40,7 @@ class TestXBMCSubtitleProvider(object):
 
     def delay_cb(self, seconds):
         print('[delay_cb] waiting for %d seconds'%seconds)
-        for i in xrange(seconds):
+        for i in range(seconds):
             print('[delay_cb] %d second')
             time.sleep(1)
 
@@ -106,7 +104,7 @@ class TestXBMCSubtitleProviderWithCredentials(TestXBMCSubtitleProvider):
 
     @classmethod
     def get_credentials(cls, filename):
-        config = ConfigParser.RawConfigParser()
+        config = configparser.RawConfigParser()
         cfgpath = os.path.join(os.path.dirname(__file__), filename)
         try:
             config.read(cfgpath)
@@ -312,6 +310,11 @@ class TestItasa(TestXBMCSubtitleProviderWithCredentials, unittest.TestCase):
                                                                         self.message_cb)
 
 from seekers.xbmc_subtitles import TitloviSeeker
+
+from six.moves import configparser
+from six.moves import range
+
+
 class TestTitlovi(TestXBMCSubtitleProvider, unittest.TestCase):
     def setUp(self):
         self.settings = {}

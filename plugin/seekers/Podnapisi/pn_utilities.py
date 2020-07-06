@@ -5,10 +5,13 @@ from __future__ import print_function
 import os
 import urllib, zlib
 from xml.dom import minidom
-import xmlrpclib
 
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors
 from ..utilities import log, getFileSize, hashFile
+import six
+
+
+from six.moves import xmlrpc_client
 
 
 try:
@@ -45,9 +48,9 @@ def dec2hex(n, l=0):
             s = "0" + s
     return s
 
-def invert(basestring):
-    asal = [basestring[i:i + 2]
-            for i in range(0, len(basestring), 2)]
+def invert(six.string_types):
+    asal = [six.string_types[i:i + 2]
+            for i in range(0, len(six.string_types), 2)]
     asal.reverse()
     return ''.join(asal)
 
@@ -102,7 +105,7 @@ class PNServer:
         self.connected = False
 
     def Login(self):
-        self.podserver = xmlrpclib.Server('http://ssp.podnapisi.net:8000')
+        self.podserver = xmlrpc_client.Server('http://ssp.podnapisi.net:8000')
         init = self.podserver.initiate(USER_AGENT)
         hash = md5()
         hash.update(settings_provider.getSetting("PNpass"))
@@ -127,7 +130,7 @@ class PNServer:
 
         if (settings_provider.getSetting("PNmatch") == 'true'):
             url = SEARCH_URL_HASH % (item['title'].replace(" ", "+"),
-                                     ','.join(item['3let_language']),
+                                     ','.join(item['3et_language']),
                                      str(item['year']),
                                      str(item['season']),
                                      str(item['episode']),
@@ -135,7 +138,7 @@ class PNServer:
                                      )
         else:
             url = SEARCH_URL % (item['title'].replace(" ", "+"),
-                                 ','.join(item['3let_language']),
+                                 ','.join(item['3et_language']),
                                  str(item['year']),
                                  str(item['season']),
                                  str(item['episode'])

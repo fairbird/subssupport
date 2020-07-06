@@ -85,7 +85,7 @@ def get_language_info(language):
 
     for lang in LANGUAGES:
         if lang[0] == language:
-            return {'name': lang[0], '2let': lang[2], '3let': lang[3]}
+            return {'name': lang[0], '2et': lang[2], '3et': lang[3]}
 
 
 def log(module, msg):

@@ -19,11 +19,13 @@
 from __future__ import absolute_import
 import os
 import traceback
-from urllib2 import URLError, HTTPError
 
 from .parsers.baseparser import ParseError, NoSubtitlesParseError
 from .seekers.utilities import getFileSize, SimpleLogger
 from .utils import load, decode, toString
+
+from six.moves.urllib.error import URLError, HTTPError
+
 
 SUBTITLES_FILE_MAX_SIZE = 400 * 1024  # 400KB
 

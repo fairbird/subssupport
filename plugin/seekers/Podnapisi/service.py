@@ -2,13 +2,15 @@
 
 from __future__ import absolute_import
 import os
-import urllib
 
 from .pn_utilities import PNServer, OpensubtitlesHash, \
     calculateSublightHash, __scriptid__
 from . import pn_utilities
 
 from ..utilities import log, languageTranslate, normalizeString
+
+
+from six.moves import urllib
 
 
 def Search(item):
@@ -43,7 +45,7 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
     item['tvshow'] = tvshow
     item['title'] = title
     item['file_original_path'] = file_original_path
-    item['3let_language'] = [languageTranslate(lang1, 0, 1), languageTranslate(lang2, 0, 1), languageTranslate(lang3, 0, 1)]
+    item['3et_language'] = [languageTranslate(lang1, 0, 1), languageTranslate(lang2, 0, 1), languageTranslate(lang3, 0, 1)]
 
     if not item['title']:
         log(__scriptid__, "VideoPlayer.OriginalTitle not found")
@@ -74,7 +76,7 @@ def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, 
     url = Download(params)
     if url != None:
         local_file = open(zip_subs, "w" + "b")
-        f = urllib.urlopen(url)
+        f = urllib.request.urlopen(url)
         local_file.write(f.read())
         local_file.close()
     language = params['language_name']

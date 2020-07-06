@@ -18,7 +18,6 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
-from Queue import Queue
 from datetime import datetime
 import json
 import os
@@ -26,8 +25,6 @@ import re
 import sys
 from threading import Thread
 import traceback
-import urllib
-from urllib2 import quote
 from twisted.internet.defer import Deferred
 from twisted.web import client
 
@@ -79,6 +76,12 @@ from skin import parseColor, parsePosition, parseFont
 from .utils import toString, SimpleLogger, toUnicode
 
 from . import _, __author__, __version__, __email__
+
+
+from six.moves.queue import Queue
+from six.moves import range
+from six.moves import urllib
+from six.moves.urllib.parse import quote
 
 
 try:
@@ -228,7 +231,7 @@ except IOError as e:
     print('[SubsSupport] error while loading custom colors', str(e))
 
 alphaChoiceList = [("00", _("opaque"))]
-alphaChoiceList.extend([("%02x" % val, "%d %%"%(int(percent * 100 / float(32)))) for percent, val in enumerate(xrange(0, 256, 8)) if val != 0])
+alphaChoiceList.extend([("%02x" % val, "%d %%"%(int(percent * 100 / float(32)))) for percent, val in enumerate(range(0, 256, 8)) if val != 0])
 alphaChoiceList.append(("ff", _("transparent")))
 
 def initGeneralSettings(configsubsection):
@@ -3866,7 +3869,7 @@ class SubsSearch(Screen):
         self.searchTitles = searchTitles
         self.filepath = filepath
         if self.filepath:
-            self.filepath = urllib.unquote(self.filepath)
+            self.filepath = urllib.parse.unquote(self.filepath)
         self.isLocalFilepath = filepath and os.path.isfile(filepath) or False
         self.searchTitle = searchSettings.title
         self.searchType = searchSettings.type

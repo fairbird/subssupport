@@ -2,11 +2,11 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
-import HTMLParser
 import difflib
 import os, re, string, urllib, urllib2
 
 from .SubsceneUtilities import geturl, get_language_info
+from six.moves import html_parser
 
 from ..utilities import log
 
@@ -66,12 +66,12 @@ def getSearchTitle(title,year=None): ## new Add
 
 def find_movie(content, title, year):
     url_found = None
-    h = HTMLParser.HTMLParser()
+    h = html_parser.HTMLParser()
     for matches in re.finditer(movie_season_pattern, content, re.IGNORECASE | re.DOTALL):
         found_title = matches.group('title')
         found_title = h.unescape(found_title)
         log(__name__, "Found movie on search page: %s (%s)" % (found_title, matches.group('year')))
-        if string.find(string.lower(found_title), string.lower(title)) > -1:
+        if found_title.lower().find(title.lower()) > -1:
             if matches.group('year') == year:
                 log(__name__, "Matching movie found on search page: %s (%s)" % (found_title, matches.group('year')))
                 url_found = matches.group('link')
@@ -84,16 +84,16 @@ def find_tv_show_season(content, tvshow, season):
     possible_matches = []
     all_tvshows = []
 
-    h = HTMLParser.HTMLParser()
+    h = html_parser.HTMLParser()
     for matches in re.finditer(movie_season_pattern, content, re.IGNORECASE | re.DOTALL):
         found_title = matches.group('title')
         found_title = h.unescape(found_title)
 
         log(__name__, "Found tv show season on search page: %s" % found_title)
-        s = difflib.SequenceMatcher(None, string.lower(found_title + ' ' + matches.group('year')), string.lower(tvshow))
+        s = difflib.SequenceMatcher(None, string.lower(found_title + ' ' + matches.group('year')), tvshow.lower())
         all_tvshows.append(matches.groups() + (s.ratio() * int(matches.group('numsubtitles')),))
-        if string.find(string.lower(found_title), string.lower(tvshow) + " ") > -1:
-            if string.find(string.lower(found_title), string.lower(season)) > -1:
+        if found_title.lower().find(tvshow.lower() + " ") > -1:
+            if found_title.lower().find(season.lower()) > -1:
                 log(__name__, "Matching tv show season found on search page: %s" % found_title)
                 possible_matches.append(matches.groups())
 
@@ -123,7 +123,7 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
     comment_pattern = "<td class=\"a6\">\s+<div>\s+(?P<comment>[^\"]+)&nbsp;\s*</div>"
 
     subtitles = []
-    h = HTMLParser.HTMLParser()
+    h = html_parser.HTMLParser()
     allmatches=re.finditer(subtitle_pattern, content, re.IGNORECASE | re.DOTALL)
     print('allmatches', allmatches)
     i=0
@@ -135,7 +135,7 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
         language_info = get_language_info(languagefound)
         if language_info and language_info['name'] in allowed_languages:
             link = main_url + matches.group('link')
-            subtitle_name = string.strip(matches.group('filename'))
+            subtitle_name = matches.group('filename').strip()
             hearing_imp = (matches.group('hiclass') == "a41")
             rating = '0'
             comment = ''
@@ -146,14 +146,14 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
 
             commentmatch = re.search(comment_pattern, matches.group('rest'), re.IGNORECASE | re.DOTALL);
             if commentmatch != None:
-                comment = re.sub("[\r\n\t]+", " ", h.unescape(string.strip(commentmatch.group('comment'))))
+                comment = re.sub("[\r\n\t]+", " ", h.unescape(commentmatch.group('comment').strip()))
 
             sync = False
-            if filename != "" and string.lower(filename) == string.lower(subtitle_name):
+            if filename != "" and filename.lower() == subtitle_name.lower():
                 sync = True
 
             if search_string != "":
-                if string.find(string.lower(subtitle_name), string.lower(search_string)) > -1:
+                if subtitle_name.lower().find(search_string.lower()) > -1:
                     subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link,
                                      'language_name':language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
                     i=i+1
@@ -171,7 +171,7 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
     return subtitles
 
 def prepare_search_string(s):
-    s = string.strip(s)
+    s = s.strip()
     s = re.sub(r'\(\d\d\d\d\)$', '', s)  # remove year from title
     s = urllib.quote_plus(s)
     return s
@@ -179,7 +179,7 @@ def prepare_search_string(s):
 
 def search_movie(title, year, languages, filename):
     try:
-        title = string.strip(title)
+        title = title.strip()
         search_string = prepare_search_string(title)
         url=getSearchTitle(search_string, year)
         print("true url", url)
@@ -196,7 +196,7 @@ def search_movie(title, year, languages, filename):
                     
 
 def search_tvshow(tvshow, season, episode, languages, filename):
-    tvshow = string.strip(tvshow)
+    tvshow = tvshow.strip()
     search_string = prepare_search_string(tvshow)
     search_string += " - " + seasons[int(season)] + " Season"
 

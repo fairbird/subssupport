@@ -1,12 +1,15 @@
 from __future__ import print_function
-import urllib2
 import os
+
+import six
+from six.moves import urllib
+
 
 def load(subpath):
     if subpath.startswith('http'):
-        req = urllib2.Request(subpath)
+        req = urllib.request.Request(subpath)
         try:
-            response = urllib2.urlopen(req)
+            response = urllib.request.urlopen(req)
             text = response.read()
         except Exception:
             raise
@@ -22,13 +25,13 @@ def load(subpath):
             return ""
 
 def toString(text):
-    if isinstance(text, basestring):
-        if isinstance(text, unicode):
+    if isinstance(text, six.string_types):
+        if isinstance(text, six.text_type):
             return text.encode('utf-8')
     return text
 
 def toUnicode(text):
-    if isinstance(text, basestring):
+    if isinstance(text, six.string_types):
         if isinstance(text, str):
             return text.decode('utf-8', 'ignore')
     return text
@@ -52,7 +55,7 @@ def decode(text, encodings, current_encoding=None, decode_from_start=False):
         enc = encodings[current_idx]
         try:
             print('[decode] trying encoding', enc, '...')
-            utext = unicode(text, enc)
+            utext = six.text_type(text, enc)
             print('[decode] decoded with', enc, 'encoding')
             used_encoding = enc
             return utext, used_encoding
@@ -67,7 +70,7 @@ def decode(text, encodings, current_encoding=None, decode_from_start=False):
                 current_idx += 1
                 continue
 
-class HeadRequest(urllib2.Request):
+class HeadRequest(urllib.request.Request):
     def get_method(self):
         return "HEAD"
 

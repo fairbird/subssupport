@@ -2,7 +2,6 @@ from __future__ import print_function
 import os, sys
 import socket
 import time
-import urllib2
 import unittest
 import shutil
 
@@ -11,6 +10,10 @@ sys.path.append(os.path.join (test, '..', 'plugin'))
 
 from seekers.seeker import BaseSeeker, SubtitlesSearchError, SubtitlesDownloadError, SubtitlesErrors
 from seek import SubsSeeker
+from six.moves import range
+
+from six.moves import urllib
+
 
 def remove_files_in_dir(dirpath):
     for f in os.listdir(dirpath):
@@ -28,7 +31,7 @@ def message_cb(self, text):
 
 def delay_cb(self, seconds):
     print('[delay_cb] waiting for %d seconds' % seconds)
-    for i in xrange(seconds):
+    for i in range(seconds):
         print('[delay_cb] %d second')
         time.sleep(1)
 
@@ -53,7 +56,7 @@ class URLErrorSeeker(BaseSeeker):
     supported_langs = []
 
     def _search(self, title, filepath, langs, season, episode, tvshow, year):
-        raise urllib2.URLError("test")
+        raise urllib.error.URLError("test")
 
 
 class StandardErrorSeeker(BaseSeeker):

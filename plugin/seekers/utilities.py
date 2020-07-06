@@ -9,12 +9,15 @@ except: from md5 import new as md5
 
 import os, urllib2
 
+import six
+
+
 SUPRESS_LOG = True
 
 def log(module, msg):
     if SUPRESS_LOG:
         return
-    if isinstance(msg, unicode):
+    if isinstance(msg, six.text_type):
         print(module, msg.encode('utf-8'))
     else: print(module, msg)
 
@@ -234,7 +237,7 @@ def hashFile(file_path, rar):
 
 def normalizeString(str):
     return unicodedata.normalize(
-           'NFKD', unicode(unicode(str, 'utf-8'))
+           'NFKD', six.text_type(six.text_type(str, 'utf-8'))
            ).encode('ascii', 'ignore')
 
 
@@ -408,7 +411,7 @@ class SimpleLogger(object):
         print(text)
 
 def toString(text):
-    if isinstance(text, basestring):
-        if isinstance(text, unicode):
+    if isinstance(text, six.string_types):
+        if isinstance(text, six.text_type):
             return text.encode('utf-8')
     return text

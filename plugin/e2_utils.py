@@ -44,6 +44,9 @@ from enigma import addFont, ePicLoad, eEnv, getDesktop
 from .utils import toString
 
 
+import six
+
+
 def getDesktopSize():
     s = getDesktop(0).size()
     return (s.width(), s.height())
@@ -317,7 +320,7 @@ class E2SettingsProvider(dict):
         return dict((key, self.getConfigEntry(key).value) for key in self.__defaults.keys())
 
     def createSettings(self):
-        for name, value in self.__defaults.iteritems():
+        for name, value in six.iteritems(self.__defaults):
             type = value['type']
             default = value['default']
             self.createConfigEntry(name, type, default)
