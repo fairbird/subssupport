@@ -3,6 +3,8 @@ Created on Sep 16, 2014
 
 @author: marko
 '''
+from __future__ import absolute_import
+from __future__ import print_function
 import time
 from . import _
 from Components.ActionMap import HelpableActionMap
@@ -10,16 +12,16 @@ from Components.Label import Label
 from Components.config import ConfigSubsection, getConfigListEntry
 from Components.config import config, ConfigOnOff
 from Screens.HelpMenu import HelpableScreen
-from compat import MessageBox, eConnectCallback
+from .compat import MessageBox, eConnectCallback
 from Screens.MinuteInput import MinuteInput
 from Screens.Screen import Screen
 
-from e2_utils import getFps, fps_float, BaseMenuScreen, isFullHD, getDesktopSize
+from .e2_utils import getFps, fps_float, BaseMenuScreen, isFullHD, getDesktopSize
 from enigma import eTimer, getDesktop
-from parsers.baseparser import ParseError
-from process import LoadError, DecodeError, ParserNotFoundError
+from .parsers.baseparser import ParseError
+from .process import LoadError, DecodeError, ParserNotFoundError
 from skin import parseColor
-from subtitles import SubsChooser, initSubsSettings, SubsScreen, \
+from .subtitles import SubsChooser, initSubsSettings, SubsScreen, \
     SubsLoader, PARSERS, ALL_LANGUAGES_ENCODINGS, ENCODINGS, \
     warningMessage
 
@@ -71,13 +73,13 @@ class SubsSupportDVB(object):
                 subsEngine.setSubsList(subsList)
                 self.session.openWithCallback(self.subsControllerCB, SubsControllerDVB, subsEngine, config.plugins.subsSupport.dvb.autoSync.value)
         else:
-            print '[SubsSupportDVB] no subtitles selected, exit'
+            print('[SubsSupportDVB] no subtitles selected, exit')
 
     def subsControllerCB(self):
         self.session.deleteDialog(self.subsScreen)
 
 class SubsControllerDVB(Screen, HelpableScreen):
-    fpsChoices = ["23.976", "23.980","24.000", "25.000", "29.970", "30.000"]
+    fpsChoices = ["23.976", "23.980", "24.000", "25.000", "29.970", "30.000"]
 
     def __init__(self, session, engine, autoSync=False, setSubtitlesFps=False, subtitlesFps=None):
         desktopSize    = getDesktopSize()
@@ -141,15 +143,15 @@ class SubsControllerDVB(Screen, HelpableScreen):
             "playPauseSub": (self.playPause, _("play/pause subtitles playback")),
             "pauseSub": (self.pause, _("pause subtitles playback")),
             "resumeSub": (self.resume, _("resumes subtitles playback")),
-            "restartSub":(self.restart, _("restarts current subtitle")),
+            "restartSub": (self.restart, _("restarts current subtitle")),
             "nextSub": (self.nextSkip, _("skip to next subtitle")),
             "nextSubMinute": (self.nextMinuteSkip, _("skip to next subtitle (minute jump)")),
-            "nextSubManual":(self.nextManual, _("skip to next subtitle by setting time in minutes")),
-            "prevSub":(self.previousSkip, _("skip to previous subtitle")),
-            "prevSubMinute":(self.previousMinuteSkip, _("skip to previous subtitle (minute jump)")),
-            "prevSubManual":(self.previousManual, _("skip previous subtitle by setting time in minutes")),
-            "eventSync":(self.eventSync, _("skip subtitle to current event position")),
-            "changeFps":(self.changeFps, _("change subtitles fps")),
+            "nextSubManual": (self.nextManual, _("skip to next subtitle by setting time in minutes")),
+            "prevSub": (self.previousSkip, _("skip to previous subtitle")),
+            "prevSubMinute": (self.previousMinuteSkip, _("skip to previous subtitle (minute jump)")),
+            "prevSubManual": (self.previousManual, _("skip previous subtitle by setting time in minutes")),
+            "eventSync": (self.eventSync, _("skip subtitle to current event position")),
+            "changeFps": (self.changeFps, _("change subtitles fps")),
         }, 0)
         try:
             from Screens.InfoBar import InfoBar
@@ -434,10 +436,10 @@ class SubsEngineDVB(object):
         self.subsList = subsList
 
     def setSubsFps(self, subsFps):
-        print "[SubsEngineDVB] setSubsFps - setting fps to %s" % str(subsFps)
+        print("[SubsEngineDVB] setSubsFps - setting fps to %s" % str(subsFps))
         videoFps = getFps(self.session, True)
         if videoFps is None:
-            print "[SubsEngineDVB] setSubsFps - cannot get video fps!"
+            print("[SubsEngineDVB] setSubsFps - cannot get video fps!")
         else:
             self.waitTimer.stop()
             self.hideTimer.stop()
@@ -526,13 +528,13 @@ class SubsEngineDVB(object):
         if delay > 50:
             self.waitTimer.start(delay, True)
         elif delay <= 50 and delay >= 0:
-            print "[SubsEngineDVB] sub shown sooner by %s ms" % (delay)
+            print("[SubsEngineDVB] sub shown sooner by %s ms" % (delay))
             self.delay = 0
             self.waitTimer.stop()
             self.renderSub()
             self.startHideTimer()
         else:
-            print "[SubsEngineDVB] sub shown later by %s ms" % (abs(delay))
+            print("[SubsEngineDVB] sub shown later by %s ms" % (abs(delay)))
             self.delay = delay
             self.waitTimer.stop()
             self.renderSub()
@@ -541,7 +543,7 @@ class SubsEngineDVB(object):
     def seekTo(self, time):
         self.waitTimer.stop()
         self.hideTimer.stop()
-        print "[SubsEngineDVB] seekTo, position before seek: %d" % self.position
+        print("[SubsEngineDVB] seekTo, position before seek: %d" % self.position)
         firstSub = self.subsList[0]
         lastSub = self.subsList[-1]
         position = self.position
@@ -562,7 +564,7 @@ class SubsEngineDVB(object):
                 position -= 1
                 subStartTime = self.subsList[position]['start'] / 90 * self.fpsRatio
         self.position = position
-        print "[SubsEngineDVB] seekTo, position after seek: %d" % (self.position)
+        print("[SubsEngineDVB] seekTo, position after seek: %d" % (self.position))
         self.renderSub()
         if not self.paused:
             self.setRefTime()
@@ -571,7 +573,7 @@ class SubsEngineDVB(object):
     def seekRelative(self, time):
         self.waitTimer.stop()
         self.hideTimer.stop()
-        print "[SubsEngine] seekRelative, position before seek: %d" % self.position
+        print("[SubsEngine] seekRelative, position before seek: %d" % self.position)
         startSubTime = self.subsList[self.position]['start'] / 90 * self.fpsRatio
         position = self.position
         if time > 0:
@@ -585,7 +587,7 @@ class SubsEngineDVB(object):
                 position -= 1
                 prevEndSubTime = (self.subsList[position]['end'] / 90 * self.fpsRatio) - startSubTime
         self.position = position
-        print "[SubsEngine] seekRelative, position after seek: %d" % self.position
+        print("[SubsEngine] seekRelative, position after seek: %d" % self.position)
         self.renderSub()
         if not self.paused:
             self.setRefTime()

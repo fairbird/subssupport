@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
 import os
 from ..utilities import log, hashFile
-from os_utilities import OSDBServer
+from .os_utilities import OSDBServer
 
 
 def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack):  # standard input
@@ -21,7 +22,7 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
             year = year
             title = title
         OS_search_string = title.replace(" ", "+")
-    log(__name__ , "Search String [ %s ]" % (OS_search_string,))
+    log(__name__, "Search String [ %s ]" % (OS_search_string,))
 
     if set_temp :
         hash_search = False
@@ -30,7 +31,7 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
     else:
         try:
             file_size, SubHash = hashFile(file_original_path, rar)
-            log(__name__ , "xbmc module hash and size")
+            log(__name__, "xbmc module hash and size")
             hash_search = True
         except:
             file_size = ""
@@ -38,10 +39,10 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
             hash_search = False
 
     if file_size != "" and SubHash != "":
-        log(__name__ , "File Size [%s]" % file_size)
-        log(__name__ , "File Hash [%s]" % SubHash)
+        log(__name__, "File Size [%s]" % file_size)
+        log(__name__, "File Hash [%s]" % SubHash)
 
-    log(__name__ , "Search by hash and name %s" % (os.path.basename(file_original_path),))
+    log(__name__, "Search by hash and name %s" % (os.path.basename(file_original_path),))
     subtitles_list, msg = OSDBServer(user_agent).searchsubtitles(OS_search_string, lang1, lang2, lang3, hash_search, SubHash, file_size)
 
     return subtitles_list, "", msg  # standard output

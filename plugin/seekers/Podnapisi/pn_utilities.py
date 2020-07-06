@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import urllib, zlib
 from xml.dom import minidom
@@ -16,7 +18,7 @@ try:
 except ImportError:
     # Python 2.5 and earlier
     from md5 import md5
-    from sha256 import sha256
+    from .sha256 import sha256
 
 __scriptid__ = 'podnapisi'
 __scriptname__ = 'XBMC Subtitles'
@@ -110,11 +112,11 @@ class PNServer:
             self.pod_session = init['session']
             auth = self.podserver.authenticate(self.pod_session, self.user, self.password)
             if auth['status'] == 300:
-                log(__name__ , "Authenticate [%s]" % "InvalidCredentials")
+                log(__name__, "Authenticate [%s]" % "InvalidCredentials")
                 raise SubtitlesDownloadError(SubtitlesErrors.INVALID_CREDENTIALS_ERROR, "provided invalid credentials")
                 self.connected = False
             else:
-                log(__scriptid__ , "Connected to Podnapisi server")
+                log(__scriptid__, "Connected to Podnapisi server")
                 self.connected = True
         else:
             self.connected = False
@@ -139,7 +141,7 @@ class PNServer:
                                  str(item['episode'])
                                 )
 
-        log(__scriptid__ , "Search URL - %s" % (url))
+        log(__scriptid__, "Search URL - %s" % (url))
 
         subtitles = self.fetch(url)
 
@@ -157,33 +159,33 @@ class PNServer:
                    item['SLhash'] in self.get_element(subtitle, "exactHashes")):
                     hashMatch = True
 
-                self.subtitles_list.append({'filename'      : filename,
-                                            'link'          : self.get_element(subtitle, "pid"),
-                                            'movie_id'      : self.get_element(subtitle, "movieId"),
-                                            'season'        : self.get_element(subtitle, "tvSeason"),
-                                            'episode'       : self.get_element(subtitle, "tvEpisode"),
-                                            'language_name' : self.get_element(subtitle, "languageName"),
-                                            'language_flag' : self.get_element(subtitle, "language"),
-                                            'rating'        : str(int(float(self.get_element(subtitle, "rating"))) * 2),
-                                            'sync'          : hashMatch,
-                                            'hearing_imp'   : "n" in self.get_element(subtitle, "flags"),
+                self.subtitles_list.append({'filename': filename,
+                                            'link': self.get_element(subtitle, "pid"),
+                                            'movie_id': self.get_element(subtitle, "movieId"),
+                                            'season': self.get_element(subtitle, "tvSeason"),
+                                            'episode': self.get_element(subtitle, "tvEpisode"),
+                                            'language_name': self.get_element(subtitle, "languageName"),
+                                            'language_flag': self.get_element(subtitle, "language"),
+                                            'rating': str(int(float(self.get_element(subtitle, "rating"))) * 2),
+                                            'sync': hashMatch,
+                                            'hearing_imp': "n" in self.get_element(subtitle, "flags"),
                                             'hash': item['OShash'],
                                             })
             self.mergesubtitles()
         return self.subtitles_list
 
     def Download(self, params):
-        print params
+        print(params)
         subtitle_ids = []
         if (settings_provider.getSetting("PNmatch") == 'true' and params["hash"] != "000000000000"):
             self.Login()
             if params["match"] == "True":
                 subtitle_ids.append(str(params["link"]))
 
-            log(__scriptid__ , "Sending match to Podnapisi server")
+            log(__scriptid__, "Sending match to Podnapisi server")
             result = self.podserver.match(self.pod_session, params["hash"], params["movie_id"], int(params["season"]), int(params["episode"]), subtitle_ids)
             if result['status'] == 200:
-                log(__scriptid__ , "Match successfuly sent")
+                log(__scriptid__, "Match successfuly sent")
 
         return DOWNLOAD_URL % str(params["link"])
 

@@ -38,7 +38,7 @@ class OSDBServer:
             language += "," + languageTranslate(lang2, 0, 3)
         if lang3 != lang1 and lang3 != lang2:
             language += "," + languageTranslate(lang3, 0, 3)
-        log(__name__ , "Token:[%s]" % str(self.osdb_token))
+        log(__name__, "Token:[%s]" % str(self.osdb_token))
         try:
             if (self.osdb_token) :
                 if hash_search:

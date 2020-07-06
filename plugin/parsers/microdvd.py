@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 import re
 import traceback
-from baseparser import BaseParser, ParseError, HEX_COLORS
+from .baseparser import BaseParser, ParseError, HEX_COLORS
 
 class MicroDVDParser(BaseParser):
-    parsing = ('.sub','.txt')
+    parsing = ('.sub', '.txt')
     format = "MicroDVD"
     
     def _removeTags(self, text):

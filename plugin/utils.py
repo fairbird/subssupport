@@ -1,3 +1,4 @@
+from __future__ import print_function
 import urllib2
 import os
 
@@ -21,15 +22,15 @@ def load(subpath):
             return ""
 
 def toString(text):
-    if isinstance(text,basestring):
+    if isinstance(text, basestring):
         if isinstance(text, unicode):
             return text.encode('utf-8')
     return text
 
 def toUnicode(text):
-    if isinstance(text,basestring):
+    if isinstance(text, basestring):
         if isinstance(text, str):
-            return text.decode('utf-8','ignore')
+            return text.decode('utf-8', 'ignore')
     return text
 
 def decode(text, encodings, current_encoding=None, decode_from_start=False):
@@ -50,14 +51,14 @@ def decode(text, encodings, current_encoding=None, decode_from_start=False):
     while current_idx != current_encoding_idx:
         enc = encodings[current_idx]
         try:
-            print '[decode] trying encoding', enc,'...'
+            print('[decode] trying encoding', enc, '...')
             utext = unicode(text, enc)
-            print '[decode] decoded with', enc, 'encoding'
+            print('[decode] decoded with', enc, 'encoding')
             used_encoding = enc
             return utext, used_encoding
         except Exception:
             if enc == encodings[-1] and current_encoding_idx == -1:
-                print '[decode] cannot decode with provided encodings'
+                print('[decode] cannot decode with provided encodings')
                 raise Exception("decode error")
             elif enc == encodings[-1] and current_encoding_idx != -1:
                 current_idx = 0
@@ -131,4 +132,4 @@ class SimpleLogger(object):
             return self.LOG_FORMAT.format(self.prefix_name, text)
 
     def _out_fnc(self, text):
-        print text
+        print(text)

@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
 import os
 import urllib
 
-from pn_utilities import PNServer, OpensubtitlesHash, \
+from .pn_utilities import PNServer, OpensubtitlesHash, \
     calculateSublightHash, __scriptid__
-import pn_utilities
+from . import pn_utilities
 
 from ..utilities import log, languageTranslate, normalizeString
 
@@ -19,9 +20,9 @@ def Search(item):
     else:
         item['OShash'] = OpensubtitlesHash(item)
         item['SLhash'] = calculateSublightHash(item['file_original_path'])
-        log(__scriptid__ , "xbmc module OShash: %s, SLhash:%s"%(item['OShash'], item['SLhash']))
+        log(__scriptid__, "xbmc module OShash: %s, SLhash:%s"%(item['OShash'], item['SLhash']))
 
-    log(__scriptid__ , "Search for [%s] by name" % (os.path.basename(item['file_original_path']),))
+    log(__scriptid__, "Search for [%s] by name" % (os.path.basename(item['file_original_path']),))
     subtitles_list = pn_server.SearchSubtitlesWeb(item)
     return subtitles_list
 

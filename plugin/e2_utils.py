@@ -15,6 +15,8 @@
 #    GNU General Public License for more details.
 #
 #################################################################################
+from __future__ import absolute_import
+from __future__ import print_function
 from . import _
 import os
 import shutil
@@ -37,9 +39,9 @@ from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_SKIN, resolveFilename
 
-from compat import LanguageEntryComponent, eConnectCallback
+from .compat import LanguageEntryComponent, eConnectCallback
 from enigma import addFont, ePicLoad, eEnv, getDesktop
-from utils import toString
+from .utils import toString
 
 
 def getDesktopSize():
@@ -146,7 +148,7 @@ class MyLanguageSelection(Screen):
                 ("Lietuvių",    "lt", "LT"),
                 ("Latviešu",    "lv", "LV"),
                 ("Nederlands",  "nl", "NL"),
-                ("Norsk Bokmål","nb", "NO"),
+                ("Norsk Bokmål", "nb", "NO"),
                 ("Norsk",       "no", "NO"),
                 ("Polski",      "pl", "PL"),
                 ("Português",   "pt", "PT"),
@@ -161,7 +163,7 @@ class MyLanguageSelection(Screen):
                 ("Türkçe",      "tr", "TR"),
                 ("Ukrainian",   "uk", "UA")]:
             if str(lang[1] + "_" + lang[2]) not in languageCountryList:
-                print 'adding', lang
+                print('adding', lang)
                 languageList.append((str(lang[1] + "_" + lang[2]), lang))
         MyLanguageSelection.LANGUAGE_LIST = languageList
 
@@ -220,11 +222,11 @@ class Captcha(object):
         self.session.openWithCallback(self.captchaCB, CaptchaDialog, captchaPath)
 
     def downloadCaptchaSuccess(self, txt=""):
-        print "[Captcha] downloaded successfully:"
+        print("[Captcha] downloaded successfully:")
         self.openCaptchaDialog(self.dest)
 
     def downloadCaptchaError(self, err):
-        print "[Captcha] download error:", err
+        print("[Captcha] download error:", err)
         self.captchaCB('')
 
 
@@ -275,7 +277,7 @@ class DelayMessageBox(MessageBox):
         self.skinName = "MessageBox"
 
 def messageCB(text):
-    print text.encode('utf-8')
+    print(text.encode('utf-8'))
 
 class E2SettingsProvider(dict):
     def __init__(self, providerName, configSubSection, defaults):
@@ -330,7 +332,7 @@ class E2SettingsProvider(dict):
         elif type == 'password':
             setattr(self.__rootConfigListEntry, name, ConfigPassword(default=default))
         else:
-            print repr(self), 'cannot create entry of unknown type:', type
+            print(repr(self), 'cannot create entry of unknown type:', type)
 
     def getConfigEntry(self, key):
         try:
@@ -350,19 +352,19 @@ class E2SettingsProvider(dict):
         try:
             return self.getConfigEntry(key).value
         except Exception as e:
-            print repr(self), e, 'returning empty string for key:', key
+            print(repr(self), e, 'returning empty string for key:', key)
             return ""
 
     def setSetting(self, key, val):
         try:
             self.getConfigEntry(key).value = val
         except Exception as e:
-            print repr(self), e, 'cannot set setting:', key, ':', val
+            print(repr(self), e, 'cannot set setting:', key, ':', val)
 
 def unrar(rarPath, destDir, successCB, errorCB):
     def rarSubNameCB(result, retval, extra_args):
         if retval == 0:
-            print '[Unrar] getting rar sub name', result
+            print('[Unrar] getting rar sub name', result)
             rarSubNames = result.split('\n')
             rarPath = extra_args[0]
             destDir = extra_args[1]
@@ -370,7 +372,7 @@ def unrar(rarPath, destDir, successCB, errorCB):
                 for subName in rarSubNames:
                     os.unlink(os.path.join(destDir, subName))
             except OSError as e:
-                print e
+                print(e)
             # unrar needs rar Extension?
             if os.path.splitext(rarPath)[1] != '.rar':
                 oldRarPath = rarPath
@@ -383,19 +385,19 @@ def unrar(rarPath, destDir, successCB, errorCB):
                 os.unlink(extra_args[0])
             except OSError:
                 pass
-            print '[Unrar] problem when getting rar sub name:', result
+            print('[Unrar] problem when getting rar sub name:', result)
             errorCB(_("unpack error: cannot get subname"))
 
     def rarUnpackCB(result, retval, extra_args):
         if retval == 0:
-            print '[Unrar] successfully unpacked rar archive'
+            print('[Unrar] successfully unpacked rar archive')
             result = []
             rarSubNames = extra_args[0]
             for subName in rarSubNames:
                 result.append(os.path.join(destDir, subName))
             successCB(result)
         else:
-            print '[Unrar] problem when unpacking rar archive', result
+            print('[Unrar] problem when unpacking rar archive', result)
             try:
                 os.unlink(extra_args[0])
             except OSError:
@@ -425,7 +427,7 @@ def getFps(session, validOnly=False):
         if validOnly:
             validFps = min([23.976, 23.98, 24.0, 25.0, 29.97, 30.0], key=lambda x:abs(x-fps))
             if fps != validFps and abs(fps - validFps) > 0.01:
-                print "[getFps] unsupported fps: %.4f!"%(fps)
+                print("[getFps] unsupported fps: %.4f!"%(fps))
                 return None
             return fps_float(validFps)
         return fps_float(fps)
@@ -439,7 +441,7 @@ def getFonts():
         return FONTS.keys()
     allFonts = []
     fontDir = eEnv.resolve("${datadir}/fonts/")
-    print '[getFonts] fontDir: %s'% fontDir
+    print('[getFonts] fontDir: %s'% fontDir)
     for font in os.listdir(fontDir):
         fontPath = os.path.join(fontDir, font)
         if os.path.isdir(fontPath):
@@ -458,7 +460,7 @@ def getFonts():
             try:
                 skin = xml.etree.cElementTree.parse(skinPath).getroot()
             except Exception as e:
-                print e
+                print(e)
                 continue
             for c in skin.findall("fonts"):
                 for font in c.findall("font"):
@@ -466,7 +468,7 @@ def getFonts():
                     filename = get_attr("filename", "<NONAME>")
                     name = get_attr("name", "Regular")
                     fonts[filename] = name
-                    print '[getFonts] find font %s in %s'%(name, skinFile)
+                    print('[getFonts] find font %s in %s'%(name, skinFile))
     for fontFilepath in allFonts:
         fontFilename = os.path.basename(fontFilepath)
         if fontFilename not in fonts.keys():

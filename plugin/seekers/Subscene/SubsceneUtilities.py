@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
 import urllib2, requests
 import re
 from ..utilities import log as _log
@@ -93,12 +94,12 @@ def log(module, msg):
 def geturl(url1, headers =None, params = None): 
     try:
         res = ses.get(url1, headers=headers, verify=False, timeout=5)
-        print 'res.status_code',res.status_code
+        print('res.status_code', res.status_code)
         if res.status_code == 200:
             return res.content
         e = res.raise_for_status()
-        print('Download error', e)
+        print(('Download error', e))
         return ''
     except requests.exceptions.RequestException as e:
-        print('Download error', str(e))
+        print(('Download error', str(e)))
         return ''

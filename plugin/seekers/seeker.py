@@ -15,12 +15,13 @@
 #    GNU General Public License for more details.
 #
 #################################################################################
+from __future__ import absolute_import
 import socket
 import sys
 import time
 import traceback
 
-from utilities import langToCountry, languageTranslate, SimpleLogger, toString
+from .utilities import langToCountry, languageTranslate, SimpleLogger, toString
 
 
 class SubtitlesErrors:
@@ -125,7 +126,7 @@ class BaseSeeker(object):
         for l in langs:
             if l not in self.supported_langs:
                 valid_langs.remove(l)
-                self.log.info('this language is not supported by this provider - "%s"!' % languageTranslate(l,2,0))
+                self.log.info('this language is not supported by this provider - "%s"!' % languageTranslate(l, 2, 0))
         try:
             subtitles = self._search(title, filepath, valid_langs, season, episode, tvshow, year)
         except socket.timeout as e:

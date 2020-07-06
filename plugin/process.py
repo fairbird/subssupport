@@ -16,13 +16,14 @@
 #
 #################################################################################
 
+from __future__ import absolute_import
 import os
 import traceback
 from urllib2 import URLError, HTTPError
 
-from parsers.baseparser import ParseError, NoSubtitlesParseError
-from seekers.utilities import getFileSize, SimpleLogger
-from utils import load, decode, toString
+from .parsers.baseparser import ParseError, NoSubtitlesParseError
+from .seekers.utilities import getFileSize, SimpleLogger
+from .utils import load, decode, toString
 
 SUBTITLES_FILE_MAX_SIZE = 400 * 1024  # 400KB
 
@@ -76,7 +77,7 @@ class SubsLoader(object):
     def load(self, subfile, current_encoding=None, fps=None):
         filename = os.path.basename(subfile)
         self.log.info("<%s> loading ...", filename)
-        while 1:
+        while True:
             decoded_text, encoding = self._process_path(subfile, current_encoding)
             try:
                 sublist = self._parse(decoded_text, os.path.splitext(subfile)[1], fps)

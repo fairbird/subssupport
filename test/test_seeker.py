@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os, sys
 import socket
 import time
@@ -18,23 +19,23 @@ def remove_files_in_dir(dirpath):
             os.remove(fpath)
 
 def captcha_cb(self, url):
-        print '[captcha_cb] visit url:"%s"\nre-type captcha:' % url
-        print '[captcha_cb] not visiting just returning empty string'
+        print('[captcha_cb] visit url:"%s"\nre-type captcha:' % url)
+        print('[captcha_cb] not visiting just returning empty string')
         return ""
 
 def message_cb(self, text):
-    print '[message_cb] %s' % text
+    print('[message_cb] %s' % text)
 
 def delay_cb(self, seconds):
-    print '[delay_cb] waiting for %d seconds' % seconds
+    print('[delay_cb] waiting for %d seconds' % seconds)
     for i in xrange(seconds):
-        print '[delay_cb] %d second'
+        print('[delay_cb] %d second')
         time.sleep(1)
 
 def choosefile_cb(files):
-    print '[choosefile_cb]'
-    print '\n'.join(("%d. ) %s" % (idx, os.path.basename(file)) for idx, file in enumerate(files)))
-    print '[choosefile_cb] selecting [0] - %s' % (os.path.basename(files[0]))
+    print('[choosefile_cb]')
+    print('\n'.join(("%d. ) %s" % (idx, os.path.basename(file)) for idx, file in enumerate(files))))
+    print('[choosefile_cb] selecting [0] - %s' % (os.path.basename(files[0])))
     return files[0]
 
 

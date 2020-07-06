@@ -181,7 +181,7 @@ class FileList(MenuList):
             serviceHandler = eServiceCenter.getInstance()
             list = serviceHandler.list(root)
 
-            while 1:
+            while True:
                 s = list.getNext()
                 if not s.valid():
                     del list
@@ -226,7 +226,7 @@ class FileList(MenuList):
                     name = x
 
                 if (self.matchingPattern is None) or self.matchingPattern.search(path):
-                    self.list.append(FileEntryComponent(name=name, absolute=x , isDir=False))
+                    self.list.append(FileEntryComponent(name=name, absolute=x, isDir=False))
 
         if self.showMountpoints and len(self.list) == 0:
             self.list.append(FileEntryComponent(name=_("nothing connected"), absolute=None, isDir=False))

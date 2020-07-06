@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import sys
 import unittest
@@ -42,7 +43,7 @@ class TestSubRipBlockParser (unittest.TestCase):
       
     def test_cheers(self):
         for s in self.parser.parse(cheers_text):
-            print s
+            print(s)
         
         
         

@@ -3,6 +3,8 @@ Created on Aug 2, 2014
 
 @author: marko
 '''
+from __future__ import absolute_import
+from __future__ import print_function
 
 import sys
 import json
@@ -39,7 +41,7 @@ def captchaCB(image):
     return recieve()
 
 def messageCB(text):
-    print 'messageCB:', text
+    print('messageCB:', text)
 
 def updateCB(*args):
     send(Messages.MESSAGE_UPDATE_CALLBACK, args)
@@ -53,7 +55,7 @@ def overwriteFileCB(*args):
     return recieve()
 
 def scriptError(e):
-    from seekers.seeker import SubtitlesErrors, BaseSubtitlesError
+    from .seekers.seeker import SubtitlesErrors, BaseSubtitlesError
     if isinstance(e, BaseSubtitlesError):
         send(Messages.MESSAGE_ERROR_SCRIPT, {'error_code': e.code, 'provider': e.provider})
     else:
@@ -95,13 +97,13 @@ def downloadSubtitles(seeker, options):
 def main():
     global stdout
     stdout = sys.stdout
-    sys.stdout = open('/tmp/subssupport.log','w')
+    sys.stdout = open('/tmp/subssupport.log', 'w')
     sys.stderr = sys.stdout
     options = recieve()
-    print 'recieved options: %r'%options
-    from seek import SubsSeeker
-    seeker = SubsSeeker(options.get('download_path','/tmp/'),
-                        options.get('tmp_path','/tmp/'),
+    print('recieved options: %r'%options)
+    from .seek import SubsSeeker
+    seeker = SubsSeeker(options.get('download_path', '/tmp/'),
+                        options.get('tmp_path', '/tmp/'),
                         captchaCB, delayCB, messageCB,
                         options.get('settings'))
     if options.get('search'):
