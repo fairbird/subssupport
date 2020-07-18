@@ -77,12 +77,11 @@ from .utils import toString, SimpleLogger, toUnicode
 
 from . import _, __author__, __version__, __email__
 
-
+import six
 from six.moves.queue import Queue
 from six.moves import range
 from six.moves import urllib
 from six.moves.urllib.parse import quote
-
 
 try:
     from xml.etree.cElementTree import parse as parse_xml
@@ -94,7 +93,6 @@ try:
     from Screens.AudioSelection import QuickSubtitlesConfigMenu
 except ImportError:
     QuickSubtitlesConfigMenu = None
-
 
 
 # localization function
@@ -798,7 +796,7 @@ class SubsSupport(SubsSupportEmbedded):
 
         if subsPath is not None:
             subsPath = toString(subsPath)
-            if not subsPath.startswith('http'):
+            if not subsPath.startswith(b'http'):
                 if self.__defaultPath is not None and self.__forceDefaultPath:
                     self.__subsDir = self.__defaultPath
                 else:
