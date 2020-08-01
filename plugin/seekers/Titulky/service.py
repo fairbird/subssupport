@@ -1,12 +1,14 @@
 # -*- coding: UTF-8 -*-
-
+from __future__ import absolute_import
 ################################   Titulky.com #################################
 
 
 import os
 
 import time, calendar
-import urllib2, urllib, re, cookielib
+import re, cookielib
+import urllib2
+import urllib
 from ..utilities import languageTranslate, log, getFileSize
 
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors

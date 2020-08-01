@@ -1,5 +1,8 @@
 # -*- coding: UTF-8 -*-
-import os, re, urllib, urllib2
+from __future__ import absolute_import
+import os, re
+import urllib
+import urllib2
 
 from ..utilities import log
 

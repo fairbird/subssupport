@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-
+from __future__ import absolute_import
 import urllib, re
 from ..utilities import log, hashFile, languageTranslate
 

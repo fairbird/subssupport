@@ -27,13 +27,13 @@ def load(subpath):
 def toString(text):
     if isinstance(text, six.string_types):
         if isinstance(text, six.text_type):
-            return text.encode('utf-8')
+            return six.ensure_str(text)
     return text
 
 def toUnicode(text):
     if isinstance(text, six.string_types):
         if isinstance(text, str):
-            return text.decode('utf-8', 'ignore')
+            return six.ensure_text(text, errors='ignore')
     return text
 
 def decode(text, encodings, current_encoding=None, decode_from_start=False):
