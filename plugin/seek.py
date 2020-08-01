@@ -34,6 +34,9 @@ from .seekers.utilities import languageTranslate, langToCountry, \
     getCompressedFileType, detectSearchParams
 from .utils import SimpleLogger, toString
 
+import six
+
+
 SUBTITLES_SEEKERS = []
 SUBTITLES_SEEKERS.append(TitulkyComSeeker)
 SUBTITLES_SEEKERS.append(EdnaSeeker)
@@ -112,7 +115,7 @@ class SubsSeeker(object):
         lock = threading.Lock()
         if len(providers) == 1:
             provider = providers[0]
-            if isinstance(provider, basestring):
+            if isinstance(provider, str):
                 provider = self.getProvider(providers[0])
             if provider.error is not None:
                 self.log.debug("provider '%s' has 'error' flag set, skipping...", provider)
@@ -121,7 +124,7 @@ class SubsSeeker(object):
                 self._searchSubtitles(lock, subtitlesDict, updateCB, provider, title, filepath, langs, season, episode, tvshow, year)
         else:
             for provider in providers:
-                if isinstance(provider, basestring):
+                if isinstance(provider, str):
                     provider = self.getProvider(provider)
                 if provider.error is not None:
                     self.log.debug("provider '%s' has 'error' flag set, skipping...", provider)

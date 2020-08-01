@@ -1723,7 +1723,7 @@ class SubsEngine(object):
         else:
             subsEndPts = (self.sub['end'] * self.subsFpsRatio) + self.subsDelay
             if subsEndPts - self.__pts < 0:
-                #print '[SubsEngine] sub should be already shown - %dms, skipping...'%((subsEndPts - self.__pts)/90)
+                #print('[SubsEngine] sub should be already shown - %dms, skipping...'%((subsEndPts - self.__pts)/90))
                 self.getPlayPts(self.skipSubs, 100)
             else:
                 print('[SubsEngine] sub shown later by %dms' % ((self.__pts - subStartPts)/90))

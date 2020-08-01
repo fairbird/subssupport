@@ -5,10 +5,12 @@ from __future__ import absolute_import
 
 import os
 
+from six.moves.urllib.request import HTTPCookieProcessor, build_opener, install_opener, Request, urlopen
+from six.moves.urllib.parse import urlencode
+from six.moves import http_cookiejar
+
 import time, calendar
-import re, cookielib
-import urllib2
-import urllib
+import re
 from ..utilities import languageTranslate, log, getFileSize
 
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors
@@ -121,15 +123,15 @@ class TitulkyClient(object):
     def __init__(self):
         self.cookies = {}
         self.server_url = 'https://www.titulky.com'
-        opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookielib.LWPCookieJar()))
+        opener = build_opener(HTTPCookieProcessor(http_cookiejar.LWPCookieJar()))
         opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3 ( .NET CLR 3.5.30729)')]
-        urllib2.install_opener(opener)
+        install_opener(opener)
 
     def login(self, username, password):
             log(__name__, 'Logging in to Titulky.com')
-            login_postdata = urllib.urlencode({'Login': username, 'Password': password, 'foreverlog': '1','Detail2':''} )
-            request = urllib2.Request(self.server_url + '/index.php', login_postdata)
-            response = urllib2.urlopen(request)
+            login_postdata = urlencode({'Login': username, 'Password': password, 'foreverlog': '1','Detail2':''} )
+            request = Request(self.server_url + '/index.php', login_postdata)
+            response = urlopen(request)
             log(__name__, 'Got response')
             if response.read().find('BadLogin')>-1:
                 return False
@@ -143,18 +145,18 @@ class TitulkyClient(object):
             return True
 
     def search_subtitles(self, file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3 ):
-        url = self.server_url+'/index.php?'+urllib.urlencode({'Fulltext':title,'FindUser':''})
+        url = self.server_url+'/index.php?'+urlencode({'Fulltext':title,'FindUser':''})
         if not (tvshow == None or tvshow == ''):
             title2 = tvshow+' '+get_episode_season(episode, season)
-            url = self.server_url+'/index.php?'+urllib.urlencode({'Fulltext':title2,'FindUser':''})
-        req = urllib2.Request(url)
+            url = self.server_url+'/index.php?'+urlencode({'Fulltext':title2,'FindUser':''})
+        req = Request(url)
         try:
             size = getFileSize(file_original_path)
             file_size='%.2f' % (float(size)/(1024*1024))
         except:
             file_size='-1'
         log(__name__, 'Opening %s' % (url))
-        response = urllib2.urlopen(req)
+        response = urlopen(req)
         content = response.read()
         response.close()
         log(__name__, 'Done')
@@ -242,9 +244,9 @@ class TitulkyClient(object):
     def get_file(self, link):
         url = self.server_url+link
         log(__name__, 'Downloading file %s' % (url))
-        req = urllib2.Request(url)
+        req = Request(url)
         req = self.add_cookies_into_header(req)
-        response = urllib2.urlopen(req)
+        response = urlopen(req)
         if response.headers.get('Set-Cookie'):
             phpsessid = re.search('PHPSESSID=(\S+);', response.headers.get('Set-Cookie'), re.IGNORECASE | re.DOTALL)
             if phpsessid:
@@ -258,10 +260,10 @@ class TitulkyClient(object):
     def get_subtitle_page2(self, content, code, id):
         url = self.server_url+'/idown.php'
         post_data = {'downkod':code,'titulky':id,'zip':'z','securedown':'2','histstamp':''}
-        req = urllib2.Request(url, urllib.urlencode(post_data))
+        req = Request(url, urlencode(post_data))
         req = self.add_cookies_into_header(req)
         log(__name__, 'Opening %s POST:%s' % (url, str(post_data)))
-        response = urllib2.urlopen(req)
+        response = urlopen(req)
         content = response.read()
         log(__name__, 'Done')
         response.close()
@@ -269,11 +271,11 @@ class TitulkyClient(object):
 
     def get_subtitle_page(self, id):
         timestamp = str(calendar.timegm(time.gmtime()))
-        url = self.server_url+'/idown.php?'+urllib.urlencode({'R':timestamp,'titulky':id,'histstamp':'','zip':'z'})
+        url = self.server_url+'/idown.php?'+urlencode({'R':timestamp,'titulky':id,'histstamp':'','zip':'z'})
         log(__name__, 'Opening %s' % (url))
-        req = urllib2.Request(url)
+        req = Request(url)
         req = self.add_cookies_into_header(req)
-        response = urllib2.urlopen(req)
+        response = urlopen(req)
         content = response.read()
         log(__name__, 'Done')
         response.close()

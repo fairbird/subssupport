@@ -3,12 +3,13 @@
 from __future__ import absolute_import
 from __future__ import print_function
 import os
-import urllib, zlib
+import zlib
 from xml.dom import minidom
 
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors
 from ..utilities import log, getFileSize, hashFile
 import six
+from six.moves import urllib
 
 
 from six.moves import xmlrpc_client
@@ -199,7 +200,7 @@ class PNServer:
             return ""
 
     def fetch(self, url):
-        socket = urllib.urlopen(url)
+        socket = urllib.request.urlopen(url)
         result = socket.read()
         socket.close()
         xmldoc = minidom.parseString(result)

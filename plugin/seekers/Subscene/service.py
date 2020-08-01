@@ -3,11 +3,11 @@
 from __future__ import absolute_import
 from __future__ import print_function
 import difflib
-import urllib2
-import urllib
 import os, re, string
 from .SubsceneUtilities import geturl, get_language_info
 from six.moves import html_parser
+from six.moves.urllib.request import FancyURLopener
+from six.moves.urllib.parse import quote_plus, urlencode
 
 from ..utilities import log
 
@@ -37,7 +37,7 @@ subscene_languages = {
 }
 
 def getSearchTitle(title,year=None): ## new Add
-    url='https://subscene.com/subtitles/searchbytitle?query=%s&l='%urllib.quote_plus(title)
+    url='https://subscene.com/subtitles/searchbytitle?query=%s&l='%quote_plus(title)
     data=geturl(url)
     blocks=data.split('class="title"')
     blocks.pop(0)
@@ -63,7 +63,7 @@ def getSearchTitle(title,year=None): ## new Add
                    return href
         except:
             break
-    return 'https://subscene.com/subtitles/'+urllib.quote_plus(title) 
+    return 'https://subscene.com/subtitles/'+quote_plus(title) 
 
 def find_movie(content, title, year):
     url_found = None
@@ -174,7 +174,7 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
 def prepare_search_string(s):
     s = s.strip()
     s = re.sub(r'\(\d\d\d\d\)$', '', s)  # remove year from title
-    s = urllib.quote_plus(s)
+    s = quote_plus(s)
     return s
 
 
@@ -202,7 +202,7 @@ def search_tvshow(tvshow, season, episode, languages, filename):
     search_string += " - " + seasons[int(season)] + " Season"
 
     log(__name__, "Search tvshow = %s" % search_string)
-    url = main_url + "/subtitles/title?q=" + urllib.quote_plus(search_string) + '&r=true'
+    url = main_url + "/subtitles/title?q=" + quote_plus(search_string) + '&r=true'
     content, response_url = geturl(url)
 
     if content is not None:
@@ -260,8 +260,8 @@ def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, 
         subtitleid = 0
         typeid = "zip"
         filmid = 0
-        postparams = urllib.urlencode({ '__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '' , '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid})
-        class MyOpener(urllib.FancyURLopener):
+        postparams = urlencode({ '__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '' , '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid})
+        class MyOpener(FancyURLopener):
             version = 'User-Agent=Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3 ( .NET CLR 3.5.30729)'
         my_urlopener = MyOpener()
         my_urlopener.addheader('Referer', url)

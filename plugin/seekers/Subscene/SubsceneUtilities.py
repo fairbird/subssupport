@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 from __future__ import print_function
-import urllib2, requests
+import requests
 import re
 from ..utilities import log as _log
+
+from six.moves import urllib
+
 
 ses = requests.Session()
 

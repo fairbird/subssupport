@@ -1,10 +1,11 @@
 # -*- coding: UTF-8 -*-
 from __future__ import absolute_import
 import os, re
-import urllib
-import urllib2
 
 from ..utilities import log
+
+from six.moves import urllib
+
 
 main_url = "http://www.subtitles.gr"
 debug_pretext = "subtitles.gr"
@@ -14,8 +15,8 @@ def get_url(url,referer=None):
         headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0'}
     else:
         headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0', 'Referer' : referer}
-    req = urllib2.Request(url, None, headers)
-    response = urllib2.urlopen(req)
+    req = urllib.request.Request(url, None, headers)
+    response = urllib.request.urlopen(req)
     content = response.read()
     response.close()
     content = content.replace('\n', '')
@@ -70,7 +71,7 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
 
     try:
         log( __name__, "%s Getting url: %s" % (debug_pretext, id))
-        response = urllib.urlopen(id)
+        response = urllib.request.urlopen(id)
         content = response.read()
         type = content[:4]
     except:
@@ -92,7 +93,7 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
     return True, language, local_tmp_file
 
 def get_subtitles_list(searchstring, languageshort, languagelong, subtitles_list):
-    url = '%s/search.php?name=%s&sort=downloads+desc' % (main_url, urllib.quote_plus(searchstring))
+    url = '%s/search.php?name=%s&sort=downloads+desc' % (main_url, urllib.parse.quote_plus(searchstring))
     try:
         log( __name__, "%s Getting url: %s" % (debug_pretext, url))
         content = get_url(url, referer=main_url)
