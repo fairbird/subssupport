@@ -796,7 +796,7 @@ class SubsSupport(SubsSupportEmbedded):
 
         if subsPath is not None:
             subsPath = toString(subsPath)
-            if not subsPath.startswith(b'http'):
+            if not subsPath.startswith('http'):
                 if self.__defaultPath is not None and self.__forceDefaultPath:
                     self.__subsDir = self.__defaultPath
                 else:
