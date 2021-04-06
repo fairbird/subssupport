@@ -109,10 +109,12 @@ class XBMCSubtitlesAdapter(BaseSeeker):
         except Exception:
             pass
 
+
 try:
     from .Titulky import titulkycom
 except ImportError as e:
     titulkycom = e
+
 
 class TitulkyComSeeker(XBMCSubtitlesAdapter):
     module = titulkycom
@@ -124,10 +126,12 @@ class TitulkyComSeeker(XBMCSubtitlesAdapter):
     default_settings = {'Titulkyuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
                                        'Titulkypass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1}, }
 
+
 try:
     from .Edna import edna
 except ImportError as e:
     edna = e
+
 
 class EdnaSeeker(XBMCSubtitlesAdapter):
     module = edna
@@ -140,10 +144,12 @@ class EdnaSeeker(XBMCSubtitlesAdapter):
     movie_search = False
     tvshow_search = True
 
+
 try:
     from .SerialZone import serialzone
 except ImportError as e:
     serialzone = e 
+
 
 class SerialZoneSeeker(XBMCSubtitlesAdapter):
     module = serialzone
@@ -156,10 +162,12 @@ class SerialZoneSeeker(XBMCSubtitlesAdapter):
     movie_search = False
     tvshow_search = True
 
+
 try:
     from .OpenSubtitles import opensubtitles
 except ImportError as e:
     opensubtitles = e
+
 
 class OpenSubtitlesSeeker(XBMCSubtitlesAdapter):
     module = opensubtitles
@@ -235,11 +243,11 @@ class OpenSubtitlesSeeker(XBMCSubtitlesAdapter):
                     time.sleep(0.5)
 
 
-
 try:
     from .Podnapisi import podnapisi
 except ImportError as e:
     podnapisi = e
+
 
 class PodnapisiSeeker(XBMCSubtitlesAdapter):
     id = 'podnapisi'
@@ -302,10 +310,13 @@ class PodnapisiSeeker(XBMCSubtitlesAdapter):
     default_settings = {'PNuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
                                        'PNpass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1},
                                        'PNmatch': {'label': _("Send and search movie hashes"), 'type': 'yesno', 'default': 'false', 'pos': 2}}
+
+
 try:
     from .Subscene import subscene
 except ImportError as e:
     subscene = e
+
 
 class SubsceneSeeker(XBMCSubtitlesAdapter):
     id = 'subscene'
@@ -367,10 +378,12 @@ class SubsceneSeeker(XBMCSubtitlesAdapter):
                                             "vi"]
     default_settings = {}
 
+
 try:
     from .SubtitlesGR import subtitlesgr
 except ImportError as e:
     subtitlesgr = e 
+
 
 class SubtitlesGRSeeker(XBMCSubtitlesAdapter):
     module = subtitlesgr
@@ -383,10 +396,12 @@ class SubtitlesGRSeeker(XBMCSubtitlesAdapter):
     movie_search = True
     tvshow_search = True
 
+
 try:
     from .Itasa import itasa
 except ImportError as e:
     itasa = e
+
 
 class ItasaSeeker(XBMCSubtitlesAdapter):
     module = itasa
@@ -400,10 +415,12 @@ class ItasaSeeker(XBMCSubtitlesAdapter):
     movie_search = False
     tvshow_search = True
 
+
 try:
     from .Titlovi import titlovi
 except ImportError as e:
     titlovi = e
+
 
 class TitloviSeeker(XBMCSubtitlesAdapter):
     module = titlovi

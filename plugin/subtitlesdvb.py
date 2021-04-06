@@ -30,6 +30,7 @@ config.plugins.subsSupport = ConfigSubsection()
 config.plugins.subsSupport.dvb = ConfigSubsection()
 config.plugins.subsSupport.dvb.autoSync = ConfigOnOff(default=True)
 
+
 class SubsSetupDVBPlayer(BaseMenuScreen):
     def __init__(self, session, dvbSettings):
         BaseMenuScreen.__init__(self, session, _("DVB player settings"))
@@ -37,6 +38,7 @@ class SubsSetupDVBPlayer(BaseMenuScreen):
 
     def buildMenu(self):
         self['config'].setList([getConfigListEntry(_("Auto sync to current event"), self.dvbSettings.autoSync)])
+
 
 class SubsSupportDVB(object):
     def __init__(self, session):
@@ -77,6 +79,7 @@ class SubsSupportDVB(object):
 
     def subsControllerCB(self):
         self.session.deleteDialog(self.subsScreen)
+
 
 class SubsControllerDVB(Screen, HelpableScreen):
     fpsChoices = ["23.976", "23.980", "24.000", "25.000", "29.970", "30.000"]

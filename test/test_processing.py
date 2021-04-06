@@ -39,6 +39,7 @@ TESTFILES = [os.path.join(SUBS_PATH, 'test_arabic.srt'),
              os.path.join(SUBS_PATH, 'test_utf16.srt'),
              os.path.join(SUBS_PATH, 'test_microdvd.txt')]
 
+
 class LoaderTestCase(unittest.TestCase):
     def setUp(self):
         self.subsloader = SubsLoader(PARSERS, ENCODINGS)

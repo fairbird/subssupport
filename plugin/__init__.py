@@ -13,6 +13,7 @@ import os
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_LANGUAGE
 
+
 def localeInit():
     lang = language.getLanguage()
     os.environ["LANGUAGE"] = lang[:2]
@@ -20,11 +21,13 @@ def localeInit():
     gettext.textdomain("enigma2")
     gettext.bindtextdomain("SubsSupport", os.path.join(os.path.dirname(__file__), 'locale'))
 
+
 def _(txt):
     t = gettext.dgettext("SubsSupport", txt)
     if t == txt:
         t = gettext.gettext(txt)
     return t
+
 
 localeInit()
 language.addCallback(localeInit)

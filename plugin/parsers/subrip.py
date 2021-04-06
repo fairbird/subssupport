@@ -120,4 +120,5 @@ class SubRipParser(BaseParser):
     def underlineEnd(self, text):
         return text.lower().find('</u>') != -1
 
+
 parserClass = SubRipParser

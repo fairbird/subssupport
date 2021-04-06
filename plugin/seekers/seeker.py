@@ -46,8 +46,10 @@ class BaseSubtitlesError(Exception):
             return "{0} - {1}".format(self.provider, self.msg)
         return "{0}".format(self.msg)
 
+
 class SubtitlesSearchError(BaseSubtitlesError):
     """Raised when subtitles search error occurs"""
+
 
 class SubtitlesDownloadError(BaseSubtitlesError):
     """Raised when subtitles download error occurs"""
@@ -108,7 +110,6 @@ class BaseSeeker(object):
         if not hasattr(self, 'error'):
             self.error = None
 
-
     def __str__(self):
         return "[" + self.id + "]"
 
@@ -161,13 +162,11 @@ class BaseSeeker(object):
         self.log.info("search finished, found %d subtitles in %.2fs" % (len(subtitles['list']), subtitles['time']))
         return subtitles
 
-
     def _search(self, title, filepath, langs, season, episode, tvshow, year):
         """
         implement your search logic
         """
         return {'list': [{'filename': '', 'language_name': '', 'size': '', 'sync': ''}, ]}
-
 
     def download(self, subtitles, selected_subtitle, path=None):
         """
@@ -198,7 +197,6 @@ class BaseSeeker(object):
 
         self.log.info("download finished, compressed: %s, lang: %s, filepath:%s" % (toString(compressed), toString(lang), toString(filepath)))
         return compressed, lang, filepath
-
 
     def _download(self, subtitles, selected_subtitle, path):
         """

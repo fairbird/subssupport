@@ -24,17 +24,20 @@ def load(subpath):
         except Exception:
             return ""
 
+
 def toString(text):
     if isinstance(text, str):
         if isinstance(text, six.text_type):
             return six.ensure_str(text)
     return text
 
+
 def toUnicode(text):
     if isinstance(text, str):
         if isinstance(text, str):
             return six.ensure_text(text, errors='ignore')
     return text
+
 
 def decode(text, encodings, current_encoding=None, decode_from_start=False):
     utext = None
@@ -70,6 +73,7 @@ def decode(text, encodings, current_encoding=None, decode_from_start=False):
                 current_idx += 1
                 continue
 
+
 class HeadRequest(urllib.request.Request):
     def get_method(self):
         return "HEAD"
@@ -90,6 +94,7 @@ def which(program):
             if is_exe(exe_file):
                 return exe_file
     return None
+
 
 class SimpleLogger(object):
 

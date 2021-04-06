@@ -3,6 +3,7 @@ import re
 import traceback
 from .baseparser import BaseParser, ParseError, HEX_COLORS
 
+
 class MicroDVDParser(BaseParser):
     parsing = ('.sub', '.txt')
     format = "MicroDVD"
@@ -84,5 +85,6 @@ class MicroDVDParser(BaseParser):
                 traceback.print_exc()
                 raise ParseError(str(e) + ', subtitle_index: %d' % idx)
         return subs
+
 
 parserClass = MicroDVDParser

@@ -29,14 +29,18 @@ from six.moves.urllib.error import URLError, HTTPError
 
 SUBTITLES_FILE_MAX_SIZE = 400 * 1024  # 400KB
 
+
 class ParserNotFoundError(Exception):
     pass
+
 
 class DecodeError(Exception):
     pass
 
+
 class LoadError(Exception):
     pass
+
 
 class SubsLoader(object):
     def __init__(self, parsers_cls, encodings=None):

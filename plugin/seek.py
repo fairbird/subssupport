@@ -58,6 +58,7 @@ SUBTITLES_SEEKERS.append(SubtitlesGRSeeker)
 SUBTITLES_SEEKERS.append(ItasaSeeker)
 SUBTITLES_SEEKERS.append(TitloviSeeker)
 
+
 class ErrorSeeker(BaseSeeker):
     def __init__(self, wseeker_cls, *args, **kwargs):
         self.id = wseeker_cls.id
