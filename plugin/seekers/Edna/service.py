@@ -2,7 +2,8 @@
 from __future__ import absolute_import
 import os
 
-import urllib, re
+import urllib
+import re
 from ..utilities import log,  languageTranslate
 
 

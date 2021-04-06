@@ -3,7 +3,9 @@
 from __future__ import absolute_import
 from __future__ import print_function
 import difflib
-import os, re, string
+import os
+import re
+import string
 from .SubsceneUtilities import geturl, get_language_info
 from six.moves import html_parser
 from six.moves.urllib.request import FancyURLopener

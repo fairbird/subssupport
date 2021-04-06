@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from __future__ import absolute_import
-import os, re
+import os
+import re
 
 from ..utilities import log
 

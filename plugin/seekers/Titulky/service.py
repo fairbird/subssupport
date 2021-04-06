@@ -9,7 +9,8 @@ from six.moves.urllib.request import HTTPCookieProcessor, build_opener, install_
 from six.moves.urllib.parse import urlencode
 from six.moves import http_cookiejar
 
-import time, calendar
+import time
+import calendar
 import re
 from ..utilities import languageTranslate, log, getFileSize
 
