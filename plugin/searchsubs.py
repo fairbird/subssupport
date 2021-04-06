@@ -57,12 +57,12 @@ def overwriteFileCB(*args):
 def scriptError(e):
     try:
         from .seekers.seeker import SubtitlesErrors, BaseSubtitlesError
-    except ( ValueError, ImportError ):
+    except (ValueError, ImportError):
         from seekers.seeker import SubtitlesErrors, BaseSubtitlesError
     if isinstance(e, BaseSubtitlesError):
         send(Messages.MESSAGE_ERROR_SCRIPT, {'error_code': e.code, 'provider': e.provider})
     else:
-        send(Messages.MESSAGE_ERROR_SCRIPT, {'error_code': SubtitlesErrors.UNKNOWN_ERROR, 'provider':'' })
+        send(Messages.MESSAGE_ERROR_SCRIPT, {'error_code': SubtitlesErrors.UNKNOWN_ERROR, 'provider':''})
 
 def scriptFinished(subtitlesDict):
     send(Messages.MESSAGE_FINISHED_SCRIPT, subtitlesDict)
@@ -106,7 +106,7 @@ def main():
     print('recieved options: %r'%options)
     try:
         from .seek import SubsSeeker
-    except ( ValueError, ImportError ):
+    except (ValueError, ImportError):
         from seek import SubsSeeker
     seeker = SubsSeeker(options.get('download_path', '/tmp/'),
                         options.get('tmp_path', '/tmp/'),

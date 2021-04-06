@@ -44,7 +44,7 @@ def OpensubtitlesHash(item):
 def dec2hex(n, l=0):
     # return the hexadecimal string representation of integer n
     s = "%X" % n
-    if (l > 0) :
+    if (l > 0):
         while len(s) < l:
             s = "0" + s
     return s
@@ -59,12 +59,12 @@ def calculateSublightHash(filename):
 
     DATA_SIZE = 128 * 1024
 
-    if not os.path.exists(filename) :
+    if not os.path.exists(filename):
         return "000000000000"
 
     filesize = getFileSize(filename)
 
-    if filesize < DATA_SIZE :
+    if filesize < DATA_SIZE:
         return "000000000000"
     fileToHash = open(filename, 'r')
 
@@ -210,5 +210,5 @@ class PNServer:
         return cmp(b["language_name"], a["language_name"])  or cmp(a["sync"], b["sync"])
 
     def mergesubtitles(self):
-        if(len (self.subtitles_list) > 0):
+        if(len(self.subtitles_list) > 0):
             self.subtitles_list = sorted(self.subtitles_list, self.compare_columns)

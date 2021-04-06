@@ -24,7 +24,7 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
         OS_search_string = title.replace(" ", "+")
     log(__name__, "Search String [ %s ]" % (OS_search_string,))
 
-    if set_temp :
+    if set_temp:
         hash_search = False
         file_size = "000000000"
         SubHash = "000000000000"
@@ -47,13 +47,13 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
 
     return subtitles_list, "", msg  # standard output
 
-def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
+def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
     user_agent = settings_provider.getSetting("user_agent")
-    destination = os.path.join(tmp_sub_dir, "%s.srt" % subtitles_list[pos][ "ID" ])
-    result = OSDBServer(user_agent).download(subtitles_list[pos][ "ID" ], destination, session_id)
+    destination = os.path.join(tmp_sub_dir, "%s.srt" % subtitles_list[pos]["ID"])
+    result = OSDBServer(user_agent).download(subtitles_list[pos]["ID"], destination, session_id)
     if not result:
         import urllib
-        urllib.urlretrieve(subtitles_list[pos][ "link" ], zip_subs)
+        urllib.urlretrieve(subtitles_list[pos]["link"], zip_subs)
 
-    language = subtitles_list[pos][ "language_name" ]
+    language = subtitles_list[pos]["language_name"]
     return not result, language, destination  # standard output

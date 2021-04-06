@@ -133,7 +133,7 @@ TURKISH_ENCODINGS = ['windows-1254', 'iso-8859-9', 'latin5', 'macturkish', 'ibm1
 GREEK_ENCODINGS = ['windows-1253', 'iso-8859-7', 'macgreek']
 HEBREW_ENCODINGS = ['windows-1255', 'iso-8859-8', 'IBM862']
 
-ENCODINGS = {("Central and Eastern Europe") : CENTRAL_EASTERN_EUROPE_ENCODINGS,
+ENCODINGS = {("Central and Eastern Europe"): CENTRAL_EASTERN_EUROPE_ENCODINGS,
             ("Western Europe"):WESTERN_EUROPE_ENCODINGS,
             ("Russia"):RUSSIAN_ENCODINGS,
             ("Arabic"): ARABIC_ENCODINGS,
@@ -2214,7 +2214,7 @@ class SubsSetupGeneral(BaseMenuScreen):
         ])
 
 def FileEntryComponent(name, absolute=None, isDir=False):
-    res = [ (absolute, isDir) ]
+    res = [(absolute, isDir)]
     if isFullHD():
         res.append((eListboxPythonMultiContent.TYPE_TEXT, 35, 1, 770, 30, 1, RT_HALIGN_LEFT, toString(name)))
     else:
@@ -2265,11 +2265,11 @@ class SubFileList(FileList):
                 path = os.path.join(p.mountpoint, "")
                 if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
                     self.list.append(FileEntryComponent(name=p.description, absolute=path, isDir=True))
-            files = [ ]
-            directories = [ ]
+            files = []
+            directories = []
         elif directory is None:
-            files = [ ]
-            directories = [ ]
+            files = []
+            directories = []
         elif self.useServiceRef:
             # we should not use the 'eServiceReference(string)' constructor, because it doesn't allow ':' in the directoryname
             root = eServiceReference(2, 0, directory)
@@ -2664,7 +2664,7 @@ class SubsDownloadedSelection(Screen):
              "rightUp": self.closeInfoDialog,
              "left": self.closeInfoDialog,
              "leftUp": self.closeInfoDialog,
-        } )
+        })
         self["infoActions"].setEnabled(False)
         self.subtitles = subtitles
         self.historySettings = historySettings
@@ -4848,7 +4848,7 @@ class SubsSearchParamsMenu(Screen, ConfigListScreen):
         else:
             self['sourceTitleInfo'] = StaticText("%s [%d/%d]" % (_("Source title"), 1, len(self.sourceTitleList)))
         self['sourceTitle'] = StaticText(self.sourceTitle)
-        self["suggestionActions"] = ActionMap([ "OkCancelActions",  "ColorActions", "DirectionActions"],
+        self["suggestionActions"] = ActionMap(["OkCancelActions",  "ColorActions", "DirectionActions"],
             {
                  "ok": self.switchToConfigList,
                  "cancel": self.cancelToConfigList,

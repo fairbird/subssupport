@@ -301,7 +301,7 @@ class PodnapisiSeeker(XBMCSubtitlesAdapter):
                                             "vi"]
     default_settings = {'PNuser':{'label':_("Username"), 'type':'text', 'default':"", 'pos':0},
                                        'PNpass':{'label':_("Password"), 'type':'password', 'default':"", 'pos':1},
-                                       'PNmatch':{'label':_("Send and search movie hashes"), 'type':'yesno', 'default':'false', 'pos':2} }
+                                       'PNmatch':{'label':_("Send and search movie hashes"), 'type':'yesno', 'default':'false', 'pos':2}}
 try:
     from .Subscene import subscene
 except ImportError as e:

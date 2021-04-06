@@ -16,7 +16,7 @@ from six.moves import urllib
 def Search(item):
     pn_server = PNServer()
     pn_server.Create()
-    if item['temp'] :
+    if item['temp']:
         item['OShash'] = "000000000000"
         item['SLhash'] = "000000000000"
     else:
@@ -68,7 +68,7 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
         
     return Search(item), "", ""
 
-def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
+def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
     pn_utilities.settings_provider = settings_provider
     params = subtitles_list[pos]
     # params["hash"] = params['OShash']

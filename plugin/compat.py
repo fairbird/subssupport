@@ -168,11 +168,11 @@ class FileList(MenuList):
                 path = os.path.join(p.mountpoint, "")
                 if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
                     self.list.append(FileEntryComponent(name=p.description, absolute=path, isDir=True))
-            files = [ ]
-            directories = [ ]
+            files = []
+            directories = []
         elif directory is None:
-            files = [ ]
-            directories = [ ]
+            files = []
+            directories = []
         elif self.useServiceRef:
             # we should not use the 'eServiceReference(string)' constructor, because it doesn't allow ':' in the directoryname
             root = eServiceReference(2, 0, directory)
