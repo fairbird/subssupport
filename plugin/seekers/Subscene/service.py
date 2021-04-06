@@ -147,7 +147,7 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
             if matches.group('quality') == "positive-icon":
                 rating = '5'
 
-            commentmatch = re.search(comment_pattern, matches.group('rest'), re.IGNORECASE | re.DOTALL);
+            commentmatch = re.search(comment_pattern, matches.group('rest'), re.IGNORECASE | re.DOTALL)
             if commentmatch != None:
                 comment = re.sub("[\r\n\t]+", " ", h.unescape(commentmatch.group('comment').strip()))
 

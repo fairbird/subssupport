@@ -57,7 +57,7 @@ def invert(_basestring):
 
 def calculateSublightHash(filename):
 
-    DATA_SIZE = 128 * 1024;
+    DATA_SIZE = 128 * 1024
 
     if not os.path.exists(filename) :
         return "000000000000"
