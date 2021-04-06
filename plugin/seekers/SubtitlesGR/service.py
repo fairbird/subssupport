@@ -11,7 +11,7 @@ from six.moves import urllib
 main_url = "http://www.subtitles.gr"
 debug_pretext = "subtitles.gr"
 
-def get_url(url,referer=None):
+def get_url(url, referer=None):
     if referer is None:
         headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0'}
     else:

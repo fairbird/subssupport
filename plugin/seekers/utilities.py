@@ -106,48 +106,48 @@ REGEX_EXPRESSIONS = ['[Ss]([0-9]+)[][._-]*[Ee]([0-9]+)([^\\\\/]*)$',
                       '[\\\\/\\._ \\[\\(-]([0-9]+)x([0-9]+)([^\\\\/]*)$'
                      ]
 
-LANG_COUNTRY = {"ar":"AE",
-                "bg":"BG",
-                "ca":"AD",
-                "cs":"CZ",
-                "da":"DK",
-                "de":"DE",
-                "el":"GR",
-                "en":"GB",
-                "es":"ES",
-                "et":"EE",
-                "fa":"IR",
-                "fi":"FI",
-                "fr":"FR",
-                "fy":"NL",
-                "he":"IL",
-                "hr":"HR",
-                "hu":"HU",
-                "is":"IS",
-                "it":"IT",
-                "ku":"KU",
-                "lt":"LT",
-                "lv":"LV",
-                "nl":"NL",
-                "nb":"NO",
-                "no":"NO",
-                "pl":"PL",
-                "pt":"PT",
-                "pt":"BR",
-                "ro":"RO",
-                "ru":"RU",
-                "sk":"SK",
-                "sl":"SI",
-                "sr":"RS",
-                "sv":"SE",
-                "th":"TH",
-                "tr":"TR",
-                "uk":"UA"}
+LANG_COUNTRY = {"ar": "AE",
+                "bg": "BG",
+                "ca": "AD",
+                "cs": "CZ",
+                "da": "DK",
+                "de": "DE",
+                "el": "GR",
+                "en": "GB",
+                "es": "ES",
+                "et": "EE",
+                "fa": "IR",
+                "fi": "FI",
+                "fr": "FR",
+                "fy": "NL",
+                "he": "IL",
+                "hr": "HR",
+                "hu": "HU",
+                "is": "IS",
+                "it": "IT",
+                "ku": "KU",
+                "lt": "LT",
+                "lv": "LV",
+                "nl": "NL",
+                "nb": "NO",
+                "no": "NO",
+                "pl": "PL",
+                "pt": "PT",
+                "pt": "BR",
+                "ro": "RO",
+                "ru": "RU",
+                "sk": "SK",
+                "sl": "SI",
+                "sr": "RS",
+                "sv": "SE",
+                "th": "TH",
+                "tr": "TR",
+                "uk": "UA"}
 
-LANGNAME_ISO6391 = dict(map(lambda lang:(lang[0], lang[2]), LANGUAGES))
-LANGNAME_ISO6392 = dict(map(lambda lang:(lang[0], lang[3]), LANGUAGES))
-ISO6391_LANGNAME = dict(map(lambda lang:(lang[2], lang[0]), LANGUAGES))
-ISO6392_LANGNAME = dict(map(lambda lang:(lang[3], lang[0]), LANGUAGES))
+LANGNAME_ISO6391 = dict(map(lambda lang: (lang[0], lang[2]), LANGUAGES))
+LANGNAME_ISO6392 = dict(map(lambda lang: (lang[0], lang[3]), LANGUAGES))
+ISO6391_LANGNAME = dict(map(lambda lang: (lang[2], lang[0]), LANGUAGES))
+ISO6392_LANGNAME = dict(map(lambda lang: (lang[3], lang[0]), LANGUAGES))
 
 def languageTranslate(lang, lang_from, lang_to):
     if lang_from == 0 and lang_to == 2:
@@ -334,8 +334,8 @@ def getFileSize(filepath):
 # http://www.garykessler.net/library/file_sigs.html
 def getCompressedFileType(filepath):
     signature_dict = {
-                         "\x50\x4b\x03\x04":"zip",
-                         "\x52\x61\x72\x21\x1A":"rar"
+                         "\x50\x4b\x03\x04": "zip",
+                         "\x52\x61\x72\x21\x1A": "rar"
     }
     max_len = max(len(x) for x in signature_dict)
     with open(filepath) as f:

@@ -38,7 +38,7 @@ subscene_languages = {
     'Farsi/Persian': 'Persian'
 }
 
-def getSearchTitle(title,year=None): ## new Add
+def getSearchTitle(title, year=None): ## new Add
     url = 'https://subscene.com/subtitles/searchbytitle?query=%s&l=' % quote_plus(title)
     data = geturl(url)
     blocks = data.split('class="title"')
@@ -101,13 +101,13 @@ def find_tv_show_season(content, tvshow, season):
                 possible_matches.append(matches.groups())
 
     if len(possible_matches) > 0:
-        possible_matches = sorted(possible_matches, key=lambda x:-int(x[3]))
+        possible_matches = sorted(possible_matches, key=lambda x: -int(x[3]))
         url_found = possible_matches[0][0]
         log(__name__, "Selecting matching tv show with most subtitles: %s (%s)" % (
             possible_matches[0][1], possible_matches[0][3]))
     else:
         if len(all_tvshows) > 0:
-            all_tvshows = sorted(all_tvshows, key=lambda x:-int(x[4]))
+            all_tvshows = sorted(all_tvshows, key=lambda x: -int(x[4]))
             url_found = all_tvshows[0][0]
             log(__name__, "Selecting tv show with highest fuzzy string score: %s (score: %s subtitles: %s)" % (
                 all_tvshows[0][1], all_tvshows[0][4], all_tvshows[0][3]))
@@ -158,16 +158,16 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
             if search_string != "":
                 if subtitle_name.lower().find(search_string.lower()) > -1:
                     subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link,
-                                     'language_name':language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
+                                     'language_name': language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
                     i = i + 1
                 elif numfiles > 2:
                     subtitle_name = subtitle_name + ' ' + ("%d files" % int(matches.group('numfiles')))
                     subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link,
-                                     'language_name':language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
+                                     'language_name': language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
                     i = i + 1
             else:
                 subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link,
-                                 'language_name':language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
+                                 'language_name': language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
                 i = i + 1
 
     subtitles.sort(key=lambda x: [not x['sync']])

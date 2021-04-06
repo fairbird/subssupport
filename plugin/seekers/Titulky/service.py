@@ -134,7 +134,7 @@ class TitulkyClient(object):
 
     def login(self, username, password):
             log(__name__, 'Logging in to Titulky.com')
-            login_postdata = urlencode({'Login': username, 'Password': password, 'foreverlog': '1','Detail2':''})
+            login_postdata = urlencode({'Login': username, 'Password': password, 'foreverlog': '1', 'Detail2': ''})
             request = Request(self.server_url + '/index.php', login_postdata)
             response = urlopen(request)
             log(__name__, 'Got response')
@@ -150,10 +150,10 @@ class TitulkyClient(object):
             return True
 
     def search_subtitles(self, file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3):
-        url = self.server_url + '/index.php?' + urlencode({'Fulltext':title,'FindUser':''})
+        url = self.server_url + '/index.php?' + urlencode({'Fulltext': title, 'FindUser': ''})
         if not (tvshow == None or tvshow == ''):
             title2 = tvshow + ' ' + get_episode_season(episode, season)
-            url = self.server_url + '/index.php?' + urlencode({'Fulltext':title2,'FindUser':''})
+            url = self.server_url + '/index.php?' + urlencode({'Fulltext': title2, 'FindUser': ''})
         req = Request(url)
         try:
             size = getFileSize(file_original_path)
@@ -264,7 +264,7 @@ class TitulkyClient(object):
 
     def get_subtitle_page2(self, content, code, id):
         url = self.server_url + '/idown.php'
-        post_data = {'downkod':code,'titulky':id,'zip':'z','securedown':'2','histstamp':''}
+        post_data = {'downkod': code, 'titulky': id, 'zip': 'z', 'securedown': '2', 'histstamp': ''}
         req = Request(url, urlencode(post_data))
         req = self.add_cookies_into_header(req)
         log(__name__, 'Opening %s POST:%s' % (url, str(post_data)))
@@ -276,7 +276,7 @@ class TitulkyClient(object):
 
     def get_subtitle_page(self, id):
         timestamp = str(calendar.timegm(time.gmtime()))
-        url = self.server_url + '/idown.php?' + urlencode({'R':timestamp,'titulky':id,'histstamp':'','zip':'z'})
+        url = self.server_url + '/idown.php?' + urlencode({'R': timestamp, 'titulky': id, 'histstamp': '', 'zip': 'z'})
         log(__name__, 'Opening %s' % (url))
         req = Request(url)
         req = self.add_cookies_into_header(req)

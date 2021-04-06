@@ -134,12 +134,12 @@ GREEK_ENCODINGS = ['windows-1253', 'iso-8859-7', 'macgreek']
 HEBREW_ENCODINGS = ['windows-1255', 'iso-8859-8', 'IBM862']
 
 ENCODINGS = {("Central and Eastern Europe"): CENTRAL_EASTERN_EUROPE_ENCODINGS,
-            ("Western Europe"):WESTERN_EUROPE_ENCODINGS,
-            ("Russia"):RUSSIAN_ENCODINGS,
+            ("Western Europe"): WESTERN_EUROPE_ENCODINGS,
+            ("Russia"): RUSSIAN_ENCODINGS,
             ("Arabic"): ARABIC_ENCODINGS,
-            ("Turkish"):TURKISH_ENCODINGS,
-            ("Greek"):GREEK_ENCODINGS,
-            ("Hebrew"):HEBREW_ENCODINGS}
+            ("Turkish"): TURKISH_ENCODINGS,
+            ("Greek"): GREEK_ENCODINGS,
+            ("Hebrew"): HEBREW_ENCODINGS}
 
 # initializing parsers
 PARSERS = [SubRipParser, MicroDVDParser]
@@ -416,7 +416,7 @@ class SubsStatusScreen(Screen, HelpableScreen):
         self['OkCancelActions'] = HelpableActionMap(self, "OkCancelActions",
         {
             'ok': (self.showHelp, _("displays this menu")),
-            'cancel':(self.close, _("exit"))
+            'cancel': (self.close, _("exit"))
         })
         self._subsDelay = None
         self.onLayoutFinish.append(self._subscribeDelay)
@@ -617,9 +617,9 @@ class SubsSupportEmbedded(object):
         fontRegular = parseFont("%s;%s" % (fontTypeR, fontSize), scale)
         fontItalic = parseFont("%s;%s" % (fontTypeI, fontSize), scale)
         fontBold = parseFont("%s;%s" % (fontTypeB, fontSize), scale)
-        self._loadEmbeddedStyle({"Subtitle_Regular":(fontRegular, 1, foregroundColor, borderColor, borderWidth, borderColor, shadowOffset),
-                                "Subtitle_Italic":(fontItalic, 1, foregroundColor, borderColor, borderWidth, borderColor, shadowOffset),
-                                "Subtitle_Bold":(fontBold, 1, foregroundColor, borderColor, borderWidth, borderColor, shadowOffset)})
+        self._loadEmbeddedStyle({"Subtitle_Regular": (fontRegular, 1, foregroundColor, borderColor, borderWidth, borderColor, shadowOffset),
+                                "Subtitle_Italic": (fontItalic, 1, foregroundColor, borderColor, borderWidth, borderColor, shadowOffset),
+                                "Subtitle_Bold": (fontBold, 1, foregroundColor, borderColor, borderWidth, borderColor, shadowOffset)})
         if reloadScreen:
             print('[SubsSupportEmbedded] reloading embedded screen')
             subtitle = self.getCurrentServiceSubtitle()
@@ -1341,17 +1341,17 @@ class SubsScreen(Screen):
         self.externalSettings = externalSettings
         fontSize = int(externalSettings.font.size.getValue())
         self.font = {
-            "regular":{
-                'gfont':(gFont(externalSettings.font.regular.type.value, fontSize), fontSize),
-                'color':externalSettings.font.regular.alpha.value + externalSettings.font.regular.color.value
+            "regular": {
+                'gfont': (gFont(externalSettings.font.regular.type.value, fontSize), fontSize),
+                'color': externalSettings.font.regular.alpha.value + externalSettings.font.regular.color.value
             },
-            "italic":{
-                'gfont':(gFont(externalSettings.font.italic.type.value, fontSize), fontSize),
-                'color':externalSettings.font.italic.alpha.value + externalSettings.font.italic.color.value
+            "italic": {
+                'gfont': (gFont(externalSettings.font.italic.type.value, fontSize), fontSize),
+                'color': externalSettings.font.italic.alpha.value + externalSettings.font.italic.color.value
             },
-            "bold":{
-                'gfont':(gFont(externalSettings.font.bold.type.value, fontSize), fontSize),
-                'color':externalSettings.font.bold.alpha.value + externalSettings.font.bold.type.value
+            "bold": {
+                'gfont': (gFont(externalSettings.font.bold.type.value, fontSize), fontSize),
+                'color': externalSettings.font.bold.alpha.value + externalSettings.font.bold.type.value
             }
         }
         self.selectedFont = "regular"
@@ -1437,17 +1437,17 @@ class SubsScreen(Screen):
         self.setBackground(backgroundType, backgroundAlpha, backgroundColor, backgroundXOffset, backgroundYOffset)
         externalSettings = self.externalSettings
         self.setFonts({
-            "regular":{
-                'gfont':(gFont(externalSettings.font.regular.type.value, fontSize), fontSize),
-                'color':externalSettings.font.regular.alpha.value + externalSettings.font.regular.color.value
+            "regular": {
+                'gfont': (gFont(externalSettings.font.regular.type.value, fontSize), fontSize),
+                'color': externalSettings.font.regular.alpha.value + externalSettings.font.regular.color.value
             },
-            "italic":{
-                'gfont':(gFont(externalSettings.font.italic.type.value, fontSize), fontSize),
-                'color':externalSettings.font.italic.alpha.value + externalSettings.font.italic.color.value
+            "italic": {
+                'gfont': (gFont(externalSettings.font.italic.type.value, fontSize), fontSize),
+                'color': externalSettings.font.italic.alpha.value + externalSettings.font.italic.color.value
             },
-            "bold":{
-                'gfont':(gFont(externalSettings.font.bold.type.value, fontSize), fontSize),
-                'color':externalSettings.font.bold.alpha.value + externalSettings.font.bold.color.value
+            "bold": {
+                'gfont': (gFont(externalSettings.font.bold.type.value, fontSize), fontSize),
+                'color': externalSettings.font.bold.alpha.value + externalSettings.font.bold.color.value
             }
         })
 
@@ -2678,7 +2678,7 @@ class SubsDownloadedSelection(Screen):
         self.setTitle(_("Downloaded Subtitles"))
             
     def updateSubsList(self):
-        imgDict = {'unk':loadPNG(os.path.join(os.path.dirname(__file__), 'img', 'countries', 'UNK.png'))}
+        imgDict = {'unk': loadPNG(os.path.join(os.path.dirname(__file__), 'img', 'countries', 'UNK.png'))}
         subtitleListGUI = []
         for sub in self.subtitles[:]:
             fpath = toString(sub['fpath'])
@@ -3114,7 +3114,7 @@ class HistorySuggestions(Suggestions):
     def _getSuggestions(self, queryString):
         def getHistory(queryString):
             historyList = self.historyCfg.value.split(',')
-            historyList = [{'name':name, 'total':len(historyList) - idx} for idx, name in enumerate(historyList)]
+            historyList = [{'name': name, 'total': len(historyList) - idx} for idx, name in enumerate(historyList)]
             d.callback(historyList)
         d = Deferred()
         getHistory(queryString)
@@ -3559,12 +3559,12 @@ class SubsSearchDownloadOptions(Screen, ConfigListScreen):
         self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
         {
             "right": self.keyRight,
-             "left":self.keyLeft,
-             "ok":self.confirm,
-             "cancel":self.cancel,
+             "left": self.keyLeft,
+             "ok": self.confirm,
+             "cancel": self.cancel,
              "red": self.editFName,
              "green": self.editDPath,
-             "blue":self.resetDefaults
+             "blue": self.resetDefaults
         }, -2)
         self.onLayoutFinish.append(self.updateWindowTitle)
         self.onLayoutFinish.append(self.updateFName)
@@ -3908,16 +3908,16 @@ class SubsSearch(Screen):
         {
             "up": self.keyUp,
             "upRepeated": self.keyUp,
-            "upUp": lambda:None,
+            "upUp": lambda: None,
             "down": self.keyDown,
             "downRepeated": self.keyDown,
-            "downUp": lambda:None,
+            "downUp": lambda: None,
             "right": self.keyRight,
             "rightRepeated": self.keyRight,
-            "rightUp": lambda:None,
+            "rightUp": lambda: None,
             "left": self.keyLeft,
             "leftRepeated": self.keyLeft,                                              
-            "leftUp": lambda:None,
+            "leftUp": lambda: None,
         }, -2)
         
         self["searchActions"] = ActionMap(["OkCancelActions"],
@@ -3938,16 +3938,16 @@ class SubsSearch(Screen):
         {
             "up": self.__contextMenu.up,
             "upRepeated": self.__contextMenu.up,
-            "upUp": lambda:None,
+            "upUp": lambda: None,
             "down": self.__contextMenu.down,
             "downRepeated": self.__contextMenu.down,
-            "downUp": lambda:None,
+            "downUp": lambda: None,
             "right": self.__contextMenu.right,
             "rightRepeated": self.__contextMenu.right,
-            "rightUp": lambda:None,
+            "rightUp": lambda: None,
             "left": self.__contextMenu.left,
             "leftRepeated": self.__contextMenu.left,
-            "leftUp": lambda:None,
+            "leftUp": lambda: None,
 
             "ok": self.contextMenuOk,
             "cancel": self.contextMenuCancel,
@@ -4021,8 +4021,8 @@ class SubsSearch(Screen):
 
     def updateSubsList(self):
         imgDict = {
-            'sync':loadPNG(os.path.join(os.path.dirname(__file__), 'img', 'check.png')),
-            'unk':loadPNG(os.path.join(os.path.dirname(__file__), 'img', 'countries', 'UNK.png'))
+            'sync': loadPNG(os.path.join(os.path.dirname(__file__), 'img', 'check.png')),
+            'unk': loadPNG(os.path.join(os.path.dirname(__file__), 'img', 'countries', 'UNK.png'))
         }
         subtitleListGUI = []
         for sub in self.subtitlesList:
@@ -4134,7 +4134,7 @@ class SubsSearch(Screen):
             if status:
                 self.__finished[pfinished] = value
             else:
-                self.__finished[pfinished] = {'list':[], 'status':status,'message':str(value)}
+                self.__finished[pfinished] = {'list': [], 'status': status, 'message': str(value)}
             progressMessage = "%s - %d%%" % (_("loading subtitles list"), int(len(self.__finished.keys()) / float(len(provider)) * 100))
             progressMessage += "\n" + _("subtitles found") + " (%d)" % (sum(len(self.__finished[p]['list']) for p in self.__finished.keys()))
             progressMessage += "\n\n" + _("Press OK to Stop")
@@ -4154,11 +4154,11 @@ class SubsSearch(Screen):
         filepath = self.searchUseFilePath.value and self.filepath or None
         timeout = float(self.searchSettings.timeout.value)
         params = { 
-            'search':{
-                'providers':[p.id for p in provider],
-                'title':title,
-                'filepath':filepath,
-                'langs':langs,
+            'search': {
+                'providers': [p.id for p in provider],
+                'title': title,
+                'filepath': filepath,
+                'langs': langs,
                 'year': year,
                 'tvshow': tvshow,
                 'season': season,
@@ -4253,11 +4253,11 @@ class SubsSearch(Screen):
 
         settings = {
             "save_as": saveAs,
-            "lang_to_filename":langToFilename,
-            "ask_overwrite":askOverwrite
+            "lang_to_filename": langToFilename,
+            "ask_overwrite": askOverwrite
         }
         params = { 
-            'download':{
+            'download': {
                 'selected_subtitle': subtitle,
                 'subtitles_dict': self.subtitlesDict,
                 'path': downloadDir,

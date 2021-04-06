@@ -24,7 +24,7 @@ class Messages(object):
     MESSAGE_OVERWRITE_CALLBACK = 8
 
 def send(mtype, m):
-    dump = json.dumps({'message':mtype, 'value':m})
+    dump = json.dumps({'message': mtype, 'value': m})
     dump = "%07d%s" % (len(dump) + 7, dump)
     stdout.write(dump)
     stdout.flush()
@@ -62,7 +62,7 @@ def scriptError(e):
     if isinstance(e, BaseSubtitlesError):
         send(Messages.MESSAGE_ERROR_SCRIPT, {'error_code': e.code, 'provider': e.provider})
     else:
-        send(Messages.MESSAGE_ERROR_SCRIPT, {'error_code': SubtitlesErrors.UNKNOWN_ERROR, 'provider':''})
+        send(Messages.MESSAGE_ERROR_SCRIPT, {'error_code': SubtitlesErrors.UNKNOWN_ERROR, 'provider': ''})
 
 def scriptFinished(subtitlesDict):
     send(Messages.MESSAGE_FINISHED_SCRIPT, subtitlesDict)

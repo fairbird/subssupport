@@ -70,7 +70,7 @@ class XBMCSubtitlesAdapter(BaseSeeker):
         # message to print back to the user
         # return subtitlesList, "", msg
         subtitles_list, session_id, msg = self.module.search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp=False, rar=False, lang1=lang1, lang2=lang2, lang3=lang3, stack=None)
-        return {'list':subtitles_list, 'session_id':session_id, 'msg':msg}
+        return {'list': subtitles_list, 'session_id': session_id, 'msg': msg}
 
     def _download(self, subtitles, selected_subtitle, path=None):
         subtitles_list = subtitles['list']
@@ -121,8 +121,8 @@ class TitulkyComSeeker(XBMCSubtitlesAdapter):
     id = 'titulky.com'
     provider_name = 'Titulky.com'
     supported_langs = ['sk', 'cs']
-    default_settings = {'Titulkyuser': {'label':_("Username"), 'type':'text', 'default':"", 'pos':0},
-                                       'Titulkypass': {'label':_("Password"), 'type':'password', 'default':"", 'pos':1}, }
+    default_settings = {'Titulkyuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
+                                       'Titulkypass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1}, }
 
 try:
     from .Edna import edna
@@ -299,9 +299,9 @@ class PodnapisiSeeker(XBMCSubtitlesAdapter):
                                             "tr",
                                             "uk",
                                             "vi"]
-    default_settings = {'PNuser':{'label':_("Username"), 'type':'text', 'default':"", 'pos':0},
-                                       'PNpass':{'label':_("Password"), 'type':'password', 'default':"", 'pos':1},
-                                       'PNmatch':{'label':_("Send and search movie hashes"), 'type':'yesno', 'default':'false', 'pos':2}}
+    default_settings = {'PNuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
+                                       'PNpass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1},
+                                       'PNmatch': {'label': _("Send and search movie hashes"), 'type': 'yesno', 'default': 'false', 'pos': 2}}
 try:
     from .Subscene import subscene
 except ImportError as e:
@@ -395,8 +395,8 @@ class ItasaSeeker(XBMCSubtitlesAdapter):
     id = 'itasa'
     provider_name = 'Itasa'
     supported_langs = ['it']
-    default_settings = {'ITuser': {'label':_("Username"), 'type':'text', 'default':"", 'pos':0},
-                                       'ITpass': {'label':_("Password"), 'type':'password', 'default':"", 'pos':1}, }
+    default_settings = {'ITuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
+                                       'ITpass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1}, }
     movie_search = False
     tvshow_search = True
 

@@ -346,7 +346,7 @@ class E2SettingsProvider(dict):
     def getE2Settings(self):
         settingList = []
         sortList = self.__defaults.items()
-        sortedList = sorted(sortList, key=lambda x:x[1]['pos'])
+        sortedList = sorted(sortList, key=lambda x: x[1]['pos'])
         for name, value in sortedList:
             settingList.append(getConfigListEntry(value['label'], self.getConfigEntry(name)))
         return settingList
@@ -428,7 +428,7 @@ def getFps(session, validOnly=False):
     if fps > 0:
         fps = fps_float("%.3f" % (fps / float(1000)))
         if validOnly:
-            validFps = min([23.976, 23.98, 24.0, 25.0, 29.97, 30.0], key=lambda x:abs(x - fps))
+            validFps = min([23.976, 23.98, 24.0, 25.0, 29.97, 30.0], key=lambda x: abs(x - fps))
             if fps != validFps and abs(fps - validFps) > 0.01:
                 print("[getFps] unsupported fps: %.4f!" % (fps))
                 return None
