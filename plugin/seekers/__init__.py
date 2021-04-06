@@ -14,5 +14,3 @@ from .seeker import SubtitlesDownloadError, SubtitlesSearchError, SubtitlesError
 from .xbmc_subtitles import TitulkyComSeeker, EdnaSeeker, SerialZoneSeeker, \
     OpenSubtitlesSeeker, PodnapisiSeeker, SubsceneSeeker, SubtitlesGRSeeker, \
     ItasaSeeker, TitloviSeeker
-
-

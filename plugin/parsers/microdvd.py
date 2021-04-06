@@ -7,7 +7,7 @@ from .baseparser import BaseParser, ParseError, HEX_COLORS
 class MicroDVDParser(BaseParser):
     parsing = ('.sub', '.txt')
     format = "MicroDVD"
-    
+
     def _removeTags(self, text):
         return re.sub('\{[^\}]*\}', '', text)
 
@@ -42,7 +42,7 @@ class MicroDVDParser(BaseParser):
             else:
                 color = 'default'
         return color, newColor
-        
+
     #{0}{25}{y:i}Hello!
     def _getStyle(self, text, style):
         newStyle = style
@@ -68,7 +68,7 @@ class MicroDVDParser(BaseParser):
             else:
                 style = 'regular'
         return style, newStyle
-     
+
     def _parse(self, text, fps):
         subs = []
         idx = 0
