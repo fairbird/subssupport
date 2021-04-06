@@ -222,12 +222,12 @@ class OpenSubtitlesSeeker(XBMCSubtitlesAdapter):
     default_settings = {}
 
     def _search(self, title, filepath, lang, season, episode, tvshow, year):
-        import xmlrpclib
+        from six.moves import xmlrpc_client
         tries = 4
         for i in range(tries):
             try:
                 return XBMCSubtitlesAdapter._search(self, title, filepath, lang, season, episode, tvshow, year)
-            except xmlrpclib.ProtocolError as e:
+            except xmlrpc_client.Client.ProtocolError as e:
                 self.log.error(e.errcode)
                 if i == (tries - 1):
                     raise
