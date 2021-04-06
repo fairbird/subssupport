@@ -185,15 +185,14 @@ def search_movie(title, year, languages, filename):
         url=getSearchTitle(search_string, year)
         print("true url", url)
         content = geturl(url)
-        if content=='':
-           if content is None:
-               return []
-        print("content", content)
-        if content !='':
-                    list=getallsubs(content, languages, filename)
-                    return list
+        #print("content", content)
+        if content != '':
+            _list = getallsubs(content, languages, filename)
+            return _list
+        else:
+            return []
     except Exception as error:
-           print(("error", error))
+        print(("error", error))
                     
 
 def search_tvshow(tvshow, season, episode, languages, filename):
