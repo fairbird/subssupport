@@ -22,7 +22,7 @@ def Search(item):
     else:
         item['OShash'] = OpensubtitlesHash(item)
         item['SLhash'] = calculateSublightHash(item['file_original_path'])
-        log(__scriptid__, "xbmc module OShash: %s, SLhash:%s"%(item['OShash'], item['SLhash']))
+        log(__scriptid__, "xbmc module OShash: %s, SLhash:%s" % (item['OShash'], item['SLhash']))
 
     log(__scriptid__, "Search for [%s] by name" % (os.path.basename(item['file_original_path']),))
     subtitles_list = pn_server.SearchSubtitlesWeb(item)
@@ -49,7 +49,7 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
 
     if not item['title']:
         log(__scriptid__, "VideoPlayer.OriginalTitle not found")
-        item['title']  = normalizeString(os.path.basename(item['file_original_path']))
+        item['title'] = normalizeString(os.path.basename(item['file_original_path']))
 
     if item['episode'].lower().find("s") > -1:  # Check if season is "Special"
         item['season'] = "0"  #

@@ -39,21 +39,21 @@ subscene_languages = {
 }
 
 def getSearchTitle(title,year=None): ## new Add
-    url='https://subscene.com/subtitles/searchbytitle?query=%s&l='%quote_plus(title)
-    data=geturl(url)
-    blocks=data.split('class="title"')
+    url = 'https://subscene.com/subtitles/searchbytitle?query=%s&l=' % quote_plus(title)
+    data = geturl(url)
+    blocks = data.split('class="title"')
     blocks.pop(0)
-    list1=[]
+    list1 = []
     for block in blocks:
-        regx='''<a href="(.*?)">(.*?)</a>'''
+        regx = '''<a href="(.*?)">(.*?)</a>'''
         try:
-            matches=re.findall(regx, block)
-            name=matches[0][1]
-            href=matches[0][0]
+            matches = re.findall(regx, block)
+            name = matches[0][1]
+            href = matches[0][0]
             print("hrefxxx", href)
             print("yearxx", year)
-            href='https://subscene.com'+href
-            if year and year=='':
+            href = 'https://subscene.com' + href
+            if year and year == '':
               if "/subtitles/" in href:
                   return href
             if not year:
@@ -65,7 +65,7 @@ def getSearchTitle(title,year=None): ## new Add
                    return href
         except:
             break
-    return 'https://subscene.com/subtitles/'+quote_plus(title) 
+    return 'https://subscene.com/subtitles/' + quote_plus(title) 
 
 def find_movie(content, title, year):
     url_found = None
@@ -127,9 +127,9 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
 
     subtitles = []
     h = html_parser.HTMLParser()
-    allmatches=re.finditer(subtitle_pattern, content, re.IGNORECASE | re.DOTALL)
+    allmatches = re.finditer(subtitle_pattern, content, re.IGNORECASE | re.DOTALL)
     print('allmatches', allmatches)
-    i=0
+    i = 0
     for matches in re.finditer(subtitle_pattern, content, re.IGNORECASE | re.DOTALL):
         numfiles = 1
         if matches.group('numfiles') != "":
@@ -159,16 +159,16 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
                 if subtitle_name.lower().find(search_string.lower()) > -1:
                     subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link,
                                      'language_name':language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
-                    i=i+1
+                    i = i + 1
                 elif numfiles > 2:
                     subtitle_name = subtitle_name + ' ' + ("%d files" % int(matches.group('numfiles')))
                     subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link,
                                      'language_name':language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
-                    i=i+1
+                    i = i + 1
             else:
                 subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link,
                                  'language_name':language_info['name'], 'lang': language_info, 'hearing_imp': hearing_imp, 'comment': comment})
-                i=i+1
+                i = i + 1
 
     subtitles.sort(key=lambda x: [not x['sync']])
     return subtitles
@@ -184,7 +184,7 @@ def search_movie(title, year, languages, filename):
     try:
         title = title.strip()
         search_string = prepare_search_string(title)
-        url=getSearchTitle(search_string, year)
+        url = getSearchTitle(search_string, year)
         print("true url", url)
         content = geturl(url)
         #print("content", content)

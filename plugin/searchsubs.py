@@ -25,7 +25,7 @@ class Messages(object):
 
 def send(mtype, m):
     dump = json.dumps({'message':mtype, 'value':m})
-    dump = "%07d%s" % (len(dump)+7, dump)
+    dump = "%07d%s" % (len(dump) + 7, dump)
     stdout.write(dump)
     stdout.flush()
 
@@ -103,7 +103,7 @@ def main():
     sys.stdout = open('/tmp/subssupport.log', 'w')
     sys.stderr = sys.stdout
     options = recieve()
-    print('recieved options: %r'%options)
+    print('recieved options: %r' % options)
     try:
         from .seek import SubsSeeker
     except (ValueError, ImportError):
