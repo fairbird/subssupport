@@ -6,6 +6,7 @@ Created on Feb 10, 2014
 from __future__ import absolute_import
 import os
 import time
+import six
 
 from .seeker import BaseSeeker
 from .utilities import languageTranslate, toString
@@ -42,8 +43,8 @@ class XBMCSubtitlesAdapter(BaseSeeker):
     def _search(self, title, filepath, langs, season, episode, tvshow, year):
         file_original_path = filepath and filepath or ""
         title = title and title or file_original_path
-        season = season if season else ""
-        episode = episode if episode else ""
+        season = season if season else 0
+        episode = episode if episode else 0
         tvshow = tvshow if tvshow else ""
         year = year if year else ""
         if len(langs) > 3:
@@ -97,7 +98,7 @@ class XBMCSubtitlesAdapter(BaseSeeker):
             if not os.path.isfile(filepath):
                 filepath = zip_subs
         else:
-            filepath = os.path.join(sub_folder, filepath)
+            filepath = os.path.join(six.ensure_str(sub_folder), filepath)
         return compressed, language, filepath
 
     def close(self):

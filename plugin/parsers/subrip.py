@@ -94,9 +94,9 @@ class SubRipParser(BaseParser):
             try:
                 idx += 1
                 shour, smin, ssec, smsec = int(s.group(1)), int(s.group(2)), int(s.group(3)), int(s.group(4))
-                start_time = long((shour * 3600 + smin * 60 + ssec) * 1000 + smsec)
+                start_time = int((shour * 3600 + smin * 60 + ssec) * 1000 + smsec)
                 ehour, emin, esec, emsec = int(s.group(5)), int(s.group(6)), int(s.group(7)), int(s.group(8))
-                end_time = long((ehour * 3600 + emin * 60 + esec) * 1000 + emsec)
+                end_time = int((ehour * 3600 + emin * 60 + esec) * 1000 + emsec)
                 subs.append(self.createSub(s.group(9), start_time, end_time))
             except Exception as e:
                 raise ParseError(str(e) + ', subtitle_index: %d' % idx)

@@ -16,7 +16,7 @@
 #
 #################################################################################
 
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 import os
 import traceback
 
@@ -78,6 +78,7 @@ class SubsLoader(object):
             traceback.print_exc()
             self.log.error("cannot decode subtitles'")
             raise DecodeError()
+
         return decoded_text, encoding
 
     def load(self, subfile, current_encoding=None, fps=None):
@@ -102,8 +103,8 @@ class SubsLoader(object):
         filename = os.path.basename(subfile)
         size = getFileSize(subfile)
         if size and size > SUBTITLES_FILE_MAX_SIZE:
-            self.log.error("<%s> not supported subtitles size ({%d}KB > {%d}KB)!", filename, size / 1024, SUBTITLES_FILE_MAX_SIZE / 1024)
-            raise LoadError('"%s" - not supported subtitles size: "%dKB"' % (toString(os.path.basename(subfile)), size / 1024))
+            self.log.error("<%s> not supported subtitles size ({%d}KB > {%d}KB)!", filename, size // 1024, SUBTITLES_FILE_MAX_SIZE // 1024)
+            raise LoadError('"%s" - not supported subtitles size: "%dKB"' % (toString(os.path.basename(subfile)), size // 1024))
         try:
             text = load(subfile)
         except (URLError, HTTPError, IOError) as e:

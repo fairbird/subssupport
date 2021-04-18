@@ -58,10 +58,10 @@ def decode(text, encodings, current_encoding=None, decode_from_start=False):
         enc = encodings[current_idx]
         try:
             print('[decode] trying encoding', enc, '...')
-            utext = six.text_type(text, enc)
+            #utext = str(text, enc)
             print('[decode] decoded with', enc, 'encoding')
             used_encoding = enc
-            return utext, used_encoding
+            return text, used_encoding
         except Exception:
             if enc == encodings[-1] and current_encoding_idx == -1:
                 print('[decode] cannot decode with provided encodings')
@@ -99,7 +99,7 @@ def which(program):
 class SimpleLogger(object):
 
     LOG_FORMAT = "[{0}]{1}"
-    LOG_NONE, LOG_ERROR, LOG_INFO, LOG_DEBUG = range(4)
+    LOG_NONE, LOG_ERROR, LOG_INFO, LOG_DEBUG = list(range(4))
 
     def __init__(self, prefix_name, log_level=LOG_INFO):
         self.prefix_name = prefix_name

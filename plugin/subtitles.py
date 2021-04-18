@@ -3127,7 +3127,7 @@ class Suggestions(object):
 class OpenSubtitlesSuggestions(Suggestions):
     def _getSuggestions(self, queryString):
         query = "http://www.opensubtitles.org/libs/suggest.php?format=json2&SubLanguageID=null&MovieName=" + quote(queryString)
-        return client.getPage(query, timeout=6)
+        return client.getPage(six.ensure_binary(query), timeout=6)
 
     def _processResult(self, data):
         return json.loads(data)['result']
@@ -4249,7 +4249,10 @@ class SubsSearch(Screen):
 
     def searchSubsError(self, error):
         print('[SubsSearch] search error', str(error))
-        self.message.error(error.message, 4000)
+        try:
+            self.message.error(error.message, 4000)
+        except:
+            self.message.error("error", 4000)
         self.subtitlesList = []
         self.subtitlesDict = {}
         self.updateSubsList()

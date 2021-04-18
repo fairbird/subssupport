@@ -259,7 +259,7 @@ def OpensubtitlesHashRar(firsrarfile):
     if a != 'Rar!':
         raise Exception('ERROR: This is not rar file.')
     seek = 0
-    for i in range(4):
+    for i in list(range(4)):
         f.seek(max(0, seek), 0)
         a = f.read(100)
         type, flag, size = struct.unpack('<BHH', a[2:2 + 5])
@@ -388,7 +388,7 @@ def detectSearchParams(title):
 class SimpleLogger(object):
 
     LOG_FORMAT = "[{0}]{1}"
-    LOG_NONE, LOG_ERROR, LOG_INFO, LOG_DEBUG = range(4)
+    LOG_NONE, LOG_ERROR, LOG_INFO, LOG_DEBUG = list(range(4))
 
     def __init__(self, prefix_name, log_level=LOG_INFO):
         self.prefix_name = prefix_name
