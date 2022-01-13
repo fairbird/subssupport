@@ -196,7 +196,7 @@ class ConfigFinalText(ConfigText):
     def __init__(self, default="", visible_width=60):
         ConfigText.__init__(self, default, fixed_size=True, visible_width=visible_width)
 
-    def handleKey(self, key):
+    def handleKey(self, key, callback=None):
         pass
 
     def getValue(self):

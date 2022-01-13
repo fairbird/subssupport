@@ -1887,9 +1887,36 @@ class SubsMenu(Screen):
                 "cancel": self.cancel,
             }, -2)
 
+        self["menuactions"] = ActionMap(["NavigationActions"], {
+			"top": self.top,
+			"pageUp": self.pageUp,
+			"up": self.up,
+			"down": self.down,
+			"pageDown": self.pageDown,
+			"bottom": self.bottom
+		}, -2)
+
         self.onLayoutFinish.append(self.initTitle)
         self.onLayoutFinish.append(self.initGUI)
         self.onLayoutFinish.append(self.disableSelection)
+
+    def top(self):
+        self["menu_list"].top()
+
+    def pageUp(self):
+        self["menu_list"].pageUp()
+
+    def up(self):
+        self["menu_list"].up()
+
+    def down(self):
+        self["menu_list"].down()
+
+    def pageDown(self):
+        self["menu_list"].pageDown()
+
+    def bottom(self):
+        self["menu_list"].bottom()
 
     def disableSelection(self):
         self["subfile_list"].selectionEnabled(False)
@@ -3271,8 +3298,8 @@ class ConfigTextWithSuggestionsAndHistory(ConfigText):
         self.__suggestions = None
         self.currentWindow = None
 
-    def handleKey(self, key):
-        ConfigText.handleKey(self, key)
+    def handleKey(self, key, callback=None):
+        ConfigText.handleKey(self, key, callback)
         if key in [KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT]:
             self.getSuggestions()
 
