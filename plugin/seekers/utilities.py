@@ -350,11 +350,11 @@ def getFileSize(filepath):
 
 def getCompressedFileType(filepath):
     signature_dict = {
-                         "\x50\x4b\x03\x04": "zip",
-                         "\x52\x61\x72\x21\x1A": "rar"
+                         b"\x50\x4b\x03\x04": "zip",
+                         b"\x52\x61\x72\x21\x1A": "rar"
     }
     max_len = max(len(x) for x in signature_dict)
-    with open(filepath) as f:
+    with open(filepath, "rb") as f:
         file_start = f.read(max_len)
     for signature, filetype in signature_dict.items():
         if file_start.startswith(signature):
