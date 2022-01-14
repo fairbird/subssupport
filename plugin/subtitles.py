@@ -1556,7 +1556,7 @@ class SubsEngine(object):
         self.__pts = None
         if delay is None:
             delay = 1
-        self.getPlayPtsTimer.start(delay, True)
+        self.getPlayPtsTimer.start(int(delay), True)
 
     def getPts(self):
         try:
@@ -1582,7 +1582,7 @@ class SubsEngine(object):
             delay = self.getPlayPtsTimerDelay
             if self.__ptsDelay is not None:
                 delay = self.__ptsDelay
-            self.getPlayPtsTimer.start(delay)
+            self.getPlayPtsTimer.start(int(delay))
 
     def setSubsList(self, subslist):
         self.subsList = subslist
