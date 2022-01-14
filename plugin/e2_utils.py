@@ -216,8 +216,8 @@ class Captcha(object):
     def __init__(self, session, captchaCB, imagePath, destPath='/tmp/captcha.png'):
         self.session = session
         self.captchaCB = captchaCB
-        self.destPath = destPath.encode('utf-8')
-        imagePath = imagePath.encode('utf-8')
+        self.destPath = destPath.encode('utf-8') if six.PY2 else destPath
+        imagePath = imagePath.encode('utf-8') if six.PY2 else imagePath
 
         if os.path.isfile(imagePath):
             self.openCaptchaDialog(imagePath)
@@ -286,7 +286,7 @@ class DelayMessageBox(MessageBox):
 
 
 def messageCB(text):
-    print(text.encode('utf-8'))
+    print(text.encode('utf-8') if six.PY2 else text)
 
 
 class E2SettingsProvider(dict):
@@ -299,7 +299,7 @@ class E2SettingsProvider(dict):
         self.createSettings()
 
     def __repr__(self):
-        return '[E2SettingsProvider-%s]' % self.__providerName.encode('utf-8')
+        return '[E2SettingsProvider-%s]' % self.__providerName.encode('utf-8') if six.PY2 else self.__providerName
 
     def __setitem__(self, key, value):
         self.setSetting(key, value)

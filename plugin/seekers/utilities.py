@@ -21,7 +21,7 @@ SUPRESS_LOG = True
 def log(module, msg):
     if SUPRESS_LOG:
         return
-    if isinstance(msg, six.text_type):
+    if six.PY2 and isinstance(msg, six.text_type):
         print(module, msg.encode('utf-8'))
     else:
         print(module, msg)
@@ -433,7 +433,7 @@ class SimpleLogger(object):
 
 
 def toString(text):
-    if isinstance(text, six.string_types):
+    if six.PY2 and isinstance(text, six.string_types):
         if isinstance(text, six.text_type):
             return text.encode('utf-8')
     return text
