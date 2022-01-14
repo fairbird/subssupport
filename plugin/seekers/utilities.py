@@ -14,6 +14,9 @@ import os
 
 import six
 
+if six.PY3:
+    long = int
+
 
 SUPRESS_LOG = True
 

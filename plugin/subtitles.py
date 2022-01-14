@@ -94,6 +94,9 @@ try:
 except ImportError:
     QuickSubtitlesConfigMenu = None
 
+if six.PY3:
+    long = int
+
 
 # localization function
 
