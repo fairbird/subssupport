@@ -1525,7 +1525,7 @@ class SubsEngine(object):
             self.hideInterval = int(configElement.value) * 90
 
         def playerDelay(configElement):
-                self.playerDelay = int(configElement.value) * 90
+            self.playerDelay = int(configElement.value) * 90
 
         def syncDelay(configElement):
             self.syncDelay = int(configElement.value)
