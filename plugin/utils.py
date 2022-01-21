@@ -19,7 +19,7 @@ def load(subpath):
         return text
     else:
         try:
-            with open(subpath, 'r') as f:
+            with open(subpath, 'rb') as f:
                 return f.read()
         except Exception:
             return ""
@@ -58,10 +58,10 @@ def decode(text, encodings, current_encoding=None, decode_from_start=False):
         enc = encodings[current_idx]
         try:
             print('[decode] trying encoding', enc, '...')
-            #utext = str(text, enc)
+            utext = text.decode(enc)
             print('[decode] decoded with', enc, 'encoding')
             used_encoding = enc
-            return text, used_encoding
+            return utext, used_encoding
         except Exception:
             if enc == encodings[-1] and current_encoding_idx == -1:
                 print('[decode] cannot decode with provided encodings')

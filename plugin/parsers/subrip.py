@@ -9,7 +9,7 @@ class SubRipParser(BaseParser):
     parsing = ('.srt',)
 
     def _parse(self, text, fps):
-            return self._srt_to_dict(text)
+        return self._srt_to_dict(text)
 
     def _removeTags(self, text):
         return re.sub('<[^>]*>', '', text)
