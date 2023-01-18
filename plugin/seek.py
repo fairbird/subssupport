@@ -52,11 +52,12 @@ SUBTITLES_SEEKERS.append(TitulkyComSeeker)
 SUBTITLES_SEEKERS.append(EdnaSeeker)
 SUBTITLES_SEEKERS.append(SerialZoneSeeker)
 SUBTITLES_SEEKERS.append(OpenSubtitlesSeeker)
-SUBTITLES_SEEKERS.append(PodnapisiSeeker)
-SUBTITLES_SEEKERS.append(SubsceneSeeker)
 SUBTITLES_SEEKERS.append(SubtitlesGRSeeker)
 SUBTITLES_SEEKERS.append(ItasaSeeker)
-SUBTITLES_SEEKERS.append(TitloviSeeker)
+if six.PY2:
+    SUBTITLES_SEEKERS.append(PodnapisiSeeker)
+    SUBTITLES_SEEKERS.append(SubsceneSeeker)
+    SUBTITLES_SEEKERS.append(TitloviSeeker)
 
 
 class ErrorSeeker(BaseSeeker):
