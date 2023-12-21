@@ -27,18 +27,18 @@ import zipfile
 
 try:
     from .seekers import SubtitlesDownloadError, SubtitlesSearchError, \
-        SubtitlesErrors, TitulkyComSeeker, EdnaSeeker, SerialZoneSeeker, \
-        OpenSubtitlesSeeker, PodnapisiSeeker, SubsceneSeeker, SubtitlesGRSeeker, \
-        ItasaSeeker, TitloviSeeker
+        SubtitlesErrors, TitulkyComSeeker, EdnaSeeker, SerialZoneSeeker, ElsubtitleSeeker, IndexsubtitleSeeker, MoviesubtitlesSeeker, Moviesubtitles2Seeker, MySubsSeeker, \
+        OpenSubtitlesSeeker, PodnapisiSeeker, SubsceneSeeker, SubdlSeeker, SubsytsSeeker, SubtitlecatSeeker, SubtitlesGRSeeker, SubtitlesmoraSeeker, SubtitlistSeeker, \
+          ItasaSeeker, TitloviSeeker
     from .seekers.seeker import BaseSeeker
     from .seekers.utilities import languageTranslate, langToCountry, \
         getCompressedFileType, detectSearchParams
     from .utils import SimpleLogger, toString
 except (ValueError, ImportError):
     from seekers import SubtitlesDownloadError, SubtitlesSearchError, \
-        SubtitlesErrors, TitulkyComSeeker, EdnaSeeker, SerialZoneSeeker, \
-        OpenSubtitlesSeeker, PodnapisiSeeker, SubsceneSeeker, SubtitlesGRSeeker, \
-        ItasaSeeker, TitloviSeeker
+        SubtitlesErrors, TitulkyComSeeker, EdnaSeeker, SerialZoneSeeker, ElsubtitleSeeker, IndexsubtitleSeeker, MoviesubtitlesSeeker, Moviesubtitles2Seeker, MySubsSeeker, \
+        OpenSubtitlesSeeker, PodnapisiSeeker, SubsceneSeeker, SubdlSeeker, SubsytsSeeker, SubtitlecatSeeker, SubtitlesGRSeeker, SubtitlesmoraSeeker, SubtitlistSeeker, \
+         ItasaSeeker, TitloviSeeker
     from seekers.seeker import BaseSeeker
     from seekers.utilities import languageTranslate, langToCountry, \
         getCompressedFileType, detectSearchParams
@@ -51,8 +51,18 @@ SUBTITLES_SEEKERS = []
 SUBTITLES_SEEKERS.append(TitulkyComSeeker)
 SUBTITLES_SEEKERS.append(EdnaSeeker)
 SUBTITLES_SEEKERS.append(SerialZoneSeeker)
+SUBTITLES_SEEKERS.append(ElsubtitleSeeker)
+SUBTITLES_SEEKERS.append(IndexsubtitleSeeker)
+SUBTITLES_SEEKERS.append(MoviesubtitlesSeeker)
+SUBTITLES_SEEKERS.append(Moviesubtitles2Seeker)
+SUBTITLES_SEEKERS.append(MySubsSeeker)
 SUBTITLES_SEEKERS.append(OpenSubtitlesSeeker)
+SUBTITLES_SEEKERS.append(SubdlSeeker)
+SUBTITLES_SEEKERS.append(SubsytsSeeker)
+SUBTITLES_SEEKERS.append(SubtitlecatSeeker)
 SUBTITLES_SEEKERS.append(SubtitlesGRSeeker)
+SUBTITLES_SEEKERS.append(SubtitlesmoraSeeker)
+SUBTITLES_SEEKERS.append(SubtitlistSeeker)
 SUBTITLES_SEEKERS.append(ItasaSeeker)
 if six.PY2:
     SUBTITLES_SEEKERS.append(PodnapisiSeeker)

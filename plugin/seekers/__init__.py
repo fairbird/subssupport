@@ -11,6 +11,6 @@ except ImportError:
         return txt
 
 from .seeker import SubtitlesDownloadError, SubtitlesSearchError, SubtitlesErrors
-from .xbmc_subtitles import TitulkyComSeeker, EdnaSeeker, SerialZoneSeeker, \
-    OpenSubtitlesSeeker, PodnapisiSeeker, SubsceneSeeker, SubtitlesGRSeeker, \
+from .xbmc_subtitles import TitulkyComSeeker, EdnaSeeker, SerialZoneSeeker, ElsubtitleSeeker, IndexsubtitleSeeker, MoviesubtitlesSeeker, Moviesubtitles2Seeker, MySubsSeeker, \
+    OpenSubtitlesSeeker, OpenSubtitles2Seeker, PodnapisiSeeker, SubsceneSeeker, SubdlSeeker, SubsytsSeeker, SubtitlecatSeeker, SubtitlesGRSeeker, SubtitlesmoraSeeker, SubtitlistSeeker, \
     ItasaSeeker, TitloviSeeker

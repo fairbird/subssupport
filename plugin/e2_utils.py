@@ -22,14 +22,19 @@ import os
 import shutil
 from twisted.web.client import downloadPage
 import xml.etree.cElementTree
-
+from enigma import eTimer, ePicLoad, gPixmapPtr, getPrevAsciiCode
+from Tools.Directories import fileExists, pathExists
 from Components.Label import Label
+from Components.ConfigList import ConfigList
+from Components.Sources.StaticText import StaticText
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList
 from Components.Console import Console
 from Components.Language import language
 from Components.Pixmap import Pixmap
+from Components.Input import Input
+from Screens.InputBox import InputBox
 from Components.Sources.List import List
 from Components.ConfigList import ConfigListScreen
 from Components.config import ConfigText, ConfigSubsection, ConfigDirectory, \
@@ -38,6 +43,9 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_SKIN, resolveFilename
+from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
+from Components.config import ConfigText, KEY_0, KEY_DELETE, KEY_BACKSPACE, config
+from enigma import getDesktop, eListboxPythonMultiContent, eListbox, eTimer, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_WRAP, loadPNG
 
 from .compat import LanguageEntryComponent, eConnectCallback
 from enigma import addFont, ePicLoad, eEnv, getDesktop
@@ -238,21 +246,31 @@ class Captcha(object):
 
 class CaptchaDialog(VirtualKeyBoard):
     skin = """
-    <screen name="CaptchDialog" position="center,center" size="560,460" zPosition="99" title="Virtual keyboard">
+    <screen name="CaptchDialog" position="center,center" size="560,485" zPosition="99" title="Virtual keyboard">
         <ePixmap pixmap="skin_default/vkey_text.png" position="9,165" zPosition="-4" size="542,52" alphatest="on" />
         <widget source="country" render="Pixmap" position="490,0" size="60,40" alphatest="on" borderWidth="2" borderColor="yellow" >
             <convert type="ValueToPixmap">LanguageCode</convert>
         </widget>
         <widget name="header" position="10,10" size="500,20" font="Regular;20" transparent="1" noWrap="1" />
+	<widget position="10,455" size="60,35" name="Green" pixmap="skin_default/buttons/key_green.png" zPosition="3"  alphatest="blend" />
+        <eLabel text="Save" zPosition="3" position="50,450" size="120,35" font="Regular;20" transparent="1" backgroundColor="black" halign="center" valign="center" />
         <widget name="captcha" position="10, 50" size ="540,110" alphatest="blend" zPosition="-1" />
         <widget name="text" position="12,165" size="536,46" font="Regular;46" transparent="1" noWrap="1" halign="right" />
         <widget name="list" position="10,220" size="540,225" selectionDisabled="1" transparent="1" />
     </screen>
     """
 
-    def __init__(self, session, captcha_file):
+    def __init__(self, session, captcha_file, **kwargs):
         VirtualKeyBoard.__init__(self, session, _('Type text of picture'))
         self["captcha"] = Pixmap()
+        self['Password'] = Label()
+        self['Green'] = Pixmap()
+        self['key_green'] = StaticText(_('Save'))
+        self["text"] = self['text']
+        self["myActionMap"] = NumberActionMap(["WizardActions", "InputBoxActions", "ColorActions"],
+        	{           		
+                        "green": self.save
+           	}, -1)
         self.Scale = AVSwitch().getFramebufferScale()
         self.picPath = captcha_file
         self.picLoad = ePicLoad()
@@ -277,8 +295,20 @@ class CaptchaDialog(VirtualKeyBoard):
     def __onClose(self):
         del self.picLoad_conn
         del self.picLoad
-
-
+                
+    def save(self):
+        Password = self['text'].getText()
+        code = str(Password)
+        #with open(LINKFILE, "a") as f: f.write(Password)
+        Distnt = '/tmp/'
+        Path = '/tmp/code'
+        if pathExists(Distnt):
+            Password = self['text'].getText()
+            if Password != '':
+                file = open(Path, 'w')
+                file.write(Password.replace(' ', ''))
+                file.close()
+      
 class DelayMessageBox(MessageBox):
     def __init__(self, session, seconds, message):
         MessageBox.__init__(self, session, message, type=MessageBox.TYPE_INFO, timeout=seconds, close_on_any_key=False, enable_input=False)
