@@ -22,12 +22,12 @@ class OSDBServer:
 
     def mergesubtitles(self):
         self.subtitles_list = []
-        if(len(self.subtitles_hash_list) > 0):
+        if (len(self.subtitles_hash_list) > 0):
             for item in self.subtitles_hash_list:
                 if item["format"].find("srt") == 0 or item["format"].find("sub") == 0:
                     self.subtitles_list.append(item)
 
-        if(len(self.subtitles_list) > 0):
+        if (len(self.subtitles_list) > 0):
             self.subtitles_list.sort(key=lambda x: [not x['sync'], x['lang_index']])
 
     def searchsubtitles(self, srch_string, lang1, lang2, lang3, hash_search, _hash="000000000", size="000000000"):

@@ -12,11 +12,17 @@ import subprocess
 import six
 from six.moves import urllib
 from six.moves import xmlrpc_client
-import requests , json, re,random,string,time,warnings
+import requests
+import json
+import re
+import random
+import string
+import time
+import warnings
 from six.moves import xmlrpc_client
-LINKFILE='/tmp/link'
-LINKFILE2='/tmp/link2'
-LINKFILE0='/tmp/link0'
+LINKFILE = '/tmp/link'
+LINKFILE2 = '/tmp/link2'
+LINKFILE0 = '/tmp/link0'
 
 try:
     # Python 2.6 +
@@ -208,7 +214,7 @@ class PNServer:
             return ""
 
     def fetch(self, url):
-        subprocess.check_output(['wget', '-O', '/tmp/link', url])    
+        subprocess.check_output(['wget', '-O', '/tmp/link', url])
         with open(LINKFILE, 'r') as f:
             result = f.read()
             xmldoc = minidom.parseString(result)
@@ -218,7 +224,6 @@ class PNServer:
         return cmp(b["language_name"], a["language_name"]) or cmp(a["sync"], b["sync"])
 
     def mergesubtitles(self):
-        if(len(self.subtitles_list) > 0):      
+        if (len(self.subtitles_list) > 0):
             #self.subtitles_list.sort(key=lambda x: [not x['sync'], x['lang_index']])
             self.subtitles_list = sorted(self.subtitles_list, key=lambda x: [x['sync'], x['language_name']])
-

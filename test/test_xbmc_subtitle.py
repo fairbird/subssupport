@@ -162,7 +162,7 @@ class TestTitulkycom(TestXBMCSubtitleProviderWithCredentials, unittest.TestCase)
         self.movie_list = []
         self.hash_list = []
         self.download_movie_list = []
-        self.download_tvshow_list = [] #[('Frasier','1','1')]
+        self.download_tvshow_list = []  # [('Frasier','1','1')]
         self.login_setting_key = 'Titulkyuser'
         self.password_setting_key = 'Titulkypass'
         self.provider = TitulkyComSeeker(self.tmp_path,

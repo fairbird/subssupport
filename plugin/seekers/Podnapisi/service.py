@@ -11,12 +11,18 @@ from ..utilities import log, languageTranslate, normalizeString
 
 
 from six.moves import urllib
-import os, os.path
+import os
+import os.path
 import subprocess
-import requests , json, re,random,string,time,warnings
-LINKFILE='/tmp/link'
-LINKFILE2='/tmp/link2'
-
+import requests
+import json
+import re
+import random
+import string
+import time
+import warnings
+LINKFILE = '/tmp/link'
+LINKFILE2 = '/tmp/link2'
 
 
 def Search(item):
@@ -86,7 +92,7 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
     if url != None:
         local_file = open(zip_subs, "w" + "b")
         #f = urllib.request.urlopen(url)
-        subprocess.check_output(['wget', '-O', '/tmp/link2', url])    
+        subprocess.check_output(['wget', '-O', '/tmp/link2', url])
         with open(LINKFILE2, 'rb') as f:
             local_file.write(f.read())
             local_file.close()

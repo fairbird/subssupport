@@ -1124,7 +1124,6 @@ class SubsSupport(SubsSupportEmbedded):
 
 ############ Methods triggered by videoEvents when SubsSupport is subclass of Screen ################
 
-
     def __serviceStarted(self):
         print('[SubsSupport] Service Started')
 
@@ -2313,7 +2312,7 @@ class SubFileList(FileList):
         directories = []
         files = []
 
-        if directory is None and self.showMountpoints: # present available mountpoints
+        if directory is None and self.showMountpoints:  # present available mountpoints
             for p in harddiskmanager.getMountedPartitions():
                 path = os.path.join(p.mountpoint, "")
                 if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):

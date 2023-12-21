@@ -16,12 +16,20 @@ from urllib.parse import quote
 from ..utilities import log
 import html
 import urllib3
-import requests, re
-import requests , json, re,random,string,time,warnings
+import requests
+import re
+import requests
+import json
+import re
+import random
+import string
+import time
+import warnings
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from six.moves import html_parser
-warnings.simplefilter('ignore',InsecureRequestWarning)
-import os, os.path
+warnings.simplefilter('ignore', InsecureRequestWarning)
+import os
+import os.path
 from six.moves.urllib.request import HTTPCookieProcessor, build_opener, install_opener, Request, urlopen
 from six.moves.urllib.parse import urlencode
 from six.moves import http_cookiejar
@@ -44,7 +52,7 @@ from six.moves import html_parser
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors
 
 
-HDR= {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firefox/115.0',
+HDR = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firefox/115.0',
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
       'Accept-Language': 'fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3',
       'Upgrade-Insecure-Requests': '1',
@@ -53,13 +61,13 @@ HDR= {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firef
       'Referer': 'http://www.moviesubtitles.net/search.php',
       'Upgrade-Insecure-Requests': '1',
       'Connection': 'keep-alive',
-      'Accept-Encoding':'gzip'}#, deflate'}
-      
-s = requests.Session()  
- 
+      'Accept-Encoding': 'gzip'}  # , deflate'}
+
+s = requests.Session()
+
 
 main_url = "http://www.moviesubtitles.net"
-main_url2="http://www.moviesubtitles.net/subtitles-download"
+main_url2 = "http://www.moviesubtitles.net/subtitles-download"
 debug_pretext = "moviesubtitles.net"
 
 
@@ -71,7 +79,7 @@ moviesubtitles2_languages = {
     'Farsi/Persian': 'Persian'
 }
 
-        
+
 def get_url(url, referer=None):
     if referer is None:
         headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0'}
@@ -79,11 +87,12 @@ def get_url(url, referer=None):
         headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0', 'Referer': referer}
     req = urllib.request.Request(url, None, headers)
     response = urllib.request.urlopen(req)
-    content = response.read().decode('utf-8') 
+    content = response.read().decode('utf-8')
     response.close()
     content = content.replace('\n', '')
     return content
-    
+
+
 def get_rating(downloads):
     rating = int(downloads)
     if (rating < 50):
@@ -106,10 +115,10 @@ def get_rating(downloads):
         rating = 9
     elif (rating >= 450):
         rating = 10
-    return rating                           
+    return rating
 
 
-def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack): #standard input
+def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack):  # standard input
     languagefound = lang1
     language_info = get_language_info(languagefound)
     language_info1 = language_info['name']
@@ -117,58 +126,63 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
     language_info3 = language_info['3et']
 
     subtitles_list = []
-    msg = ""   
+    msg = ""
 
-    if len(tvshow) == 0 and year: # Movie
+    if len(tvshow) == 0 and year:  # Movie
         searchstring = "%s (%s)" % (title, year)
-    elif len(tvshow) > 0 and title == tvshow: # Movie not in Library
+    elif len(tvshow) > 0 and title == tvshow:  # Movie not in Library
         searchstring = "%s (%#02d%#02d)" % (tvshow, int(season), int(episode))
-    elif len(tvshow) > 0: # TVShow
+    elif len(tvshow) > 0:  # TVShow
         searchstring = "%s S%#02dE%#02d" % (tvshow, int(season), int(episode))
     else:
         searchstring = title
     log(__name__, "%s Search string = %s" % (debug_pretext, searchstring))
     get_subtitles_list(title, year, language_info2, language_info1, subtitles_list)
-    return subtitles_list, "", msg #standard output
+    return subtitles_list, "", msg  # standard output
 
-def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
+
+def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
     language = subtitles_list[pos]["language_name"]
     lang = subtitles_list[pos]["language_flag"]
     id = subtitles_list[pos]["id"]
     url = "%s/%s" % (main_url, id)
-    content = s.get(url,headers=HDR,verify=False,allow_redirects=True).text
-    #print(content) 
-    regx='name="id" value="(.*?)"'
-    try:ID=re.findall(regx, content, re.M|re.I)[0]
-    except:pass                                                                                
-    downloadlink_pattern = 'id='+ID+'&submit=Download the file'
-    post_data = s.post(main_url2,headers=HDR,data=downloadlink_pattern,verify=False,allow_redirects=False).text
+    content = s.get(url, headers=HDR, verify=False, allow_redirects=True).text
+    #print(content)
+    regx = 'name="id" value="(.*?)"'
+    try:
+        ID = re.findall(regx, content, re.M | re.I)[0]
+    except:
+        pass
+    downloadlink_pattern = 'id=' + ID + '&submit=Download the file'
+    post_data = s.post(main_url2, headers=HDR, data=downloadlink_pattern, verify=False, allow_redirects=False).text
     #print("post_data:",post_data)
-    regx='location.href="(.*?)"'
-    try:hash=re.findall(regx, post_data, re.M|re.I)[0]
-    except:pass                                                                                
-    print("hash:",hash)  
+    regx = 'location.href="(.*?)"'
+    try:
+        hash = re.findall(regx, post_data, re.M | re.I)[0]
+    except:
+        pass
+    print("hash:", hash)
     downloadlink = 'http://www.moviesubtitles.net/%s' % (hash)
     if downloadlink:
-        log(__name__ , "%s Downloadlink: %s " % (debug_pretext, downloadlink))
+        log(__name__, "%s Downloadlink: %s " % (debug_pretext, downloadlink))
         viewstate = 0
         previouspage = 0
         subtitleid = 0
         typeid = "zip"
         filmid = 0
         #postparams = { '__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '' , '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid}
-        postparams = urllib3.request.urlencode({ '__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '' , '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid})
+        postparams = urllib3.request.urlencode({'__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '', '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid})
         #class MyOpener(urllib.FancyURLopener):
             #version = 'User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firefox/115.0'
         #my_urlopener = MyOpener()
         #my_urlopener.addheader('Referer', url)
-        log(__name__ , "%s Fetching subtitles using url with referer header '%s' and post parameters '%s'" % (debug_pretext, downloadlink, postparams))
+        log(__name__, "%s Fetching subtitles using url with referer header '%s' and post parameters '%s'" % (debug_pretext, downloadlink, postparams))
         #response = my_urlopener.open(downloadlink, postparams)
-        response = s.get(downloadlink,data=postparams,headers=HDR,verify=False,allow_redirects=True) 
+        response = s.get(downloadlink, data=postparams, headers=HDR, verify=False, allow_redirects=True)
         print(response.content)
         local_tmp_file = zip_subs
         try:
-            log(__name__ , "%s Saving subtitles to '%s'" % (debug_pretext, local_tmp_file))
+            log(__name__, "%s Saving subtitles to '%s'" % (debug_pretext, local_tmp_file))
             if not os.path.exists(tmp_sub_dir):
                 os.makedirs(tmp_sub_dir)
             local_file_handle = open(local_tmp_file, 'wb')
@@ -180,50 +194,51 @@ def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, 
             if (myfile.read(1).decode('utf-8') == 'R'):
                 typeid = "rar"
                 packed = True
-                log(__name__ , "Discovered RAR Archive")
+                log(__name__, "Discovered RAR Archive")
             else:
                 myfile.seek(0)
                 if (myfile.read(1).decode('utf-8') == 'P'):
                     typeid = "zip"
                     packed = True
-                    log(__name__ , "Discovered ZIP Archive")
+                    log(__name__, "Discovered ZIP Archive")
                 else:
                     typeid = "srt"
                     packed = False
                     subs_file = local_tmp_file
-                    log(__name__ , "Discovered a non-archive file")
+                    log(__name__, "Discovered a non-archive file")
             myfile.close()
-            log(__name__ , "%s Saving to %s" % (debug_pretext, local_tmp_file))
+            log(__name__, "%s Saving to %s" % (debug_pretext, local_tmp_file))
         except:
-            log(__name__ , "%s Failed to save subtitle to %s" % (debug_pretext, local_tmp_file))
+            log(__name__, "%s Failed to save subtitle to %s" % (debug_pretext, local_tmp_file))
         if packed:
             subs_file = typeid
-        log(__name__ , "%s Subtitles saved to '%s'" % (debug_pretext, local_tmp_file))
+        log(__name__, "%s Subtitles saved to '%s'" % (debug_pretext, local_tmp_file))
         return packed, language, subs_file  # standard output
 
-    
+
 def prepare_search_string(s):
     s = s.strip()
     s = re.sub(r'\(\d\d\d\d\)$', '', s)  # remove year from title
     s = quote_plus(s)
     return s
-    
+
+
 def get_subtitles_list(title, year, languageshort, languagelong, subtitles_list):
     url = "http://www.moviesubtitles.net/search.php?searchString=%s&start=1" % quote_plus(title)
     dst = languageshort.lower()
     try:
         log(__name__, "%s Getting url: %s" % (debug_pretext, url))
-        content = s.get(url,headers=HDR,verify=False,allow_redirects=True).text
-        #print(content)   
+        content = s.get(url, headers=HDR, verify=False, allow_redirects=True).text
+        #print(content)
     except:
-        log( __name__ ,"%s Failed to get subtitles" % (debug_pretext))
+        log(__name__, "%s Failed to get subtitles" % (debug_pretext))
         return
-    try:        
-        log( __name__ ,"%s Getting '%s' subs ..." % (debug_pretext, languageshort))
-        subtitles = re.compile('(flags/'+dst+'.gif.+?</td></tr><tr)').findall(content)
-        #print(("subtitles", subtitles)) 
+    try:
+        log(__name__, "%s Getting '%s' subs ..." % (debug_pretext, languageshort))
+        subtitles = re.compile('(flags/' + dst + '.gif.+?</td></tr><tr)').findall(content)
+        #print(("subtitles", subtitles))
     except:
-        log( __name__ ,"%s Failed to get subtitles" % (debug_pretext))
+        log(__name__, "%s Failed to get subtitles" % (debug_pretext))
         return
     for subtitle in subtitles:
         try:
@@ -241,10 +256,10 @@ def get_subtitles_list(title, year, languageshort, languagelong, subtitles_list)
             except:
                 rating = 0
                 pass
-                
+
             if not (downloads == 'Εργαστήρι Υποτίτλων' or downloads == 'subs4series'):
-                log( __name__ ,"%s Subtitles found: %s (id = %s)" % (debug_pretext, filename, id))
-                subtitles_list.append({'rating': str(rating), 'no_files': 1, 'filename': filename, 'sync': False, 'id' : id, 'language_flag': languageshort, 'language_name': languagelong})
+                log(__name__, "%s Subtitles found: %s (id = %s)" % (debug_pretext, filename, id))
+                subtitles_list.append({'rating': str(rating), 'no_files': 1, 'filename': filename, 'sync': False, 'id': id, 'language_flag': languageshort, 'language_name': languagelong})
 
         except:
             pass
