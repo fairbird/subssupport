@@ -2,47 +2,20 @@
 from __future__ import absolute_import
 from __future__ import print_function
 
-from six.moves import html_parser
-from six.moves.urllib.request import FancyURLopener
-from six.moves.urllib.parse import quote_plus, urlencode
-import urllib.request
-import urllib.parse
-from ..utilities import log
 import html
-import urllib3
 import requests
 import re
-import requests
-import json
-import re
-import random
-import string
-import time
 import warnings
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
-from six.moves import html_parser
 warnings.simplefilter('ignore', InsecureRequestWarning)
 import os
 import os.path
 from six.moves.urllib.request import HTTPCookieProcessor, build_opener, install_opener, Request, urlopen
-from six.moves.urllib.parse import urlencode
-from six.moves import http_cookiejar
+#from six.moves.urllib.request import FancyURLopener
+from six.moves.urllib.parse import quote_plus, urlencode
+from six.moves import html_parser
 from .IndexsubtitleUtilities import get_language_info
 from ..utilities import languageTranslate, log, getFileSize
-from ..utilities import log
-import urllib3
-from urllib import request, parse
-from urllib.parse import urlencode
-import urllib.request
-import urllib.parse
-import six
-from six.moves import urllib
-from six.moves import xmlrpc_client
-
-import time
-import calendar
-import re
-from six.moves import html_parser
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors
 
 HDR = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0',
@@ -79,8 +52,8 @@ def get_url(url, referer=None):
         headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0'}
     else:
         headers = {'User-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0', 'Referer': referer}
-    req = urllib.request.Request(url, None, headers)
-    response = urllib.request.urlopen(req)
+    req = Request(url, None, headers)
+    response = urlopen(req)
     content = response.read().decode('utf-8')
     response.close()
     content = content.replace('\n', '')

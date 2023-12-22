@@ -22,9 +22,7 @@ from datetime import datetime
 import json
 import os
 import re
-import sys
 from threading import Thread
-import traceback
 from twisted.internet.defer import Deferred
 from twisted.web import client
 
@@ -78,7 +76,6 @@ from .utils import toString, SimpleLogger, toUnicode
 from . import _, __author__, __version__, __email__
 
 import six
-from six.moves.queue import Queue
 from six.moves import range
 from six.moves import urllib
 from six.moves.urllib.parse import quote
@@ -1123,7 +1120,6 @@ class SubsSupport(SubsSupportEmbedded):
 
 
 ############ Methods triggered by videoEvents when SubsSupport is subclass of Screen ################
-
 
     def __serviceStarted(self):
         print('[SubsSupport] Service Started')
@@ -3157,7 +3153,7 @@ class Suggestions(object):
 class OpenSubtitlesSuggestions(Suggestions):
     def _getSuggestions(self, queryString):
         query = "http://www.opensubtitles.org/libs/suggest.php?format=json2&SubLanguageID=null&MovieName=" + quote(queryString)
-        return client.getPage(six.ensure_binary(query), timeout=6)
+        return client.getPage(six.ensure_binary(query), timeout=6)  # TODO deprecated
 
     def _processResult(self, data):
         return json.loads(data)['result']

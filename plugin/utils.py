@@ -26,16 +26,14 @@ def load(subpath):
 
 
 def toString(text):
-    if isinstance(text, str):
-        if isinstance(text, six.text_type):
-            return six.ensure_str(text)
+    if isinstance(text, str) and isinstance(text, six.text_type):
+        return six.ensure_str(text)
     return text
 
 
 def toUnicode(text):
     if isinstance(text, str):
-        if isinstance(text, str):
-            return six.ensure_text(text, errors='ignore')
+        return six.ensure_text(text, errors='ignore')
     return text
 
 

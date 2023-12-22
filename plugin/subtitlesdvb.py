@@ -17,7 +17,7 @@ from Screens.MinuteInput import MinuteInput
 from Screens.Screen import Screen
 
 from .e2_utils import getFps, fps_float, BaseMenuScreen, isFullHD, getDesktopSize
-from enigma import eTimer, getDesktop
+from enigma import eTimer
 from .parsers.baseparser import ParseError
 from .process import LoadError, DecodeError, ParserNotFoundError
 from skin import parseColor

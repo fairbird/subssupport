@@ -20,9 +20,8 @@ from __future__ import print_function
 from . import _
 import os
 import shutil
-from twisted.web.client import downloadPage
+from twisted.web.client import downloadPage  # TODO deprecated !!
 import xml.etree.cElementTree
-from enigma import eTimer, ePicLoad, gPixmapPtr, getPrevAsciiCode
 from Tools.Directories import fileExists, pathExists
 from Components.Label import Label
 from Components.ConfigList import ConfigList
@@ -33,8 +32,6 @@ from Components.ConfigList import ConfigList
 from Components.Console import Console
 from Components.Language import language
 from Components.Pixmap import Pixmap
-from Components.Input import Input
-from Screens.InputBox import InputBox
 from Components.Sources.List import List
 from Components.ConfigList import ConfigListScreen
 from Components.config import ConfigText, ConfigSubsection, ConfigDirectory, \
@@ -45,10 +42,9 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_SKIN, resolveFilename
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.config import ConfigText, KEY_0, KEY_DELETE, KEY_BACKSPACE, config
-from enigma import getDesktop, eListboxPythonMultiContent, eListbox, eTimer, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_WRAP, loadPNG
+from enigma import addFont, eEnv, ePicLoad, getDesktop, eListboxPythonMultiContent, eListbox, eTimer, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_WRAP, loadPNG
 
 from .compat import LanguageEntryComponent, eConnectCallback
-from enigma import addFont, ePicLoad, eEnv, getDesktop
 from .utils import toString
 
 
