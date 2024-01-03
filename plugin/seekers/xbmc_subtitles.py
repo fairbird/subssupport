@@ -580,6 +580,23 @@ class OpenSubtitlesSeeker(XBMCSubtitlesAdapter):
 
 
 try:
+    from .OpenSubtitles2 import opensubtitles2
+except ImportError as ie:
+    opensubtitles2 = ie
+
+
+class OpenSubtitles2Seeker(XBMCSubtitlesAdapter):
+    module = opensubtitles2
+    if isinstance(module, Exception):
+        error, module = module, None
+    id = 'opensubtitles.com'
+    provider_name = 'OpenSubtitles.com'
+    supported_langs = allLang()
+
+    default_settings = {}
+
+
+try:
     from .Podnapisi import podnapisi
 except ImportError as e:
     podnapisi = e
