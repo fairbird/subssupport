@@ -20,13 +20,13 @@ from __future__ import print_function
 from . import _
 import os
 import shutil
-from twisted.web.client import downloadPage  # TODO deprecated !!
+import requests
+from twisted.internet.threads import deferToThread
 import xml.etree.cElementTree
 from Tools.Directories import fileExists, pathExists
 from Components.Label import Label
 from Components.ConfigList import ConfigList
 from Components.Sources.StaticText import StaticText
-from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigList
 from Components.Console import Console
@@ -49,6 +49,16 @@ from .utils import toString
 
 
 import six
+
+def downloadPage(url, filename, params=None, headers=None, cookies=None):
+    return getPage(url, params, headers, cookies)
+
+
+def getPage(url, params=None, headers=None, cookies=None, timeout=None):
+    headers = headers or {}
+    timeout = timeout or 30.05
+    headers["user-agent"] = "Mozilla/5.0 Gecko/20100101 Firefox/100.0"
+    return deferToThread(requests.get, url, params=params, headers=headers, cookies=cookies, timeout=timeout)
 
 
 def getDesktopSize():
@@ -267,7 +277,6 @@ class CaptchaDialog(VirtualKeyBoard):
         	{
                         "green": self.save
            	}, -1)
-        self.Scale = AVSwitch().getFramebufferScale()
         self.picPath = captcha_file
         self.picLoad = ePicLoad()
         self.picLoad_conn = eConnectCallback(self.picLoad.PictureData, self.decodePicture)
@@ -275,7 +284,7 @@ class CaptchaDialog(VirtualKeyBoard):
         self.onClose.append(self.__onClose)
 
     def showPicture(self):
-        self.picLoad.setPara([self["captcha"].instance.size().width(), self["captcha"].instance.size().height(), self.Scale[0], self.Scale[1], 0, 1, "#002C2C39"])
+        self.picLoad.setPara([self["captcha"].instance.size().width(), self["captcha"].instance.size().height(), 1, 1, 0, 1, "#002C2C39"])
         self.picLoad.startDecode(self.picPath)
 
     def decodePicture(self, PicInfo=""):
