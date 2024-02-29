@@ -1,22 +1,10 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 import re
 import struct
 import unicodedata
-
-try:
-    from hashlib import md5
-except:
-    from md5 import new as md5
-from six.moves.urllib.request import Request
-from six.moves.urllib.request import urlopen
+from hashlib import md5
+from urllib.request import Request, urlopen
 import os
-
-import six
-
-if six.PY3:
-    long = int
-
 
 SUPRESS_LOG = True
 
@@ -24,10 +12,7 @@ SUPRESS_LOG = True
 def log(module, msg):
     if SUPRESS_LOG:
         return
-    if six.PY2 and isinstance(msg, six.text_type):
-        print(module, msg.encode('utf-8'))
-    else:
-        print(module, msg)
+    print("%s %s" % (module, msg))
 
 
 LANGUAGES = (
@@ -155,6 +140,61 @@ ISO6391_LANGNAME = dict(map(lambda lang: (lang[2], lang[0]), LANGUAGES))
 ISO6392_LANGNAME = dict(map(lambda lang: (lang[3], lang[0]), LANGUAGES))
 
 
+def allLang():
+    return ["en",
+            "fr",
+            "hu",
+            "cs",
+            "pl",
+            "sk",
+            "pt",
+            "pt-br",
+            "es",
+            "el",
+            "ar",
+            'sq',
+            "hy",
+            "ay",
+            "bs",
+            "bg",
+            "ca",
+            "zh",
+            "hr",
+            "da",
+            "nl",
+            "eo",
+            "et",
+            "fi",
+            "gl",
+            "ka",
+            "de",
+            "he",
+            "hi",
+            "is",
+            "id",
+            "it",
+            "ja",
+            "kk",
+            "ko",
+            "lv",
+            "lt",
+            "lb",
+            "mk",
+            "ms",
+            "no",
+            "oc",
+            "fa",
+            "ro",
+            "ru",
+            "sr",
+            "sl",
+            "sv",
+            "th",
+            "tr",
+            "uk",
+            "vi"]
+
+
 def languageTranslate(lang, lang_from, lang_to):
     if lang_from == 0 and lang_to == 2:
         if lang in LANGNAME_ISO6391:
@@ -251,7 +291,7 @@ def hashFile(file_path, rar):
 
 def normalizeString(str):
     return unicodedata.normalize(
-           'NFKD', six.text_type(six.text_type(str, 'utf-8'))
+           'NFKD', str
            ).encode('ascii', 'ignore')
 
 
@@ -337,7 +377,7 @@ def getFileSize(filepath):
     if filepath.startswith('http://'):
         try:
             resp = urlopen(HeadRequest(filepath))
-            return long(resp.info().get('Content-Length'))
+            return int(resp.info().get('Content-Length'))
         except Exception:
             return None
         finally:
@@ -436,7 +476,4 @@ class SimpleLogger(object):
 
 
 def toString(text):
-    if six.PY2 and isinstance(text, six.string_types):
-        if isinstance(text, six.text_type):
-            return text.encode('utf-8')
     return text
