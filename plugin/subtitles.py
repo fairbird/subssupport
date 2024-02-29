@@ -3298,7 +3298,7 @@ class ConfigTextWithSuggestionsAndHistory(ConfigText):
         self.currentWindow = None
 
     def handleKey(self, key, callback=None):
-        ConfigText.handleKey(self, key, callback)
+        ConfigText.handleKey(self, key)
         if key in [KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT]:
             self.getSuggestions()
 
