@@ -1,210 +1,192 @@
 # -*- coding: utf-8 -*-
+'''
+Created 2021
+
+@author: Franc
+'''
 from __future__ import absolute_import
-import base64
-import unicodedata
-from xml.dom import minidom
 from ..utilities import languageTranslate, log
-
-import six
-from six.moves import urllib
-
+import json, requests
 
 LANGUAGES = (
-    # Full Language name[0]
-    # podnapisi[1]
-    # ISO 639-1[2]
-    # ISO 639-1 Code[3]
-    # Script Setting Language[4]
-    # localized name id number[5]
-    ("Bosnian", "10", "bs", "bos", "3", 30204),
-    ("Croatian", "38", "hr", "hrv", "7", 30208),
-    ("English", "2", "en", "eng", "11", 30212),
-    ("Macedonian", "35", "mk", "mac", "28", 30229),
-    ("Serbian", "36", "sr", "scc", "36", 30237),
-    ("Slovenian", "1", "sl", "slv", "38", 30239),
-    ("SerbianLatin", "36", "sr", "scc", "100", 30237))
+	# Full Language name[0]
+	# podnapisi[1]
+	# ISO 639-1[2]
+	# ISO 639-1 Code[3]
+	# Script Setting Language[4]
+	# localized name id number[5]
+	# Localized Full Language name[6]
+	("Bosnian"		, "10",	 "bs",	 "bos",	  "3",	  30204, "Bosanski"),
+	("Croatian"		, "38",	 "hr",	 "hrv",	  "7",	  30208, "Hrvatski"),
+	("English"		, "2",	 "en",	 "eng",	  "11",	  30212, "Engleski"),
+	("Macedonian"	, "35",	 "mk",	 "mac",	  "28",	  30229, "Makedosnki"),
+	("Serbian"		, "36",	 "sr",	 "scc",	  "36",	  30237, "Srpski"),
+	("Slovenian"	, "1",	 "sl",	 "slv",	  "38",	  30239, "Slovenski"),
+	("SerbianLatin" , "36",	 "sr",	 "scc",	  "100",  30237, "Srpski"), #?
+	("BosnianLatin" , "10",	 "bs",	 "bos",	  "3",	  30204, "Bosanski")) #?
 
+
+
+def get_user_pass():
+	try:
+		#OVO NE BUM RADILO! ZASTO? NEMAM IDEJU ZA SADA. No module named _enigma?
+		#TODO: POGLEDATI SWIG!?
+		# from Components.config import config
+		# user = config.plugins.streamlordfnc.opensubtitlesusername.value
+		# passw = config.plugins.streamlordfnc.opensubtitlesusername.value
+		
+		#ZATO, CITAJ KONFIGURACIJU KAO PLAIN TEXT/FILE, PA FILTRIRAJ QUERY. LUDO? DA, ALI...
+		with open("/etc/enigma2/settings") as file:
+			for line in file:
+				parts = line.split("=") # split line into parts
+				if len(parts) > 1:	 # if at least 2 parts/columns
+					if line.startswith("config.plugins.subtitlesSupport.search.titlovi.password"):
+						_PASSW = parts[1].replace("\n", "").strip()
+					if line.startswith("config.plugins.subtitlesSupport.search.titlovi.username"):
+						_USER = parts[1].replace("\n", "").strip()
+	except:
+		_PASSW = ""
+		_USER = ""
+	return _USER, _PASSW
 
 def languageTranslate(lang, lang_from, lang_to):
-    for x in LANGUAGES:
-        if lang == x[lang_from]:
-            return x[lang_to]
-
-
-def normalizeString(str):
-    return unicodedata.normalize(
-        'NFKD', six.text_type(six.text_type(str, 'utf-8'))
-    ).encode('ascii', 'ignore')
-
-
-def compare_columns(b, a):
-    return cmp(b["language_name"], a["language_name"]) or \
-        cmp(a["sync"], b["sync"])
-
+	for x in LANGUAGES:
+		if lang == x[lang_from]:
+			return x[lang_to]
 
 class OSDBServer:
+	#KEY = "UGE4Qk0tYXNSMWEtYTJlaWZfUE9US1NFRC1WRUQtWA=="
+	def search_subtitles(self, name, tvshow, season, episode, lang, year):
+		subtitles_list = []
+		search_params = {}
+		if len(tvshow) > 1:
+			name = tvshow
+			
+			#SEARCH PARAMS - DICTIONARY
+			#OVA DVA SU ZA SERIJE:
+			season = "%02d" % (int(season,))
+			episode = "%02d" % (int(episode,))
+			search_params['season'] = season
+			search_params['episode'] = episode
+			
+		search_string = name
+		#-----------------------------------------------------------------------------------
+		#-----------------------------------------------------------------------------------
+		#BASIC PARAMS
+		username = ""
+		password = ""
+		api_url = "https://kodi.titlovi.com/api/subtitles"
+		username, password = get_user_pass()
+		login_params = {'username': username, 'password': password}
+		#-----------------------------------------------------------------------------------
+		#-----------------------------------------------------------------------------------
+		#VIDI KOJE JEZIKE TREBA TRAZITI I ODMAH IH KONVERTIRAJ U NASKI DA TITLOVI.COM ZNA
+		language_query = ""
+		for i in range(len(lang)):
+			language_query = language_query + "|" + languageTranslate((lang[i]),2,6)
 
-    KEY = "UGE4Qk0tYXNSMWEtYTJlaWZfUE9US1NFRC1WRUQtWA=="
+		if language_query.startswith("|"):
+			language_query = language_query[1:]	#IZBACI PRVI "|"
+		#-----------------------------------------------------------------------------------
+		#-----------------------------------------------------------------------------------
+		#START LOGIN
+		try:
+			response = requests.post('{0}/gettoken'.format(api_url), params=login_params)
+			if response.status_code == requests.codes.ok:
+				resp_json = response.json()
+				#U VARIJABLE PODATKE ZA SLIJEDECI REQUEST
+				token = str(resp_json['Token'])
+				user_name = str(resp_json['UserName'])
+				user_id = str(resp_json['UserId'])
+				expiration_date = str(resp_json['ExpirationDate'])
+				#-----------------------------------------------------------------------------------
+				search_language = language_query #"Hrvatski|Srpski|Bosanski|Makedonski|Slovenski|Engleski"
+				search_params['lang'] = search_language
+				search_params['query'] = search_string
+				search_params['token'] = token
+				search_params['userid'] = user_id
+				search_params['json'] = True
+				
+				#KRENI U PRETRAGU. BEZ USER AGENTA, ZA SADA
+				response = requests.get('{0}/search'.format(api_url), params=search_params)
+				if response.status_code == requests.codes.ok:
+					resp_json = response.json()
+					subtitles = []
+					if resp_json['SubtitleResults']:
+						subtitles.extend(resp_json['SubtitleResults'])
+						log(__name__, "Found titlovi.com subs: %s" % len(subtitles))
 
-    def search_subtitles(self, name, tvshow, season, episode, lang, year):
-        # log(__name__, 'Season: %s' % season)
-        # log(__name__, 'Episode: %s' % episode)
-        if len(tvshow) > 1:
-            name = tvshow
-        subtitles_list = []
-        api_key = base64.b64decode(self.KEY)[::-1]
+						try:
+							type = result_item['Type']
+						except:
+							type = ""
 
-        # if len(tvshow) > 0:
-        #     search_string = ("%s S%.2dE%.2d" % (name,
-        #                                         int(season),
-        #                                         int(episode),))
-        #     search_string = search_string.replace(" ", "+")
-        # else:
+						url_base = "https://titlovi.com/download/?type=1&mediaid=%s"
 
-        search_string = name.replace(" ", "+")
+						for result_item in subtitles:
+							movie = result_item['Title']
 
-        search_url_base = "http://api.titlovi.com/xml_get_api.ashx?x-dev_api_id=%s&keyword=%s&language=%s&uiculture=en" % (api_key, search_string, "%s")
-        subtitles = None
-        supported_languages = ["bs", "hr", "en", "mk", "sr", "sl", "rs", "ba", "si", None]
+							try:
+								link = str(result_item['Link'])
+							except Exception as e:
+								link = ""
 
-        for i in range(len(lang)):
-            if str(lang[i]) == "sr":
-                lang1 = "rs"
-            elif str(lang[i]) == "bs":
-                lang1 = "ba"
-            elif str(lang[i]) == "sl":
-                lang1 = "si"
-            else:
-                lang1 = str(lang[i])
+							try:
+								for i in range(len(subtitles)):
+									lang_name = str(result_item['Lang'])
+									lang_name = languageTranslate((lang_name),6,0)		#Hrvatski --> Croatian, etc..
+									flag_image = languageTranslate((lang_name),0,2)			#Croatian ---> hr, etc...
+							except Exception as e:
+								flag_image = ""
+								lang_name = ""
 
-            if lang1 in supported_languages:
-                url = search_url_base % lang1
-                log(__name__, "%s - Language %i" % (url, i))
-                temp_subs = self.fetch(url)
-                if temp_subs:
-                    if subtitles:
-                        subtitles = subtitles + temp_subs
-                    else:
-                        subtitles = temp_subs
-            else:
-                log(__name__, "Unsupported lang: %s" % lang1)
-        try:
-            if subtitles:
-                url_base = "http://en.titlovi.com/downloads/default.ashx?type=1&mediaid=%s"
-                log(__name__, "Found subs: %s" % len(subtitles))
-                for subtitle in subtitles:
-                    subtitle_id = 0
-                    rating = 0
-                    filename = ""
-                    movie = ""
-                    lang_name = ""
-                    lang_id = ""
-                    flag_image = ""
-                    link = ""
-                    format = "srt"
+							try:
+								year = str(result_item['Year'])
+							except Exception as e:
+								year = ""
 
-                    tv_info = self.get_tvshow_info(subtitle)
+							filename = str(result_item['Release'])
+							filename = filename.split("/")
+							
+							if len(tvshow) < 1:			#Movies?
+								if len(filename) > 1:
+									filename = movie.replace(" ", ".") + "." + year + "." + str(filename[0]).replace(" ", ".")
+								else:
+									filename = movie.replace(" ", ".") + "." + year + "." + str(filename).replace(" ", ".").replace("['", "").replace("']", "")
+							else:
+								if len(filename) > 1:	#TV?
+									filename = movie.replace(" ", ".") + ".s" + season + "e" + episode + "." + str(filename[0]).replace(" ", ".")
+								else:
+									filename = movie.replace(" ", ".") + ".s" + season + "e" + episode + "." + str(filename).replace(" ", ".").replace("['", "").replace("']", "")
 
-                    if subtitle.getElementsByTagName("safeTitle")[0].firstChild:
-                        movie = subtitle.getElementsByTagName("safeTitle")[0] \
-                            .firstChild.data
-                    if subtitle.getElementsByTagName("year")[0].firstChild:
-                        movie_year = subtitle.getElementsByTagName("year")[0] \
-                            .firstChild.data
-                    if subtitle.getElementsByTagName("release")[0].firstChild:
-                        filename = subtitle.getElementsByTagName("release")[0] \
-                            .firstChild.data
-                        if tv_info:
-                            # log(__name__, 'Found tv show: %s' % tv_info)
-                            filename = "%s (%s) %s %s.srt" % (movie,
-                                                           movie_year,
-                                                           tv_info,
-                                                           filename,)
-                        else:
-                            filename = "%s (%s) %s.srt" % (movie, movie_year, filename,)
-                        if len(filename) < 2:
-                            filename = "%s (%s).srt" % (movie, movie_year,)
-                    else:
-                        log(__name__, 'Filename not exist')
-                        if tv_info:
-                            filename = "%s (%s) %s.srt" % (movie,
-                                                           movie_year,
-                                                           tv_info,)
-                        else:
-                            filename = "%s (%s).srt" % (movie, movie_year,)
-                    if subtitle.getElementsByTagName("score")[0].firstChild:
-                        rating = int(float(subtitle.getElementsByTagName("score")[0]
-                                     .firstChild.data))
-                    if subtitle.getElementsByTagName("language")[0].firstChild:
-                        lang = subtitle.getElementsByTagName("language")[0] \
-                            .firstChild.data
-                        if lang == "rs":
-                            lang = "sr"
-                        if lang == "ba":
-                            lang = "bs"
-                        if lang == "si":
-                            lang = "sl"
-                        lang_name = lang
-                    subtitle_id = subtitle.getElementsByTagName("url")[0] \
-                        .firstChild.data
-                    subtitle_id = subtitle_id.split("-")[-1].replace("/", "")
-                    flag_image = lang_name
-                    link = url_base % subtitle_id
-                    if len(tvshow) > 0:
-                        checkEpisode = 'S%.2dE%.2d' % (int(season),
-                                                      int(episode))
-                        checkSeasonPack = 'S%.2d Pack' % int(season)
-                        if (checkEpisode in filename) or (checkSeasonPack in filename):
-                            subtitles_list.append({'filename': filename,
-                                                        'link': link,
-                                                        'language_name': languageTranslate((lang_name), 2, 0),
-                                                        'language_id': lang_id,
-                                                        'language_flag': flag_image,
-                                                        'movie': movie,
-                                                        'ID': subtitle_id,
-                                                        'rating': str(rating),
-                                                        'format': format,
-                                                        'sync': False,
-                                                        'hearing_imp': False
-                                                        })
-                    else:
-                        subtitles_list.append({'filename': filename,
-                                                        'link': link,
-                                                        'language_name': languageTranslate((lang_name), 2, 0),
-                                                        'language_id': lang_id,
-                                                        'language_flag': flag_image,
-                                                        'movie': movie,
-                                                        'ID': subtitle_id,
-                                                        'rating': str(rating),
-                                                        'format': format,
-                                                        'sync': False,
-                                                        'hearing_imp': False
-                                                        })
-                    # log(__name__, "link: %s" % link)
-                    # log(__name__, "movie: %s" % movie)
-                    # log(__name__, "rating: %s" % rating)
-                return subtitles_list
-        except:
-            return subtitles_list
+							if filename.endswith("."): filename = filename[:-1]
+								
+							try:
+								rating = str(result_item['Rating'])
+							except Exception as e:
+								rating = ""
 
-    def get_tvshow_info(self, subtitle):
-        if (len(subtitle.getElementsByTagName('TVShow')) != 0):
-            season = subtitle.getElementsByTagName("season")[0] \
-                .firstChild.data
-            tvinfo = 'S%.2d' % int(season)
-            if (len(subtitle.getElementsByTagName('episode')) != 0):
-                episode = subtitle.getElementsByTagName("episode")[0] \
-                    .firstChild.data
-                tvinfo = '%sE%.2d' % (tvinfo, int(episode))
-            else:
-                tvinfo = '%s Pack' % tvinfo
-        else:
-            tvinfo = None
-        return tvinfo
+							try:
+								subtitle_id = str(result_item['Id'])
+							except Exception as e:
+								subtitle_id = ""
 
-    def fetch(self, url):
-        socket = urllib.request.urlopen(url)
-        result = socket.read()
-        socket.close()
-        xmldoc = minidom.parseString(result)
-        return xmldoc.getElementsByTagName("subtitle")
+							lang_id = ''
+							format = "srt"
+
+							subtitles_list.append({'filename': filename,
+															'link': link,
+															'language_name': lang_name,
+															'language_id': lang_id,
+															'language_flag': flag_image,
+															'movie': movie,
+															'ID': subtitle_id,
+															'rating': rating,
+															'format': format,
+															'sync': False,
+															'hearing_imp': False
+															})
+
+		except:
+			return subtitles_list
+		return subtitles_list

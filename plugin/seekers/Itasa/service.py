@@ -42,7 +42,7 @@ def geturl(url):
     except:
         log(__name__, " Failed to get url:%s" % (url))
         content = None
-    return (content)
+    return(content)
 
 
 def login(username, password):
@@ -74,7 +74,7 @@ def login(username, password):
         return 0
 
 
-def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack):  # standard input
+def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack): #standard input
     subtitles_list = []
     msg = ""
     if len(tvshow) > 0:
@@ -121,10 +121,10 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
                 msg = "Tv show '%s' not found" % tvshow
     else:
         msg = "Won't work, Itasa is only for tv shows."
-    return subtitles_list, "", msg  # standard output
+    return subtitles_list, "", msg #standard output
 
 
-def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
+def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id): #standard input
     username = settings_provider.getSetting("ITuser")
     password = settings_provider.getSetting("ITpass")
     if username == "" or password == "":
@@ -147,8 +147,8 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
                 elif header == 'PK':
                     local_tmp_file = os.path.join(tmp_sub_dir, "undertexter.zip")
                     packed = True
-                else:  # never found/downloaded an unpacked subtitles file, but just to be sure ...
-                    local_tmp_file = os.path.join(tmp_sub_dir, "undertexter.srt")  # assume unpacked subtitels file is an '.srt'
+                else: # never found/downloaded an unpacked subtitles file, but just to be sure ...
+                    local_tmp_file = os.path.join(tmp_sub_dir, "undertexter.srt") # assume unpacked subtitels file is an '.srt'
                     packed = False
                 subs_file = local_tmp_file
                 log(__name__, " Saving subtitles to '%s'" % (local_tmp_file))
@@ -158,6 +158,6 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
                     local_file_handle.close()
                 except:
                     log(__name__, " Failed to save subtitles to '%s'" % (local_tmp_file))
-                return packed, language, subs_file  # standard output
+                return packed, language, subs_file #standard output
     log(__name__, " Login to Itasa failed. Check your username/password at the addon configuration.")
     raise SubtitlesDownloadError(SubtitlesErrors.INVALID_CREDENTIALS_ERROR, "provided invalid credentials")

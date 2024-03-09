@@ -1,0 +1,770 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BH_SubsSupport\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-16 08:27+0300\n"
+"PO-Revision-Date: 2017-06-16 08:43+0300\n"
+"Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
+"Language-Team: Vytenis P. <vyteniui@edlonta.lt>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Add subtitle's language to filename"
+msgstr "Į failo vardą įtraukti subtitrų kalbą"
+
+msgid "All"
+msgstr "visi"
+
+msgid "Always ask before overwriting existing subtitles"
+msgstr "Visada klausti, prieš perrašant jau sukurtus subtitrus"
+
+msgid "Append language to filename"
+msgstr "Į failo vardą įtraukti kalbą"
+
+msgid "Ask on remove action"
+msgstr "Klausti prieš pašalinant"
+
+msgid "Auto sync to current event"
+msgstr "Autosinchronizavimas su dabartiniu įvykiu"
+
+msgid "Background"
+msgstr "Fonas"
+
+msgid "Background color"
+msgstr "Fono spalva"
+
+msgid "Background transparency"
+msgstr "Fono skaidrumas"
+
+msgid "Background type"
+msgstr "Fono tipas"
+
+msgid "Background X-offset"
+msgstr "Horizontalus fono poslinkis"
+
+msgid "Background Y-offset"
+msgstr "Vertikalus fono poslinkis"
+
+msgid "black"
+msgstr "juoda"
+
+msgid "blue"
+msgstr "mėlyna"
+
+msgid "border"
+msgstr "kraštas"
+
+msgid "bottom"
+msgstr "apačia"
+
+msgid "Cancel"
+msgstr "Atšaukti"
+
+msgid "cannot decode"
+msgstr "iškoduoti nepavyksta"
+
+msgid "Cannot decode subtitles. Try another encoding group"
+msgstr "Subtitrų iškoduoti nepavyksta. Pabandykite kitą koduotę"
+
+msgid "Cannot load subtitles. Invalid path"
+msgstr "Subtitrų įkelti nepavyko. Neteisingas kelias"
+
+msgid "Cannot parse subtitles. Invalid subtitles format"
+msgstr "Subtitrų apdoroti nepavyko. Neteisingas subtitrų formatas"
+
+msgid "Cannot parse subtitles. Not supported subtitles format"
+msgstr "Subtitrų apdoroti nepavyko. Nepalaikomas subtitrų formatas"
+
+msgid "Cannot save download history, for details look in log"
+msgstr ""
+"Atsisiuntimų istorijos išsaugoti nepavyko! Daugiau informacijos rasite "
+"žurnale"
+
+msgid "cannot sync to event, event is not available"
+msgstr "nepavyksta sinchronizuoti su įvykiu, įvykis neprieinamas"
+
+msgid "captcha doesn't match, try again..."
+msgstr "kodas neatitinka, bandykite dar kartą"
+
+msgid "Change encoding"
+msgstr "Pakeisti koduotę"
+
+msgid "change external subtitles status"
+msgstr "pakeiskite išorinių subtitrų statusą"
+
+msgid "Change subssupport settings"
+msgstr "Keisti subtitrų nuostatas"
+
+msgid "change subtitles fps"
+msgstr "keisti subtitrų fps"
+
+msgid "Check search parameters before subtitles search"
+msgstr "Prieš subtitrų paiešką patikslinti paieškos parametrus"
+
+msgid "Choose from downloaded subtitles"
+msgstr "Pasirinkti subtitrus iš parsiųstų"
+
+msgid "Choose from embedded subtitles"
+msgstr "Pasirinkti subtitrus iš esamų įterptų"
+
+msgid "Choose from web subtitles"
+msgstr "Pasirinkti subtitrus iš interneto"
+
+msgid "Choose Subtitles"
+msgstr "Pasirinkti subtitrus"
+
+msgid "Choose subtitles"
+msgstr "Pasirinkti subtitrus"
+
+msgid "close plugin"
+msgstr "uždaryti įskiepį"
+
+msgid "Color"
+msgstr "Spalva"
+
+msgid "Currently choosed subtitles"
+msgstr "Dabar pasirinkti subtitrai"
+
+msgid "decrease subtitles delay"
+msgstr "sumažinti subtitrų delsą"
+
+msgid "Default"
+msgstr "numatytasis"
+
+msgid "disabled"
+msgstr "išjungta"
+
+msgid "displays this menu"
+msgstr "rodo šį meniu"
+
+msgid "Do you want to proceed?"
+msgstr "Ar norite tęsti?"
+
+msgid "Do you want to show this message again?"
+msgstr "Ar rodyti šį pranešimą ir vėliau?"
+
+msgid "Download (more...)"
+msgstr "Parsisiųsti (daugiau...)"
+
+msgid "Download (next to video)"
+msgstr "Parsisiųsti (kartu su vaizdu)"
+
+msgid "Download (user defined)"
+msgstr "Parsisiųsti (pasirinktą vartotojo)"
+
+msgid "Download and Load (more...)"
+msgstr "Parsisiųsti ir įkelti (daugiau...)"
+
+msgid "Download and Load (next to video)"
+msgstr "Parsisiųsti ir įkelti (kartu su vaizdu)"
+
+msgid "Download and Load (user defined) "
+msgstr "Parsisiųsti ir įkelti (pasirinktą vartotojo)"
+
+msgid "Download date"
+msgstr "Parsiuntimo data"
+
+msgid "Download options"
+msgstr "Parsiuntimo parinktys"
+
+msgid "Download subtitles for your videos"
+msgstr "Atsiųsti subtitrus savo filmams"
+
+msgid "Downloaded Subtitles"
+msgstr "Parsisiųsti subtitrai"
+
+msgid "Downloaded Subtitles - Settings"
+msgstr "Parsisiųsti subtitrai - nuostatos"
+
+msgid "downloading subtitles..."
+msgstr "atsiunčiami subtitrai ..."
+
+msgid "Duration"
+msgstr "Trukmė"
+
+msgid "DVB player settings"
+msgstr "DVB leistuvo parametrai"
+
+msgid "dynamic"
+msgstr "dinaminis"
+
+msgid "Edit download path"
+msgstr "Redaguoti parsisiuntimo kelią"
+
+msgid "Edit Filename"
+msgstr "Redaguoti failo pavadinimą"
+
+msgid "Embedded Subtitles"
+msgstr "Įterpti subtitrai"
+
+msgid "Embedded subtitles settings"
+msgstr "Įterptų subtitrų nuostatos"
+
+msgid "enabled"
+msgstr "įjungta"
+
+msgid "Encoding"
+msgstr "Koduotė"
+
+msgid "Encoding:"
+msgstr "Koduotė:"
+
+msgid "Entries count:"
+msgstr "Įrašų skaičius:"
+
+msgid "Episode"
+msgstr "Epizodas"
+
+msgid "error"
+msgstr "klaida"
+
+msgid "Event Duration"
+msgstr "Įvykio trukmė"
+
+msgid "Event Name"
+msgstr "Įvykio pavadinimas"
+
+msgid "Event Time"
+msgstr "Įvykio  laikas"
+
+msgid "exit"
+msgstr "užverti"
+
+msgid "External Subtitles settings"
+msgstr "Išorinių subtitrų nuostatos"
+
+msgid "Filename"
+msgstr "Failo pavadinimas"
+
+msgid "Filename cannot be empty!"
+msgstr "Failopavadinimas negali būti tuščias!"
+
+msgid "Font color (Bold)"
+msgstr "Šrifto spalva (paryškintas)"
+
+msgid "Font color (Italic"
+msgstr "Šrifto spalva (kursyvas)"
+
+msgid "Font color (Regular)"
+msgstr "Šrifto spalva (įprastas)"
+
+msgid "Font size"
+msgstr "Šrifto dydis"
+
+msgid "Font transparency (Bold)"
+msgstr "Šrifto skaidrumas (paryškintas)"
+
+msgid "Font transparency (Italic)"
+msgstr "Šrifto skaidrumas (kursyvas)"
+
+msgid "Font transparency (Regular)"
+msgstr "Šrifto skaidrumas (įprastas)"
+
+msgid "Font type (Bold)"
+msgstr "Šrifto tipas (paryškintas)"
+
+msgid "Font type (Italic)"
+msgstr "Šrifto tipas (kursyvas)"
+
+msgid "Font type (Regular)"
+msgstr "Šrifto tipas (įprastas)"
+
+msgid "For more details please check search settings"
+msgstr "Įšsamesnės informacijos gausite, patikrinę paieškos nustatymus"
+
+msgid "General settings"
+msgstr "Bendrosios nuostatos"
+
+msgid "green"
+msgstr "žalia"
+
+msgid "grey"
+msgstr "pilka"
+
+msgid "Hide delay"
+msgstr "Slėpti uždelsimą"
+
+msgid "History"
+msgstr "Istorija"
+
+msgid "increase subtitles delay"
+msgstr "padidinti subtitrų delsą"
+
+msgid "invalid credentials provided, correct them and try again"
+msgstr "įvesti neteisingi duomenys, ištaisykite ir bandykite dar kartą"
+
+msgid "jump to next subtitle"
+msgstr "pereiti prie kitų subtitrų"
+
+msgid "jump to previous subtitle"
+msgstr "pereiti prie ankstesnių subtitrų"
+
+msgid "Language"
+msgstr "kalbą"
+
+msgid "Language selection"
+msgstr "Kalbos pasirinkimas"
+
+msgid "library"
+msgstr "biblioteka"
+
+msgid "List"
+msgstr "Sąrašas"
+
+msgid "List + File"
+msgstr "Sąrašas + failas"
+
+msgid "List of storage devices"
+msgstr "Laikmenos įrenginių sąrašas"
+
+msgid "Load subtitles after download"
+msgstr "Parsiuntus, įkelti subtitrus"
+
+msgid "Load/Save download history directory"
+msgstr "Įkelti /iIšsaugoti parsisiuntimų katalogą"
+
+msgid "loading subtitles list"
+msgstr "įkeliamas subtitrų sąrašas"
+
+msgid "Manual search"
+msgstr "Rankinė paieška"
+
+msgid "Max history entries"
+msgstr "Maks. istorijos įrašų skaičius"
+
+msgid "missing"
+msgstr "trūksta"
+
+msgid "Movie"
+msgstr "Filmas"
+
+msgid "Name"
+msgstr "Pavadinimas"
+
+msgid "Next to video"
+msgstr "su vaizdo failu"
+
+msgid "no"
+msgstr "ne"
+
+msgid "no credentials provided, set them and try again"
+msgstr "neįvesti duomenys, įveskite ir bandykite dar kartą"
+
+msgid "No external subtitles are loaded"
+msgstr "Išorinių subtitrų neįkelta"
+
+msgid "No subtitles found :("
+msgstr "Subtitrų nerasta"
+
+msgid "None"
+msgstr "Nieko"
+
+msgid "nothing connected"
+msgstr "nieko nepajungta"
+
+msgid "offset"
+msgstr "poslinkis"
+
+msgid "opaque"
+msgstr "neskaidrus"
+
+msgid "original"
+msgstr "originalus"
+
+msgid "Parent directory"
+msgstr "Aukštesnysis katalogas"
+
+msgid "Password"
+msgstr "Slaptažodis"
+
+msgid "Path"
+msgstr "Kelias"
+
+msgid "Path doesn't exist!"
+msgstr "Kelias neegzistuoja!"
+
+msgid "pause subtitles playback"
+msgstr "subtitrų atkūrimo pauzė"
+
+msgid "Pause video on opening subtitles menu"
+msgstr "Atvėrus subtitrų meniu, pristabdyti vaizdo įrašą"
+
+msgid "play/pause subtitles playback"
+msgstr "subtitrų atkūrimo paleidimas/pauzė"
+
+msgid "Player delay"
+msgstr "Grotuvo delsa"
+
+msgid "Position"
+msgstr "Padėtis"
+
+msgid "Preferred languages"
+msgstr "Pageidaujama kalba"
+
+msgid "Preferred Movie provider"
+msgstr "Pageidaujamas filmų teikėjas"
+
+msgid "Preferred subtitles language"
+msgstr "Pageidaujama subtitrų kalba"
+
+msgid "Preferred TV show provider"
+msgstr "Pageidaujamas TV šou teikėjas"
+
+msgid "press green"
+msgstr "spauskite 'ŽALIĄ' mygtuką"
+
+msgid "Press OK to confirm"
+msgstr "Patvirtinimui, spauskite'OK'"
+
+msgid "Press OK to Stop"
+msgstr "Kad sustabdyti, spauskitr 'OK'"
+
+msgid "press red"
+msgstr "spauskite 'RAUDONĄ' mygtuką"
+
+msgid "Provider"
+msgstr "tiekėją"
+
+msgid "Provider name"
+msgstr "Tiekėjo pavadinimas"
+
+msgid "PTS check delay"
+msgstr "PTS patikrinimo delsa"
+
+msgid "purple"
+msgstr "violetinė"
+
+msgid "red"
+msgstr "raudona"
+
+msgid "Refresh delay"
+msgstr "Atnaujinimo delsa"
+
+msgid "Release"
+msgstr "leidimo data"
+
+msgid "Remove (file)"
+msgstr "Pašalinti (failą)"
+
+msgid "Remove action"
+msgstr "Pašalinti veiksmą"
+
+msgid "Remove Entry (List)"
+msgstr "Pašalinti įrašą (sąrašas)"
+
+msgid "Remove Entry (List+File)"
+msgstr "Pašalinti įrašą (sąrašas+failas)"
+
+msgid "Reset"
+msgstr "Atkurti"
+
+msgid "Reset Defaults"
+msgstr "Atkurti į numatytasias"
+
+msgid "reset subtitles delay/fps"
+msgstr "atkurti numatytą delsą ir fps"
+
+msgid "restarts current subtitle"
+msgstr "dabartinius subtitrus įkels iš naujo"
+
+msgid "resumes subtitles playback"
+msgstr "pratęs subtitrų atkūrimą"
+
+msgid "S"
+msgstr "S"
+
+msgid "Save"
+msgstr "Išsaugoti"
+
+msgid "Save as"
+msgstr "Įrašyti, kaip"
+
+msgid "Save downloaded subtitles to history"
+msgstr "Išsaugoti atsisiųstus subtitrus į istoriją"
+
+msgid "Save subtitles as"
+msgstr "Išsaugoti subtitrus, kaip"
+
+msgid "Save subtitles as (fallback)"
+msgstr "Išsaugoti subtitrus, kaip (rezerv.)"
+
+msgid "Save subtitles to"
+msgstr "Išsaugoti subtitrus į"
+
+msgid "Save to"
+msgstr "Įrašyti į"
+
+msgid "Search"
+msgstr "Paieška"
+
+msgid "Search parameters"
+msgstr "Paieškos parametrai"
+
+msgid "Search settings"
+msgstr "Paieškos nuostatos"
+
+msgid "Search subtitles"
+msgstr "Subtitrų paieška"
+
+msgid "Season"
+msgstr "Sezonas"
+
+msgid "seconds"
+msgstr "sek."
+
+msgid "Select Directory"
+msgstr "Pasirinkite katalogą"
+
+msgid "Send and search movie hashes"
+msgstr "Siųsti ir ieškoti filmų masyve"
+
+msgid "Settings"
+msgstr "Nuostatos"
+
+msgid "settings"
+msgstr "nustatymai"
+
+msgid "Shadow"
+msgstr "Šešėlis"
+
+msgid "Shadow color"
+msgstr "Šešėlio spalva"
+
+msgid "Shadow size"
+msgstr "Šešėlio dydis"
+
+msgid "Shadow type"
+msgstr "Šešėlio tipas"
+
+msgid "Shadow X-offset"
+msgstr "Šešėlis - horizontalus poslinkis"
+
+msgid "Shadow Y-offset"
+msgstr "Šešėlis - vertikalus poslinkis"
+
+msgid "Show expert settings"
+msgstr "Rodyti išplėstinius nustatymus"
+
+msgid "show subtitles menu"
+msgstr "rodyti subtitrų meniu"
+
+msgid "show/hide subtitles status"
+msgstr "rodyti/slėpti subtitrų statusą"
+
+msgid "skip previous subtitle by setting time in minutes"
+msgstr "grįžti prie ankstesnių subtitrų pagal laiką minutėmis"
+
+msgid "skip subtitle to current event position"
+msgstr "pereiti prie šios įvykio pozicijos subtitrų"
+
+msgid "skip to next subtitle"
+msgstr "pereiti prie sekančių subtitrų"
+
+msgid "skip to next subtitle (minute jump)"
+msgstr "pereiti prie sekančių subtitrų (minutės šuolis)"
+
+msgid "skip to next subtitle by setting time in minutes"
+msgstr "pereiti prie sekančių subtitrų nurodant laiką (min.)"
+
+msgid "skip to previous subtitle"
+msgstr "grįžti prie ankstesnių subtitrų"
+
+msgid "skip to previous subtitle (minute jump)"
+msgstr "grįžti prie ankstesnių subtitrų (minutės šuolis)"
+
+msgid "Some subtitles providers are not working"
+msgstr "Kai kurie subtitrų tiekėjai neveikia"
+
+msgid "Sort subtitles list by"
+msgstr "Rūšiuoti subtitrų sąrašą pagal"
+
+msgid "Source title"
+msgstr "Šaltinio pavadinimas"
+
+msgid "Source title not provided"
+msgstr "Šaltinio pavadinimas nepateiktas"
+
+msgid "State"
+msgstr "Būklė"
+
+msgid "static"
+msgstr "statinis"
+
+msgid "SubsSupport downloader"
+msgstr "Subtitrai - įkėlimas"
+
+msgid "SubsSupport DVB player"
+msgstr "Subtitrai - DVB leistuvas"
+
+msgid "SubsSupport settings"
+msgstr "Subtitrai - parametrai"
+
+msgid "Subtitle"
+msgstr "Subtitrai"
+
+msgid "Subtitles Delay"
+msgstr "Subtitrų delsa"
+
+msgid "Subtitles download path"
+msgstr "Subtitrų parsisiuntimo kelias"
+
+msgid "subtitles found"
+msgstr "rasti subtitrai"
+
+msgid "Subtitles FPS"
+msgstr "Subtitrų FPS"
+
+msgid "Subtitles Position"
+msgstr "Subtitrų padėtis"
+
+msgid "Subtitles provider timeout"
+msgstr "Subtitrų tiekėjo atsakas"
+
+msgid "Subtitles search"
+msgstr "Subtitrų paieška"
+
+msgid "Subtitles search settings"
+msgstr "Subtitrų paiešos nuostatos"
+
+msgid "Subtitles setting"
+msgstr "Subtitrų nustatymas"
+
+msgid "Subtitles settings"
+msgstr "Subtitrų nuostatos"
+
+msgid "Subtitles settings (embedded)"
+msgstr "Subtitrų nuostatos (įterptos)"
+
+msgid "Subtitles temp path"
+msgstr "Subtitrų laikinasis kelias"
+
+msgid "Subtitles Time"
+msgstr "Subtitrų laikas"
+
+msgid "Subtitles will be downloaded in"
+msgstr "Subtitrai bus parsiųsti į"
+
+msgid ""
+"Subtitles with this name already exist\n"
+"Do you want to overwrite them"
+msgstr ""
+"Subtitrai su tokiu pavadinimu jau yra\n"
+"Ar norite juos perrašyti?"
+
+msgid "Suggestions"
+msgstr "Pasiūlymai"
+
+msgid "Supported languages"
+msgstr "Palaikomos kalbos"
+
+msgid "Switch List"
+msgstr "Perjungti sąrašą"
+
+msgid "Sync delay"
+msgstr "Sinchronizavimo delsa"
+
+msgid ""
+"There are more subtitles in unpacked archive\n"
+" please select which one do you want to use"
+msgstr ""
+"Išskleistame archyve yra daugiau subtitrų,\n"
+"pasirinkite, kuriuos norite naudoti"
+
+msgid "There was an error while removing subtitle, please check log"
+msgstr "Šalinant subtitrus, įvyko klaida. Žiūrėkite klaidų žurnalą"
+
+msgid "Time"
+msgstr "Laikas"
+
+msgid "Title"
+msgstr "Pavadinimas"
+
+msgid "top"
+msgstr "viršus"
+
+msgid "transparent"
+msgstr "skaidrus"
+
+msgid "Try update(simplify) search expression and try again.."
+msgstr ""
+"Pabandykite supaprastinti paieškos kriterijus ir bandykite dar kartą..."
+
+msgid "Turn off subtitles"
+msgstr "Išjungti subtitrus"
+
+msgid "TV show"
+msgstr "TV šou"
+
+msgid "Type"
+msgstr "Tipas"
+
+msgid "Type text of picture"
+msgstr "Įrašykite paveikslėlio tekstą"
+
+msgid "unknown"
+msgstr "nežinomas"
+
+msgid "unpack error: cannot get subname"
+msgstr "išskleidimo klaida: nerastas subtitrų pavadinimas"
+
+msgid "unpack error: cannot open archive"
+msgstr "išskleidimo klaida: archyvas neatsidaro"
+
+msgid "Update"
+msgstr "Atnaujinimas"
+
+msgid ""
+"Update search parameters if not correct\n"
+" and press green button for search"
+msgstr ""
+"Pakeiskite paieškos parametrus, jei šie neteisingi\n"
+"ir paieškai pradėti, spauskite 'ŽALIĄ' mygtuką"
+
+msgid "Update Search params"
+msgstr "Pakeisti paieškos parametrus"
+
+msgid "Use File path"
+msgstr "Kelias iki failo"
+
+msgid "User defined"
+msgstr "pasirinkta vartotojo"
+
+msgid "Username"
+msgstr "Vartotojas"
+
+msgid "Video filename"
+msgstr "vaizdo failo pavadinimas"
+
+msgid "watch DVB broadcast with subtitles"
+msgstr "žiūrėti DVB transliaciją su subtitrais"
+
+msgid "white"
+msgstr "balta"
+
+msgid "will be removed from file system"
+msgstr "bus pašalinti iš failų sistemos"
+
+msgid "will be removed from list"
+msgstr "bus pašalinti iš sąrašo"
+
+msgid "Year"
+msgstr "Metai"
+
+msgid "yellow"
+msgstr "geltona"
+
+msgid "yes"
+msgstr "taip"
+
+msgid ""
+"You have OpenPli-based image, please change embedded subtitles settings in "
+"Settings / System / Subtitles settings"
+msgstr ""
+"Naudojate OpenPLi pagrindu kurtą atvaizdą, pakeiskite įterptųjų subtitrų "
+"nustatymus -> Nuostatos > Sistema > Subtitrų nuostatos"

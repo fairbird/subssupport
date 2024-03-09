@@ -93,7 +93,7 @@ def get_language_info(language):
 
 
 def log(module, msg):
-    _log(module, msg.encode('utf-8') if six.PY2 else msg)
+    _log(module, msg.encode('utf-8'))
 
 
 def geturl(url1, headers=None, params=None):

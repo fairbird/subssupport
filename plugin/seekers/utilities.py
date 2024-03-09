@@ -1,10 +1,22 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import re
 import struct
 import unicodedata
-from hashlib import md5
-from urllib.request import Request, urlopen
+
+try:
+    from hashlib import md5
+except:
+    from md5 import new as md5
+from six.moves.urllib.request import Request
+from six.moves.urllib.request import urlopen
 import os
+
+import six
+
+if six.PY3:
+    long = int
+
 
 SUPRESS_LOG = True
 
@@ -12,7 +24,10 @@ SUPRESS_LOG = True
 def log(module, msg):
     if SUPRESS_LOG:
         return
-    print("%s %s" % (module, msg))
+    if six.PY2 and isinstance(msg, six.text_type):
+        print(module, msg.encode('utf-8'))
+    else:
+        print(module, msg)
 
 
 LANGUAGES = (
@@ -140,6 +155,26 @@ ISO6391_LANGNAME = dict(map(lambda lang: (lang[2], lang[0]), LANGUAGES))
 ISO6392_LANGNAME = dict(map(lambda lang: (lang[3], lang[0]), LANGUAGES))
 
 
+def languageTranslate(lang, lang_from, lang_to):
+    if lang_from == 0 and lang_to == 2:
+        if lang in LANGNAME_ISO6391:
+            return LANGNAME_ISO6391[lang]
+    elif lang_from == 0 and lang_to == 3:
+        if lang in LANGNAME_ISO6392:
+            return LANGNAME_ISO6392[lang]
+    if lang_from == 2 and lang_to == 0:
+        if lang in ISO6391_LANGNAME:
+            return ISO6391_LANGNAME[lang]
+    elif lang_from == 3 and lang_to == 0:
+        if lang in ISO6392_LANGNAME:
+            return ISO6392_LANGNAME[lang]
+    else:
+        for x in LANGUAGES:
+            if lang == x[lang_from]:
+                return x[lang_to]
+
+
+
 def allLang():
     return ["en",
             "fr",
@@ -194,24 +229,6 @@ def allLang():
             "uk",
             "vi"]
 
-
-def languageTranslate(lang, lang_from, lang_to):
-    if lang_from == 0 and lang_to == 2:
-        if lang in LANGNAME_ISO6391:
-            return LANGNAME_ISO6391[lang]
-    elif lang_from == 0 and lang_to == 3:
-        if lang in LANGNAME_ISO6392:
-            return LANGNAME_ISO6392[lang]
-    if lang_from == 2 and lang_to == 0:
-        if lang in ISO6391_LANGNAME:
-            return ISO6391_LANGNAME[lang]
-    elif lang_from == 3 and lang_to == 0:
-        if lang in ISO6392_LANGNAME:
-            return ISO6392_LANGNAME[lang]
-    else:
-        for x in LANGUAGES:
-            if lang == x[lang_from]:
-                return x[lang_to]
 
 
 def regex_movie(title):
@@ -291,7 +308,7 @@ def hashFile(file_path, rar):
 
 def normalizeString(str):
     return unicodedata.normalize(
-           'NFKD', str
+           'NFKD', six.text_type(six.text_type(str, 'utf-8'))
            ).encode('ascii', 'ignore')
 
 
@@ -377,7 +394,7 @@ def getFileSize(filepath):
     if filepath.startswith('http://'):
         try:
             resp = urlopen(HeadRequest(filepath))
-            return int(resp.info().get('Content-Length'))
+            return long(resp.info().get('Content-Length'))
         except Exception:
             return None
         finally:
@@ -476,4 +493,7 @@ class SimpleLogger(object):
 
 
 def toString(text):
+    if six.PY2 and isinstance(text, six.string_types):
+        if isinstance(text, six.text_type):
+            return text.encode('utf-8')
     return text

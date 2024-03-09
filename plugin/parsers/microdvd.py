@@ -71,8 +71,14 @@ class MicroDVDParser(BaseParser):
 
     def _parse(self, text, fps):
         subs = []
-        idx = 0
-        if fps is None:
+        idx= 0
+        #if fps is None:
+            #raise ParseError("cannot parse, FPS not provided")
+
+        try:
+            if fps is None:
+                fps = 23.976
+        except:
             raise ParseError("cannot parse, FPS not provided")
 
         for m in re.finditer("\{(\d+)\}\{(\d+)\}(.*)", text):

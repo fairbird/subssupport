@@ -8,21 +8,12 @@ from xml.dom import minidom
 
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors
 from ..utilities import log, getFileSize, hashFile
-import subprocess
 import six
 from six.moves import urllib
+
+
 from six.moves import xmlrpc_client
-import requests
-import json
-import re
-import random
-import string
-import time
-import warnings
-from six.moves import xmlrpc_client
-LINKFILE = '/tmp/link'
-LINKFILE2 = '/tmp/link2'
-LINKFILE0 = '/tmp/link0'
+
 
 try:
     # Python 2.6 +
@@ -189,7 +180,7 @@ class PNServer:
                                             'hearing_imp': "n" in self.get_element(subtitle, "flags"),
                                             'hash': item['OShash'],
                                             })
-            self.mergesubtitles()
+            # self.mergesubtitles()
         return self.subtitles_list
 
     def Download(self, params):
@@ -214,16 +205,15 @@ class PNServer:
             return ""
 
     def fetch(self, url):
-        subprocess.check_output(['wget', '-O', '/tmp/link', url])
-        with open(LINKFILE, 'r') as f:
-            result = f.read()
-            xmldoc = minidom.parseString(result)
-            return xmldoc.getElementsByTagName("subtitle")
+        socket = urllib.request.urlopen(url)
+        result = socket.read()
+        socket.close()
+        xmldoc = minidom.parseString(result)
+        return xmldoc.getElementsByTagName("subtitle")
 
     def compare_columns(self, b, a):
         return cmp(b["language_name"], a["language_name"]) or cmp(a["sync"], b["sync"])
 
     def mergesubtitles(self):
-        if (len(self.subtitles_list) > 0):
-            #self.subtitles_list.sort(key=lambda x: [not x['sync'], x['lang_index']])
-            self.subtitles_list = sorted(self.subtitles_list, key=lambda x: [x['sync'], x['language_name']])
+        if len(self.subtitles_list) > 0:
+            self.subtitles_list = sorted(self.subtitles_list, key=self.compare_columns)

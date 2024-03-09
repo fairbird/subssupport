@@ -125,7 +125,7 @@ class SubsSupportSettings(Screen):
         except ImportError:
             self.session.open(SubsSetupEmbedded, self.embeddedSettings)
         else:
-            self.session.open(MessageBox, _("You have OpenPli-based image, please change embedded subtitles settings in Settings / System / Subtitles settings"), MessageBox.TYPE_INFO)
+            self.session.open(MessageBox, _("Please change embedded subtitles settings in Settings / System / Subtitles settings"), MessageBox.TYPE_INFO)
 
     def openDVBPlayerSettings(self):
         self.session.open(SubsSetupDVBPlayer, self.dvbSettings)
