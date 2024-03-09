@@ -1,0 +1,764 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SubsSupport _ enigma2-plugin by mx3L\n"
+"POT-Creation-Date: 2016-10-26 00:35+0300\n"
+"PO-Revision-Date: 2019-03-30 15:53+0100\n"
+"Language-Team: thawtes <thawtes@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Last-Translator: gorski@hotmail.co.uk\n"
+"Language: hr_HR\n"
+
+msgid "Add subtitle's language to filename"
+msgstr "Dodaj jezik podnaslova u ime datoteke"
+
+msgid "All"
+msgstr "Svi"
+
+msgid "Always ask before overwriting existing subtitles"
+msgstr "Uvijek pitaj prije nego prepišeš preko postojećeg podnaslova"
+
+msgid "Append language to filename"
+msgstr "Dodaj jezik u ime datoteke"
+
+msgid "Ask on remove action"
+msgstr "Kod uklanjanja prvo pitaj"
+
+msgid "Auto sync to current event"
+msgstr "Automatski sinkroniziraj tekućem događaju"
+
+msgid "Background"
+msgstr "Pozadina"
+
+msgid "Background color"
+msgstr "Pozadinska boja"
+
+msgid "Background transparency"
+msgstr "Pozadinska transparentnost"
+
+msgid "Background type"
+msgstr "Pozadinski tip"
+
+msgid "Background X-offset"
+msgstr "Pozadinsko X-odstupanje"
+
+msgid "Background Y-offset"
+msgstr "Pozadinsko Y-odstupanje"
+
+msgid "black"
+msgstr "crna"
+
+msgid "blue"
+msgstr "plava"
+
+msgid "border"
+msgstr "obrub"
+
+msgid "bottom"
+msgstr "dno"
+
+msgid "Cancel"
+msgstr "Odustani"
+
+msgid "cannot decode"
+msgstr "Nemoguće dešifrirati"
+
+msgid "Cannot decode subtitles. Try another encoding group"
+msgstr "Nemoguće dešifrirati podnaslove. Pokušaj drugu dešifrirajuću grupu."
+
+msgid "Cannot load subtitles. Invalid path"
+msgstr "Nemoguće otvoriti podnaslove. Nepostojeći put."
+
+msgid "Cannot parse subtitles. Invalid subtitles format"
+msgstr "Nemoguće obraditi podnaslove. Nevažeći format podnaslova."
+
+msgid "Cannot parse subtitles. Unsupported subtitles format"
+msgstr "Nemoguće obraditi podnaslove. Nepodržani format podnaslova."
+
+msgid "Cannot save download history, for details look in log"
+msgstr "Nemoguće spremiti povijest preuzimanja, pogledaj u zapisnik za detalje."
+
+msgid "cannot sync to event, event is not available"
+msgstr "Nemoguće sinkronizirati sa događajem, događaj nije dostupan."
+
+msgid "captcha doesn't match, try again..."
+msgstr "Tražena riječ ne odgovara, pokušaj ponovo..."
+
+msgid "Change encoding"
+msgstr "Promjeni šifriranje"
+
+msgid "change external subtitles status"
+msgstr "Promijeni status vanjskoga podnaslova"
+
+msgid "Change subssupport settings"
+msgstr "Promijeni postavke ovoga plugina"
+
+msgid "change subtitles fps"
+msgstr "Promjeni fps podnaslova"
+
+msgid "Check search parameters before subtitles search"
+msgstr "Provjeri parametre pretrage prije potrage za podnaslovom"
+
+msgid "Choose from downloaded subtitles"
+msgstr "Odaberi od već preuzetih podnaslova"
+
+msgid "Choose from embedded subtitles"
+msgstr "Odaberi od umetnutih podnaslova"
+
+msgid "Choose from web subtitles"
+msgstr "Odaberi od podnaslova sa interneta"
+
+msgid "Choose Subtitles"
+msgstr "Odaberi podnaslov"
+
+msgid "Choose subtitles"
+msgstr "Odaberi podnaslov"
+
+msgid "close plugin"
+msgstr "Zatvori ovaj dodatak"
+
+msgid "Color"
+msgstr "Boja"
+
+msgid "Currently chosen subtitle"
+msgstr "Trenutno odabrani podnaslov"
+
+msgid "decrease subtitles delay"
+msgstr "Smanji zaostajanje podnaslova"
+
+msgid "Default"
+msgstr "Podrazumjevano"
+
+msgid "disabled"
+msgstr "Onemogućeno"
+
+msgid "displays this menu"
+msgstr "Prikaži ovaj izbor"
+
+msgid "Do you want to proceed?"
+msgstr "Želiš li nastaviti?"
+
+msgid "Do you want to show this message again?"
+msgstr "Želiš li da ponovno prikažem ovu poruku?"
+
+msgid "Download (more...)"
+msgstr "Preuzmi (više...)"
+
+msgid "Download (next to video)"
+msgstr "Preuzmi (kraj videa)"
+
+msgid "Download (user defined)"
+msgstr "Preuzmi (korisnik odredio)"
+
+msgid "Download and Load (more...)"
+msgstr "Preuzmi i otvori (više...)"
+
+msgid "Download and Load (next to video)"
+msgstr "Preuzmi i otvori (kraj videa)"
+
+msgid "Download and Load (user defined) "
+msgstr "Preuzmi i otvori (korisnik odredio)"
+
+msgid "Download date"
+msgstr "Datum preuzimanja"
+
+msgid "Download options"
+msgstr "Opcije preuzimanja"
+
+msgid "Download subtitles for your videos"
+msgstr "Preuzmi podnaslov za ovaj video"
+
+msgid "Downloaded Subtitles"
+msgstr "Preuzmi podnaslove"
+
+msgid "Downloaded Subtitles - Settings"
+msgstr "Preuzmi podnaslove - Postavke"
+
+msgid "downloading subtitles..."
+msgstr "Preuzimanje podnaslova u toku..."
+
+msgid "Duration"
+msgstr "Trajanje"
+
+msgid "DVB player settings"
+msgstr "Postavke DVB playera"
+
+msgid "dynamic"
+msgstr "dinamički"
+
+msgid "Edit download path"
+msgstr "Editiraj put preuzimanja datoteka"
+
+msgid "Edit Filename"
+msgstr "Editiraj ime datoteke"
+
+msgid "Embedded Subtitles"
+msgstr "Umetnuti podnaslovi"
+
+msgid "Embedded subtitles settings"
+msgstr "Postavke umetnutih podnaslova"
+
+msgid "enabled"
+msgstr "Omogućeno"
+
+msgid "Encoding"
+msgstr "Šifriranje"
+
+msgid "Encoding:"
+msgstr "Šifriranje:"
+
+msgid "Entries count:"
+msgstr "Broj stavaka:"
+
+msgid "Episode"
+msgstr "Epizoda"
+
+msgid "error"
+msgstr "Greška"
+
+msgid "Event Duration"
+msgstr "Trajanje događaja"
+
+msgid "Event Name"
+msgstr "Ime događaja"
+
+msgid "Event Time"
+msgstr "Vrijeme događaja"
+
+msgid "exit"
+msgstr "Izlaz"
+
+msgid "External Subtitles settings"
+msgstr "Postavke vanjskih podnaslova"
+
+msgid "Filename"
+msgstr "Ime datoteke"
+
+msgid "Filename cannot be empty!"
+msgstr "Ime datoteke ne može biti prazno!"
+
+msgid "Font color (Bold)"
+msgstr "Boja slova (Bold)"
+
+msgid "Font color (Italic)"
+msgstr "Boja slova (Italic)"
+
+msgid "Font color (Regular)"
+msgstr "Boja slova (Regular)"
+
+msgid "Font color (Italic"
+msgstr "Boja slova (Italic)"
+
+msgid "Font size"
+msgstr "Veličina slova"
+
+msgid "Font transparency (Bold)"
+msgstr "Transparentnost slova (Bold)"
+
+msgid "Font transparency (Italic)"
+msgstr "Transparentnost slova (Italic)"
+
+msgid "Font transparency (Regular)"
+msgstr "Transparentnost slova (Regular)"
+
+msgid "Font type (Bold)"
+msgstr "Tip slova (Bold)"
+
+msgid "Font type (Italic)"
+msgstr "Tip slova (Italic)"
+
+msgid "Font type (Regular)"
+msgstr "Tip slova (Regular)"
+
+msgid "For more details please check search settings"
+msgstr "Provjeri postavke pretrage za više detalja"
+
+msgid "General settings"
+msgstr "Opće postavke"
+
+msgid "green"
+msgstr "zelena"
+
+msgid "grey"
+msgstr "siva"
+
+msgid "Hide delay"
+msgstr "Sakrij zaostajanje"
+
+msgid "History"
+msgstr "Povijest"
+
+msgid "increase subtitles delay"
+msgstr "Povećaj zaostajanje podnaslova"
+
+msgid "invalid credentials provided, correct them and try again"
+msgstr "Nevažeće vjerodajnice, provjeri ih, korigiraj i pokušaj ponovo"
+
+msgid "jump to next subtitle"
+msgstr "Idi na slijedeći podnaslov"
+
+msgid "jump to previous subtitle"
+msgstr "Idi na prethodni podnaslov"
+
+msgid "Language"
+msgstr "Jezik"
+
+msgid "Language selection"
+msgstr "Odabir jezika"
+
+msgid "library"
+msgstr "Datotečna biblioteka"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "List + File"
+msgstr "Lista + datoteka"
+
+msgid "List of storage devices"
+msgstr "Lista uređaja za pohranu"
+
+msgid "Load subtitles after download"
+msgstr "Pokreni podnaslove nakon preuzimanja"
+
+msgid "Load/Save download history directory"
+msgstr "Pokreni/spremi mapu povijesti preuzimanja"
+
+msgid "loading subtitles list"
+msgstr "Pokrećem listu podnaslova"
+
+msgid "Manual search"
+msgstr "Ručna pretraga"
+
+msgid "Max history entries"
+msgstr "Najveći broj unosa povijesti"
+
+msgid "missing"
+msgstr "Nedostaje"
+
+msgid "Movie"
+msgstr "Film"
+
+msgid "Name"
+msgstr "Ime"
+
+msgid "Next to video"
+msgstr "Kraj videa"
+
+msgid "no"
+msgstr "Ne"
+
+msgid "no credentials provided, set them and try again"
+msgstr "Nema vjerodajnica, postavi ih i opet pokušaj"
+
+msgid "No external subtitles are loaded"
+msgstr "Vanjski podnaslov nije pokrenut"
+
+msgid "No subtitles found :("
+msgstr "Podnaslov nije pronađen :("
+
+msgid "None"
+msgstr "Nema"
+
+msgid "nothing connected"
+msgstr "Ništa nije povezano"
+
+msgid "offset"
+msgstr "pomak"
+
+msgid "opaque"
+msgstr "neprovidno"
+
+msgid "original"
+msgstr "Original"
+
+msgid "Parent directory"
+msgstr "Osnovna mapa"
+
+msgid "Password"
+msgstr "Lozinka"
+
+msgid "Path"
+msgstr "Put"
+
+msgid "Path doesn't exist!"
+msgstr "Put ne postoji!"
+
+msgid "pause subtitles playback"
+msgstr "Pauziraj podnaslove"
+
+msgid "Pause video on opening subtitles menu"
+msgstr "Pauziraj video kad otvoriš izbornik podnaslova"
+
+msgid "play/pause subtitles playback"
+msgstr "Pokreni/pauziraj podnaslove"
+
+msgid "Player delay"
+msgstr "Zaostajanje playera"
+
+msgid "Position"
+msgstr "Pozicija"
+
+msgid "Preferred languages"
+msgstr "Odabrani jezici"
+
+msgid "Preferred Movie provider"
+msgstr "Favorizirani provajder filmova"
+
+msgid "Preferred subtitles language"
+msgstr "Preferirani jezik podnaslova"
+
+msgid "Preferred TV show provider"
+msgstr "Favorizirani provajder TV emisija"
+
+msgid "press green"
+msgstr "Stisni zeleno"
+
+msgid "Press OK to confirm"
+msgstr "Stisni OK za potvrdu"
+
+msgid "Press OK to Stop"
+msgstr "Stisni OK da zaustaviš"
+
+msgid "press red"
+msgstr "Stisni crveno"
+
+msgid "Provider"
+msgstr ""
+
+msgid "Provider name"
+msgstr "Ime provajdera"
+
+msgid "PTS check delay"
+msgstr "PTS provjera zaostatka"
+
+msgid "purple"
+msgstr "ljubičasta"
+
+msgid "red"
+msgstr "crvena"
+
+msgid "Refresh delay"
+msgstr "Obnovi zaostatak"
+
+msgid "Release"
+msgstr "Izdavač"
+
+msgid "Remove (file)"
+msgstr "Obriši (datoteku)"
+
+msgid "Remove action"
+msgstr "Ukini akciju"
+
+msgid "Remove Entry (List)"
+msgstr "Obriši stavku (lista)"
+
+msgid "Remove Entry (List+File)"
+msgstr "Obriši stavku (lista + datoteka)"
+
+msgid "Reset"
+msgstr "Poništi"
+
+msgid "Reset Defaults"
+msgstr "Vrati na zadane postavke"
+
+msgid "reset subtitles delay/fps"
+msgstr "Poništi zaostajanje podnaslova/fps"
+
+msgid "restarts current subtitle"
+msgstr "Ponovo pokreni trenutno korišteni podnaslov"
+
+msgid "resumes subtitles playback"
+msgstr "Nastavi sa prikazom podnaslova"
+
+msgid "S"
+msgstr "S"
+
+msgid "Save"
+msgstr "Spremi"
+
+msgid "Save as"
+msgstr "Spremi kao..."
+
+msgid "Save downloaded subtitles to history"
+msgstr "Spremi preuzeti podnaslov u povijest"
+
+msgid "Save subtitles as"
+msgstr "Spremi podnaslov kao..."
+
+msgid "Save subtitles as (fallback)"
+msgstr "Spremi podnaslov kao... (rezervna opcija)"
+
+msgid "Save subtitles to"
+msgstr "Spremi podnaslov u"
+
+msgid "Save to"
+msgstr "Spremi u"
+
+msgid "Search"
+msgstr "Pretraga"
+
+msgid "Search parameters"
+msgstr "Parametri pretrage"
+
+msgid "Search settings"
+msgstr "Postavke pretrage"
+
+msgid "Search subtitles"
+msgstr "Pretraži podnaslove"
+
+msgid "Season"
+msgstr "Sezona"
+
+msgid "seconds"
+msgstr "Sekunde"
+
+msgid "Select Directory"
+msgstr "Odaberi mapu"
+
+msgid "Send and search movie hashes"
+msgstr "Pošalji i pretraži hashove filmova"
+
+msgid "Settings"
+msgstr "Postavke"
+
+msgid "settings"
+msgstr "postavke"
+
+msgid "Shadow"
+msgstr "Sjena"
+
+msgid "Shadow color"
+msgstr "Boja sjene"
+
+msgid "Shadow size"
+msgstr "Veličina sjene"
+
+msgid "Shadow type"
+msgstr "Tip sjene"
+
+msgid "Shadow X-offset"
+msgstr "X-odstupanje sjene"
+
+msgid "Shadow Y-offset"
+msgstr "Y-odstupanje sjene"
+
+msgid "Show expert settings"
+msgstr "Prikaži napredne postavke"
+
+msgid "show subtitles menu"
+msgstr "Prikaži izbornik podnaslova"
+
+msgid "show/hide subtitles status"
+msgstr "Prikaži/sakrij status podnaslova"
+
+msgid "skip previous subtitle by setting time in minutes"
+msgstr "Preskoči prethodni podnaslov tako da postaviš vrijeme u minutama"
+
+msgid "skip subtitle to current event position"
+msgstr "Preskoči podnaslov do sadašnje pozicije u videu"
+
+msgid "skip to next subtitle"
+msgstr "Preskoči u slijedeći podnaslov"
+
+msgid "skip to next subtitle (minute jump)"
+msgstr "Preskoči u slijedeći podnaslov (minutni skok)"
+
+msgid "skip to next subtitle by setting time in minutes"
+msgstr "Preskoči u slijedeći podnaslov tako da postaviš vrijeme u minutama"
+
+msgid "skip to previous subtitle"
+msgstr "Preskoči u prethodni podnaslov"
+
+msgid "skip to previous subtitle (minute jump)"
+msgstr "Preskoči u prethodni podnaslov (minutni skok)"
+
+msgid "Some subtitles providers are not working"
+msgstr "Neki provajderi podnaslovima ne rade"
+
+msgid "Sort subtitles list by"
+msgstr "Uredi listu podnaslova po"
+
+msgid "Source title"
+msgstr "Izvorni naslov"
+
+msgid "Source title not provided"
+msgstr "Izvorni naslov nije dat"
+
+msgid "State"
+msgstr "Stanje"
+
+msgid "static"
+msgstr "statički"
+
+msgid "SubsSupport downloader"
+msgstr "SubsSupport preuzimač"
+
+msgid "SubsSupport DVB player"
+msgstr "SubsSupport DVB player"
+
+msgid "SubsSupport settings"
+msgstr "SubsSupport postavke"
+
+msgid "Subtitle"
+msgstr "Podnaslov"
+
+msgid "Subtitles Delay"
+msgstr "Zaostajanje podnaslova"
+
+msgid "Subtitles download path"
+msgstr "Put preuzimanja podnaslova"
+
+msgid "subtitles found"
+msgstr "Podnaslov pronađen"
+
+msgid "Subtitles FPS"
+msgstr "FPS podnaslova"
+
+msgid "Subtitles Position"
+msgstr "Pozicija podnaslova"
+
+msgid "Subtitles provider timeout"
+msgstr "Timeout prikaza provajdera"
+
+msgid "Subtitles search"
+msgstr "Pretraga podnaslova"
+
+msgid "Subtitles search settings"
+msgstr "Postavke pretrage podnaslova"
+
+msgid "Subtitles setting"
+msgstr "Postavke podnaslova"
+
+msgid "Subtitles settings"
+msgstr "Postavke podnaslova"
+
+msgid "Subtitles settings (embedded)"
+msgstr "Postavke podnaslova (umetnuti)"
+
+msgid "Subtitles temp path"
+msgstr "Privremeni put podnaslova"
+
+msgid "Subtitles Time"
+msgstr "Vrijeme podnaslova"
+
+msgid "Subtitles will be downloaded in"
+msgstr "Podnaslov će biti preuzet u"
+
+msgid ""
+"Subtitles with this name already exist\n"
+"Do you want to overwrite them"
+msgstr ""
+"Podnaslov ovoga imena već postoji.\n"
+"Želite li ga ponovo spremiti?"
+
+msgid "Suggestions"
+msgstr "Prijedlog"
+
+msgid "Supported languages"
+msgstr "Podržani jezici"
+
+msgid "Switch List"
+msgstr "Zamijeni listu"
+
+msgid "Sync delay"
+msgstr "Zaostatak sinkronizacije"
+
+msgid ""
+"There are more subtitles in unpacked archive\n"
+" please select which one do you want to use"
+msgstr ""
+"Ima još podnaslova u neraspakiranoj arhivi.\n"
+" Koji želiš koristiti?"
+
+msgid "There was an error while removing subtitle, please check log"
+msgstr "Potkrala se greška kod uklanjanja podnaslova, provjeri zapis."
+
+msgid "Time"
+msgstr "Vrijeme"
+
+msgid "Title"
+msgstr "Naslov"
+
+msgid "top"
+msgstr "Vrh"
+
+msgid "transparent"
+msgstr "Transparentno"
+
+msgid "Try update(simplify) search expression and try again.."
+msgstr "Pokušajte opet, ali upojednostavljenom pretragom..."
+
+msgid "Turn off subtitles"
+msgstr "Isključi podnaslove"
+
+msgid "TV show"
+msgstr "TV emisija"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Type text of picture"
+msgstr "\"Tip teksta slike"
+
+msgid "unknown"
+msgstr "Nepoznato"
+
+msgid "unpack error: cannot get subname"
+msgstr "Greška raspakiravanja: ne može se naći pod-ime"
+
+msgid "unpack error: cannot open archive"
+msgstr "Greška raspakiravanja: arhiva se ne da otvoriti"
+
+msgid "Update"
+msgstr "Ažuriranje"
+
+msgid ""
+"Update search parameters if not correct\n"
+" and press green button for search"
+msgstr ""
+"Ažuriraj parametre pretrage ako nije korektno\n"
+" i stisni zeleno dugme da pretražiš"
+
+msgid "Update Search params"
+msgstr "Ažuriraj parametre pretrage"
+
+msgid "Use File path"
+msgstr "Koristi ovaj put ka datoteci"
+
+msgid "User defined"
+msgstr "Korisnik odredio"
+
+msgid "Username"
+msgstr "Korisničko ime"
+
+msgid "Video filename"
+msgstr "Ime videa"
+
+msgid "watch DVB broadcast with subtitles"
+msgstr "Gledaj DVB program sa podnaslovom"
+
+msgid "white"
+msgstr "bijela"
+
+msgid "will be removed from file system"
+msgstr "Bit će uklonjeno iz datotečnog sistema"
+
+msgid "will be removed from list"
+msgstr "Bit će uklonjeno sa liste"
+
+msgid "Year"
+msgstr "Godina"
+
+msgid "yellow"
+msgstr "žuta"
+
+msgid "yes"
+msgstr "Da"
+
+msgid "You have OpenPli-based image, please change embedded subtitles settings in Settings / System / Subtitles settings"
+msgstr "Imaš Enigma2 image baziran na OpenPLi kodu: promjeni postavke umetnutih podnaslova pod Postavke / Sustav / Postavke podnaslova"

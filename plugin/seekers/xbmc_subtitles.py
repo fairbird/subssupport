@@ -6,9 +6,10 @@ Created on Feb 10, 2014
 from __future__ import absolute_import
 import os
 import time
+import six
 
 from .seeker import BaseSeeker
-from .utilities import languageTranslate, allLang
+from .utilities import languageTranslate, allLang, toString
 
 from . import _
 
@@ -62,7 +63,7 @@ class XBMCSubtitlesAdapter(BaseSeeker):
             lang1 = languageTranslate(langs[0], 2, 0)
             lang2 = languageTranslate(langs[1], 2, 0)
             lang3 = languageTranslate(langs[2], 2, 0)
-        self.log.info('using langs %s %s %s' % (lang1, lang2, lang3))
+        self.log.info('using langs %s %s %s' % (toString(lang1), toString(lang2), toString(lang3)))
         self.module.settings_provider = self.settings_provider
         # Standard output -
         # subtitles list
@@ -76,12 +77,12 @@ class XBMCSubtitlesAdapter(BaseSeeker):
         subtitles_list = subtitles['list']
         session_id = subtitles['session_id']
         pos = subtitles_list.index(selected_subtitle)
-        zip_subs = os.path.join(self.tmp_path, selected_subtitle['filename'])
-        tmp_sub_dir = self.tmp_path
+        zip_subs = os.path.join(toString(self.tmp_path), toString(selected_subtitle['filename']))
+        tmp_sub_dir = toString(self.tmp_path)
         if path is not None:
-            sub_folder = path
+            sub_folder = toString(path)
         else:
-            sub_folder = self.tmp_path
+            sub_folder = toString(self.tmp_path)
         self.module.settings_provider = self.settings_provider
         # Standard output -
         # True if the file is packed as zip: addon will automatically unpack it.
@@ -97,9 +98,7 @@ class XBMCSubtitlesAdapter(BaseSeeker):
             if not os.path.isfile(filepath):
                 filepath = zip_subs
         else:
-            if isinstance(sub_folder, bytes):
-                sub_folder = sub_folder.decode(encoding='utf-8', errors='strict')
-            filepath = os.path.join(sub_folder, filepath)
+            filepath = os.path.join(six.ensure_str(sub_folder), filepath)
         return compressed, language, filepath
 
     def close(self):
@@ -114,8 +113,8 @@ class XBMCSubtitlesAdapter(BaseSeeker):
 
 try:
     from .Titulky import titulkycom
-except ImportError as ie:
-    titulkycom = ie
+except ImportError as e:
+    titulkycom = e
 
 
 class TitulkyComSeeker(XBMCSubtitlesAdapter):
@@ -131,8 +130,8 @@ class TitulkyComSeeker(XBMCSubtitlesAdapter):
 
 try:
     from .Edna import edna
-except ImportError as ie:
-    edna = ie
+except ImportError as e:
+    edna = e
 
 
 class EdnaSeeker(XBMCSubtitlesAdapter):
@@ -149,8 +148,8 @@ class EdnaSeeker(XBMCSubtitlesAdapter):
 
 try:
     from .SerialZone import serialzone
-except ImportError as ie:
-    serialzone = ie
+except ImportError as e:
+    serialzone = e
 
 
 class SerialZoneSeeker(XBMCSubtitlesAdapter):
@@ -166,89 +165,9 @@ class SerialZoneSeeker(XBMCSubtitlesAdapter):
 
 
 try:
-    from .Elsubtitle import elsubtitle
-except ImportError as ie:
-    elsubtitle = ie
-
-
-class ElsubtitleSeeker(XBMCSubtitlesAdapter):
-    id = 'elsubtitle'
-    module = elsubtitle
-    if isinstance(module, Exception):
-        error, module = module, None
-    provider_name = 'Elsubtitle.com'
-    supported_langs = allLang()
-    default_settings = {}
-
-
-try:
-    from .Indexsubtitle import indexsubtitle
-except ImportError as ie:
-    indexsubtitle = ie
-
-
-class IndexsubtitleSeeker(XBMCSubtitlesAdapter):
-    id = 'indexsubtitle'
-    module = indexsubtitle
-    if isinstance(module, Exception):
-        error, module = module, None
-    provider_name = 'Indexsubtitle.cc'
-    supported_langs = allLang()
-    default_settings = {}
-
-
-try:
-    from .Moviesubtitles import moviesubtitles
-except ImportError as ie:
-    moviesubtitles = ie
-
-
-class MoviesubtitlesSeeker(XBMCSubtitlesAdapter):
-    id = 'moviesubtitles'
-    module = moviesubtitles
-    if isinstance(module, Exception):
-        error, module = module, None
-    provider_name = 'Moviesubtitles.org'
-    supported_langs = allLang()
-    default_settings = {}
-
-
-try:
-    from .Moviesubtitles2 import moviesubtitles2
-except ImportError as ie:
-    moviesubtitles2 = ie
-
-
-class Moviesubtitles2Seeker(XBMCSubtitlesAdapter):
-    id = 'moviesubtitles2'
-    module = moviesubtitles2
-    if isinstance(module, Exception):
-        error, module = module, None
-    provider_name = 'Moviesubtitles.net'
-    supported_langs = allLang()
-    default_settings = {}
-
-
-try:
-    from .MySubs import mysubs
-except ImportError as ie:
-    mysubs = ie
-
-
-class MySubsSeeker(XBMCSubtitlesAdapter):
-    id = 'mysubs'
-    module = mysubs
-    if isinstance(module, Exception):
-        error, module = module, None
-    provider_name = 'Mysubs'
-    supported_langs = allLang()
-    default_settings = {}
-
-
-try:
     from .OpenSubtitles import opensubtitles
-except ImportError as ie:
-    opensubtitles = ie
+except ImportError as e:
+    opensubtitles = e
 
 
 class OpenSubtitlesSeeker(XBMCSubtitlesAdapter):
@@ -256,17 +175,17 @@ class OpenSubtitlesSeeker(XBMCSubtitlesAdapter):
     if isinstance(module, Exception):
         error, module = module, None
     id = 'opensubtitles'
-    provider_name = 'OpenSubtitles'
+    provider_name = 'OpenSubtitles.org'
     supported_langs = allLang()
     default_settings = {}
 
     def _search(self, title, filepath, lang, season, episode, tvshow, year):
-        from xmlrpc.client import ProtocolError
+        from six.moves import xmlrpc_client
         tries = 4
         for i in range(tries):
             try:
                 return XBMCSubtitlesAdapter._search(self, title, filepath, lang, season, episode, tvshow, year)
-            except ProtocolError as e:
+            except xmlrpc_client.Client.ProtocolError as e:
                 self.log.error(e.errcode)
                 if i == (tries - 1):
                     raise
@@ -274,27 +193,36 @@ class OpenSubtitlesSeeker(XBMCSubtitlesAdapter):
                     time.sleep(0.5)
 
 
+
+
 try:
     from .OpenSubtitles2 import opensubtitles2
-except ImportError as ie:
-    opensubtitles2 = ie
+except ImportError as e:
+    opensubtitles2 = e
 
 
 class OpenSubtitles2Seeker(XBMCSubtitlesAdapter):
     module = opensubtitles2
     if isinstance(module, Exception):
         error, module = module, None
-    id = 'opensubtitles.com'
+    id = 'opensbutitles.com'
     provider_name = 'OpenSubtitles.com'
     supported_langs = allLang()
-
     default_settings = {}
+
+
+
+
+
+
+
+
 
 
 try:
     from .Podnapisi import podnapisi
-except ImportError as ie:
-    podnapisi = ie
+except ImportError as e:
+    podnapisi = e
 
 
 class PodnapisiSeeker(XBMCSubtitlesAdapter):
@@ -311,8 +239,8 @@ class PodnapisiSeeker(XBMCSubtitlesAdapter):
 
 try:
     from .Subscene import subscene
-except ImportError as ie:
-    subscene = ie
+except ImportError as e:
+    subscene = e
 
 
 class SubsceneSeeker(XBMCSubtitlesAdapter):
@@ -326,63 +254,9 @@ class SubsceneSeeker(XBMCSubtitlesAdapter):
 
 
 try:
-    from .Subdl import subdl
-except ImportError as ie:
-    subdl = ie
-
-
-class SubdlSeeker(XBMCSubtitlesAdapter):
-    module = subdl
-    if isinstance(module, Exception):
-        error, module = module, None
-    id = 'subdl.com'
-    provider_name = 'Subdl'
-    supported_langs = allLang()
-    default_settings = {}
-    movie_search = True
-    tvshow_search = True
-
-
-try:
-    from .Subsyts import subsyts
-except ImportError as ie:
-    subsyts = ie
-
-
-class SubsytsSeeker(XBMCSubtitlesAdapter):
-    module = subsyts
-    if isinstance(module, Exception):
-        error, module = module, None
-    id = 'syt-subs.com'
-    provider_name = 'Subsyts'
-    supported_langs = allLang()
-    default_settings = {}
-    movie_search = True
-    tvshow_search = True
-
-
-try:
-    from .Subtitlecat import subtitlecat
-except ImportError as ie:
-    subtitlecat = ie
-
-
-class SubtitlecatSeeker(XBMCSubtitlesAdapter):
-    module = subtitlecat
-    if isinstance(module, Exception):
-        error, module = module, None
-    id = 'subtitlecat.com'
-    provider_name = 'Subtitlecat'
-    supported_langs = allLang()
-    default_settings = {}
-    movie_search = True
-    tvshow_search = True
-
-
-try:
     from .SubtitlesGR import subtitlesgr
-except ImportError as ie:
-    subtitlesgr = ie
+except ImportError as e:
+    subtitlesgr = e
 
 
 class SubtitlesGRSeeker(XBMCSubtitlesAdapter):
@@ -398,20 +272,57 @@ class SubtitlesGRSeeker(XBMCSubtitlesAdapter):
 
 
 try:
-    from .Subtitlesmora import subtitlesmora
-except ImportError as ie:
-    subtitlesmora = ie
+    from .Itasa import itasa
+except ImportError as e:
+    itasa = e
 
 
-class SubtitlesmoraSeeker(XBMCSubtitlesAdapter):
-    module = subtitlesmora
+class ItasaSeeker(XBMCSubtitlesAdapter):
+    module = itasa
     if isinstance(module, Exception):
         error, module = module, None
-    id = 'archive.org'
-    provider_name = 'Subtitlesmora'
-    supported_langs = ['ar']
-    default_settings = {}
+    id = 'itasa'
+    provider_name = 'Itasa'
+    supported_langs = ['it']
+    default_settings = {'ITuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
+                                       'ITpass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1}, }
+    movie_search = False
+    tvshow_search = True
+
+
+try:
+    from .Titlovi import titlovi
+except ImportError as e:
+    titlovi = e
+
+
+class TitloviSeeker(XBMCSubtitlesAdapter):
+    module = titlovi
+    if isinstance(module, Exception):
+        error, module = module, None
+    id = 'titlovi'
+    provider_name = 'Titlovi'
+    supported_langs = ['bs', 'hr', 'en', 'mk', 'sr', 'sl']
+    #default_settings = {}
+    default_settings = {'username':{'label':_("Username") + " (" + _("Restart e2 required") + ")", 'type':'text', 'default':"", 'pos':0},
+                                       'password':{'label':_("Password") + " (" + _("Restart e2 required") + ")", 'type':'password', 'default':"", 'pos':1}}
     movie_search = True
+    tvshow_search = True
+
+try:
+    from .PrijevodiOnline import prijevodionline
+except ImportError as e:
+    prijevodionline = e
+
+class PrijevodiOnlineSeeker(XBMCSubtitlesAdapter):
+    module = prijevodionline
+    if isinstance(module, Exception):
+        error, module = module, None
+    id = 'prijevodionline'
+    provider_name = 'Prijevodi-Online'
+    supported_langs = ['bs','hr','sr']
+    default_settings = {}
+    movie_search = False
     tvshow_search = True
 
 
@@ -431,38 +342,18 @@ class SubtitlistSeeker(XBMCSubtitlesAdapter):
     default_settings = {}
 
 
-try:
-    from .Itasa import itasa
-except ImportError as ie:
-    itasa = ie
-
-
-class ItasaSeeker(XBMCSubtitlesAdapter):
-    module = itasa
-    if isinstance(module, Exception):
-        error, module = module, None
-    id = 'itasa'
-    provider_name = 'Itasa'
-    supported_langs = ['it']
-    default_settings = {'ITuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
-                                       'ITpass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1}, }
-    movie_search = False
-    tvshow_search = True
-
 
 try:
-    from .Titlovi import titlovi
+    from .MySubs import mysubs
 except ImportError as ie:
-    titlovi = ie
+    mysubs = ie
 
 
-class TitloviSeeker(XBMCSubtitlesAdapter):
-    module = titlovi
+class MySubsSeeker(XBMCSubtitlesAdapter):
+    id = 'mysubs'
+    module = mysubs
     if isinstance(module, Exception):
         error, module = module, None
-    id = 'titlovi.com'
-    provider_name = 'Titlovi'
-    supported_langs = ['bs', 'hr', 'en', 'mk', 'sr', 'sl']
+    provider_name = 'Mysubs'
+    supported_langs = allLang()
     default_settings = {}
-    movie_search = True
-    tvshow_search = True
