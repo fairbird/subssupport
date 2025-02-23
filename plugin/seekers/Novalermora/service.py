@@ -50,16 +50,16 @@ HDR= {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firef
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
       'Accept-Language': 'fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3',
       'Content-Type': 'text/html; charset=UTF-8',
-      'Host': 'archive.org',
-      'Referer': 'https://archive.org',
+      'Host': 'subs.ath.cx',
+      'Referer': 'http://subs.ath.cx',
       'Upgrade-Insecure-Requests': '1',
       'Connection': 'keep-alive',
       'Accept-Encoding':'gzip, deflate'}#, deflate'}
       
 s = requests.Session()   
 
-main_url = "https://archive.org"
-debug_pretext = "archive.org"
+main_url = "http://subs.ath.cx"
+debug_pretext = "subs.ath.cx"
 
 
 def get_url(url, referer=None):
@@ -121,7 +121,7 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
     language = subtitles_list[pos]["language_name"]
     id = subtitles_list[pos]["id"]
     #id = re.compile('(.+?.+?)/').findall(id)[-1]
-    downloadlink = 'https://archive.org/download/mora25r/%s' % (id)
+    downloadlink = 'http://subs.ath.cx/subtitles/%s' % (id)
     #id = 'http://www.findsubtitles.eu/getp.php?id=%s' % (id)
     print(downloadlink)   
     if downloadlink:
@@ -139,8 +139,8 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
         #my_urlopener.addheader('Referer', url)
         log(__name__ , "%s Fetching subtitles using url with referer header '%s' and post parameters '%s'" % (debug_pretext, downloadlink, postparams))
         #response = my_urlopener.open(downloadlink, postparams)
-        response = requests.get(downloadlink) 
-        #print(response.content)
+        response = s.get(downloadlink,data=postparams,headers=HDR,verify=False,allow_redirects=True) 
+        print(response.content)
         local_tmp_file = zip_subs
         try:
             log(__name__ , "%s Saving subtitles to '%s'" % (debug_pretext, local_tmp_file))
@@ -177,7 +177,7 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
         return packed, language, subs_file  # standard output
 
 def get_subtitles_list(title, searchstring, languageshort, languagelong, subtitles_list):
-    url = '%s/download/mora25r' % (main_url) 
+    url = '%s/subtitles' % (main_url) 
     title = title.strip()
     
     #url = 'https://archive.org/download/iptvworld-1/A/'  quote_plus(title)
@@ -188,7 +188,7 @@ def get_subtitles_list(title, searchstring, languageshort, languagelong, subtitl
     print('searchstring', searchstring)
     try:
         log(__name__, "%s Getting url: %s" % (debug_pretext, url))
-        content = requests.get(url).text
+        content = s.get(url,headers=HDR,verify=False,allow_redirects=True).text
         #print(content)  
     except:
         pass

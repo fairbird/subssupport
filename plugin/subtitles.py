@@ -27,7 +27,7 @@ from threading import Thread
 import traceback
 from twisted.internet.defer import Deferred
 from twisted.web import client
-
+from Screens.Console import Console
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.GUIComponent import GUIComponent
@@ -205,7 +205,7 @@ def getEmbeddedFontSizeCfg(defaultFontSizeCfg):
 GLOBAL_CONFIG_INIT = False
 
 fontChoiceList = [f for f in getFonts()]
-fontSizeChoiceList = [("%d" % i, "%d px" % i) for i in range(10, 90, 1)]
+fontSizeChoiceList = [("%d" % i, "%d px" % i) for i in range(10, 101, 1)]
 positionChoiceList = [("0", _("top"))]
 positionChoiceList.extend([("%d" % i, "%d %%" % i) for i in range(1, 100, 1)])
 positionChoiceList.append(("100", _("bottom")))
@@ -216,7 +216,7 @@ colorChoiceList = []
 colorChoiceList.append(("ff0000", _("red")))
 colorChoiceList.append(("DCDCDC", _("grey")))
 colorChoiceList.append(("00ff00", _("green")))
-colorChoiceList.append(("ff00ff", _("purple")))
+colorChoiceList.append(("a020f0", _("purple")))
 colorChoiceList.append(("ffff00", _("yellow")))
 colorChoiceList.append(("ffffff", _("white")))
 colorChoiceList.append(("00ffff", _("blue")))
@@ -242,7 +242,7 @@ alphaChoiceList.append(("ff", _("transparent")))
 
 def initGeneralSettings(configsubsection):
     configsubsection.pauseVideoOnSubtitlesMenu = ConfigYesNo(default=True)
-    configsubsection.encodingsGroup = ConfigSelection(default="Central and Eastern Europe", choices=[(e, _(e)) for e in ENCODINGS.keys()])
+    configsubsection.encodingsGroup = ConfigSelection(default="Arabic", choices=[(e, _(e)) for e in ENCODINGS.keys()])
 
 
 def initExternalSettings(configsubsection):
@@ -3104,7 +3104,7 @@ class SubsSearchProcess(object):
     def start(self, params, callbacks):
         self.processes.append(self)
         self.callbacks = callbacks
-        cmd = "python %s" % self.process_path
+        cmd = "python3 %s" % self.process_path
         self.log.debug("start - '%s'", cmd)
         self.appContainer.execute(cmd)
         self.write(params)

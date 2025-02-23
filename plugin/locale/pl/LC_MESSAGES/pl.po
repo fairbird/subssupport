@@ -1,619 +1,1022 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: SubsSupport\n"
+"Project-Id-Version: SubsSupport _ enigma2-plugin by mx3L\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-25 13:35+0100\n"
-"PO-Revision-Date: 2014-02-25 13:35+0100\n"
-"Last-Translator: mickey <mickeyreg@gmail.com>\n"
-"Language-Team: none <hosunio@tlen.pl>\n"
+"POT-Creation-Date: 2022-04-25 19:11+0200\n"
+"PO-Revision-Date: 2025-02-12 07:29+0100\n"
+"Last-Translator: Warder <ciksa@seznam.cz>\n"
+"Language-Team: OpenSPA <openspa.info>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: __\n"
-"X-Poedit-Basepath: ../../../\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: .\n"
 
-#: e2_utils.py:108
+#: SubsSupport\compat.py:220 SubsSupport\subtitles.py:2361
+msgid "List of storage devices"
+msgstr "Lista urządzeń pamięci masowej"
+
+#: SubsSupport\compat.py:222 SubsSupport\subtitles.py:2363
+msgid "Parent directory"
+msgstr "Katalog nadrzędny"
+
+#: SubsSupport\compat.py:241 SubsSupport\subtitles.py:2382
+msgid "nothing connected"
+msgstr "nic nie jest połączone"
+
+#: SubsSupport\e2_utils.py:123
 msgid "Language selection"
 msgstr "Wybór języka"
 
-#: e2_utils.py:237
+#: SubsSupport\e2_utils.py:254
 msgid "Type text of picture"
-msgstr "Podaj tekst z obrazka"
+msgstr "Wpisz tekst obrazka"
 
-#: e2_utils.py:374
+#: SubsSupport\e2_utils.py:400
 msgid "unpack error: cannot get subname"
-msgstr "błąd przy rozpakowaniu: brak pliku z napisami"
+msgstr "błąd rozpakowywania: nie można pobrać podnazwy"
 
-#: e2_utils.py:390
+#: SubsSupport\e2_utils.py:416
 msgid "unpack error: cannot open archive"
-msgstr "błąd przy rozpakowaniu: nie można otworzyć archiwum"
+msgstr "błąd rozpakowania: nie można otworzyć archiwum"
 
-#: subtitles.py:274
-msgid "top"
-msgstr "na górze"
-
-#: subtitles.py:276
-msgid "bottom"
-msgstr "na dole"
-
-#: subtitles.py:281
-msgid "red"
-msgstr "czerwony"
-
-#: subtitles.py:282
-msgid "grey"
-msgstr "szary"
-
-#: subtitles.py:283
-msgid "green"
-msgstr "zielony"
-
-#: subtitles.py:284
-msgid "purple"
-msgstr "purpurowy"
-
-#: subtitles.py:285
-msgid "yellow"
-msgstr "żółty"
-
-#: subtitles.py:286
-msgid "white"
-msgstr "biały"
-
-#: subtitles.py:287
-msgid "blue"
-msgstr "niebieski"
-
-#: subtitles.py:288
-msgid "black"
-msgstr "czarny"
-
-#: subtitles.py:303
-msgid "opaque"
-msgstr "nieprzezroczyste"
-
-#: subtitles.py:305
-msgid "transparent"
-msgstr "przezroczyste"
-
-#: subtitles.py:318
-msgid "offset"
-msgstr "przesunięcie"
-
-#: subtitles.py:318
-msgid "border"
-msgstr "ramka"
-
-#: subtitles.py:325
-msgid "dynamic"
-msgstr "dynamiczne"
-
-#: subtitles.py:325
-msgid "static"
-msgstr "statyczne"
-
-#: subtitles.py:343
-msgid "Block (old)"
-msgstr "Blok (stary)"
-
-#: subtitles.py:343
-msgid "Block (new)"
-msgstr "Blok (nowy)"
-
-#: subtitles.py:343
-msgid "Row (experimental)"
-msgstr "Wiersz (eksperymntalne)"
-
-#: subtitles.py:362
-msgid "TV show"
-msgstr "Serial"
-
-#: subtitles.py:362
-msgid "Movie"
-msgstr "Film"
-
-#: subtitles.py:366 subtitles.py:367 subtitles.py:368 subtitles.py:3309
-#: subtitles.py:3319 subtitles.py:3324
-msgid "All"
-msgstr "Wszystkie"
-
-#: subtitles.py:371 subtitles.py:3504
-msgid "Language"
-msgstr "Język"
-
-#: subtitles.py:371 subtitles.py:3498 subtitles.py:3504 subtitles.py:4051
-msgid "Provider"
-msgstr "Dostawca"
-
-#: subtitles.py:372
-#, fuzzy
-msgid "Default"
-msgstr "Ustawienia domyślne"
-
-#: subtitles.py:372 subtitles.py:3504
-msgid "Release"
-msgstr "Wersja"
-
-#: subtitles.py:372
-msgid "Video filename"
-msgstr "Plik z filmem"
-
-#: subtitles.py:373
-msgid "User defined"
-msgstr "Xdefiniowane przez użytkownika"
-
-#: subtitles.py:373
-msgid "Next to video"
-msgstr "Obok filmu"
-
-#: subtitles.py:613
-msgid "show subtitles menu"
-msgstr "pokaż menu napisów"
-
-#: subtitles.py:882
-msgid "Cannot load subtitles. Invalid path"
-msgstr "Nie można załadować napisów. Błędna ścieżka"
-
-#: subtitles.py:886
-msgid "Cannot decode subtitles. Try another encoding group"
-msgstr "Błąd dekodowania napisów. Spróbuj innego kodowania"
-
-#: subtitles.py:890
-msgid "Cannot parse subtitles. Not supported subtitles format"
-msgstr "Błąd odczytu napisów. Nie obsługiwany format"
-
-#: subtitles.py:894
-msgid "Cannot parse subtitles. Invalid subtitles format"
-msgstr "Błąd odczytu napisów. Nieznany format napisów"
-
-#: subtitles.py:1941
-msgid "Currently choosed subtitles"
-msgstr "Obecnie wybrane napisy"
-
-#: subtitles.py:1970
-msgid "Embedded Subtitles"
-msgstr "Napisy wbudowane"
-
-#: subtitles.py:1981 subtitles.py:1984
-msgid "Encoding:"
-msgstr "Kodowanie"
-
-#: subtitles.py:1984
-msgid "cannot decode"
-msgstr "błąd dekodowania"
-
-#: subtitles.py:1986
-msgid "None"
-msgstr "Żadne"
-
-#: subtitles.py:1991 subtitles.py:2568
-msgid "Choose subtitles"
-msgstr "Wybież napisy"
-
-#: subtitles.py:1994
-msgid "Change encoding"
-msgstr "Zmiana kodowania"
-
-#: subtitles.py:1995
-msgid "Subtitles settings"
-msgstr "Ustawienia napisów"
-
-#: subtitles.py:1997 subtitles.py:1999
-msgid "Subtitles settings (embedded)"
-msgstr "Ustawienia napisów (wbudowanych)"
-
-#: subtitles.py:2001
-msgid "Turn off subtitles"
-msgstr "Ukryj napisy"
-
-#: subtitles.py:2070
-msgid "Subtitles setting"
-msgstr "Ustawienia napisów"
-
-#: subtitles.py:2080 subtitles.py:2203 subtitles.py:3807 subtitles.py:4231
+#: SubsSupport\e2_utils.py:533 SubsSupport\subtitles.py:4677
 msgid "Save"
 msgstr "Zapisz"
 
-#: subtitles.py:2081 subtitles.py:2204 subtitles.py:3808 subtitles.py:4232
+#: SubsSupport\e2_utils.py:534 SubsSupport\subtitles.py:4678
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: subtitles.py:2082 subtitles.py:2205 subtitles.py:3809 subtitles.py:4233
+#: SubsSupport\e2_utils.py:535 SubsSupport\subtitles.py:4679
 msgid "Reset Defaults"
-msgstr "Przywróć ustawienia domyślne"
+msgstr "Ustawienia domyślne"
 
-#: subtitles.py:2089
-msgid "External subtitles setting"
+#: SubsSupport\plugin.py:81 SubsSupport\subtitles.py:2261
+msgid "General settings"
+msgstr "Ustawienia ogólne"
+
+#: SubsSupport\plugin.py:82
+msgid "External subtitles settings"
 msgstr "Ustawienia napisów zewnętrznych"
 
-#: subtitles.py:2100
-msgid "Pause video on opening subtitles menu"
-msgstr "Zatrzymaj film podczas otwierania menu napisów"
+#: SubsSupport\plugin.py:83 SubsSupport\subtitles.py:2244
+msgid "Embedded subtitles settings"
+msgstr "Ustawienia osadzonych napisów"
 
-#: subtitles.py:2102
-msgid "Parsing/Rendering"
-msgstr "Analiza/Renderowanie"
+#: SubsSupport\plugin.py:84
+msgid "Search settings"
+msgstr "Ustawienia wyszukiwania"
 
-#: subtitles.py:2103 subtitles.py:2215
-msgid "Font type"
-msgstr "Typ czcionki"
+#: SubsSupport\plugin.py:85 SubsSupport\subtitlesdvb.py:36
+msgid "DVB player settings"
+msgstr "Ustawienia odtwarzacza DVB"
 
-#: subtitles.py:2104 subtitles.py:2216
-msgid "Font size"
-msgstr "Wielkość czcionki"
+#: SubsSupport\plugin.py:96 SubsSupport\plugin.py:147 SubsSupport\plugin.py:150
+msgid "SubsSupport settings"
+msgstr "Ustawienia pomocy technicznej"
 
-#: subtitles.py:2105 subtitles.py:2217
-msgid "Position"
-msgstr "Pozycja"
+#: SubsSupport\plugin.py:128
+msgid ""
+"You have OpenPli-based image, please change embedded subtitles settings in "
+"Settings / System / Subtitles settings"
+msgstr ""
+"Masz obraz oparty na OpenPli, zmień ustawienia osadzonych napisów w "
+"Ustawieniach / System / Ustawienia napisów"
 
-#: subtitles.py:2106 subtitles.py:2218
-msgid "Color"
-msgstr "Kolor"
+#: SubsSupport\plugin.py:147
+msgid "Change subssupport settings"
+msgstr "Zmień ustawienia podpomocy"
 
-#: subtitles.py:2107
-msgid "Transparency"
-msgstr "Przezroczystość"
+#: SubsSupport\plugin.py:148
+msgid "Download subtitles for your videos"
+msgstr "Pobierz napisy do swoich filmów"
 
-#: subtitles.py:2108
-msgid "Shadow"
-msgstr "Cień"
+#: SubsSupport\plugin.py:148 SubsSupport\plugin.py:151
+msgid "SubsSupport downloader"
+msgstr "SubsSupport downloader"
 
-#: subtitles.py:2110
-msgid "Shadow type"
-msgstr "Typ cienia"
+#: SubsSupport\plugin.py:149
+msgid "watch DVB broadcast with subtitles"
+msgstr "oglądaj transmisję DVB z napisami"
 
-#: subtitles.py:2112 subtitles.py:2219
-msgid "Shadow X-offset"
-msgstr "Przesunięcie poziome"
+#: SubsSupport\plugin.py:149 SubsSupport\plugin.py:152
+msgid "SubsSupport DVB player"
+msgstr "SubskrypcjeObsługa odtwarzacza DVB"
 
-#: subtitles.py:2113 subtitles.py:2220
-msgid "Shadow Y-offset"
-msgstr "Przesunięcie pionowe"
+#: SubsSupport\subtitles.py:209
+msgid "top"
+msgstr "góra"
 
-#: subtitles.py:2115
-msgid "Shadow size"
-msgstr "Rozmiar cienia"
+#: SubsSupport\subtitles.py:211
+msgid "bottom"
+msgstr "dół"
 
-#: subtitles.py:2116
-msgid "Shadow color"
-msgstr "Kolor cienia"
+#: SubsSupport\subtitles.py:216
+msgid "red"
+msgstr "czerwony"
 
-#: subtitles.py:2118
-msgid "Background"
-msgstr "Tło"
+#: SubsSupport\subtitles.py:217
+msgid "grey"
+msgstr "szary"
 
-#: subtitles.py:2120
-msgid "Background type"
-msgstr "Typ tła"
+#: SubsSupport\subtitles.py:218
+msgid "green"
+msgstr "zielony"
 
-#: subtitles.py:2122
-msgid "Background X-offset"
-msgstr "Przesunięcie tła w poziomie"
+#: SubsSupport\subtitles.py:219
+msgid "purple"
+msgstr "fioletowy"
 
-#: subtitles.py:2123
-msgid "Background Y-offset"
-msgstr "Przesunięcie tła w pionie"
+#: SubsSupport\subtitles.py:220
+msgid "yellow"
+msgstr "żółty"
 
-#: subtitles.py:2124
-msgid "Background color"
-msgstr "Kolor tła"
+#: SubsSupport\subtitles.py:221
+msgid "white"
+msgstr "biały"
 
-#: subtitles.py:2125
-msgid "Background transparency"
-msgstr "Przezroczystość tła"
+#: SubsSupport\subtitles.py:222
+msgid "blue"
+msgstr "niebieski"
 
-#: subtitles.py:2126
-msgid "Encoding"
-msgstr "Kodowanie"
+#: SubsSupport\subtitles.py:223
+msgid "black"
+msgstr "czarny"
 
-#: subtitles.py:2127
-msgid "Show expert settings"
-msgstr "Pokaż ustawienia zaawansowane"
+#: SubsSupport\subtitles.py:238
+msgid "opaque"
+msgstr "nieprzejrzysty"
 
-#: subtitles.py:2129
-msgid "Hide delay"
-msgstr "Opóźnienie ukrywania"
+#: SubsSupport\subtitles.py:240
+msgid "transparent"
+msgstr "przeźroczysty"
 
-#: subtitles.py:2130
-msgid "Sync delay"
-msgstr "Opóźnienie synchronizacji"
+#: SubsSupport\subtitles.py:266
+msgid "border"
+msgstr "granica"
 
-#: subtitles.py:2131
-msgid "Player delay"
-msgstr "Opóźnienie odtwarzania"
+#: SubsSupport\subtitles.py:266
+msgid "offset"
+msgstr "przesunięcie"
 
-#: subtitles.py:2132
-msgid "Refresh delay"
-msgstr "Opóźnienie odświeżania"
+#: SubsSupport\subtitles.py:273
+msgid "dynamic"
+msgstr "dynamiczny"
 
-#: subtitles.py:2133
-msgid "PTS check delay"
-msgstr "Opóźnienie kontroli PTS"
+#: SubsSupport\subtitles.py:273
+msgid "static"
+msgstr "statyczny"
 
-#: subtitles.py:2211
-msgid "Embedded subtitles setting"
-msgstr "Ustawiena napisów wbudowanych"
+#: SubsSupport\subtitles.py:314
+msgid "List"
+msgstr "Lista"
 
-#: subtitles.py:2313
-msgid "List of Storage Devices"
-msgstr "Lista nośników danych"
+#: SubsSupport\subtitles.py:314
+msgid "List + File"
+msgstr "Lista + Plik"
 
-#: subtitles.py:2315
-msgid "Parent Directory"
-msgstr "Katalog nadrzędny"
+#: SubsSupport\subtitles.py:323 SubsSupport\subtitles.py:324
+#: SubsSupport\subtitles.py:341 SubsSupport\subtitles.py:3531
+#: SubsSupport\subtitles.py:3541 SubsSupport\subtitles.py:3546
+msgid "All"
+msgstr "Wszystkie"
 
-#: subtitles.py:2359
-msgid "Choose from embedded subtitles"
-msgstr "Wybierz z napisów wbudowanych"
+#: SubsSupport\subtitles.py:326 SubsSupport\subtitles.py:2692
+#: SubsSupport\subtitles.py:3947 SubsSupport\subtitles.py:4080
+#: SubsSupport\subtitles.py:4989
+msgid "Provider"
+msgstr "Dostawca"
 
-#: subtitles.py:2364
+#: SubsSupport\subtitles.py:326 SubsSupport\subtitles.py:3945
+msgid "Language"
+msgstr "Język"
+
+#: SubsSupport\subtitles.py:327 SubsSupport\subtitles.py:328
+msgid "Default"
+msgstr "Domyślny"
+
+#: SubsSupport\subtitles.py:327 SubsSupport\subtitles.py:328
+#: SubsSupport\subtitles.py:3590 SubsSupport\subtitles.py:3946
+msgid "Release"
+msgstr "Wydanie"
+
+#: SubsSupport\subtitles.py:327 SubsSupport\subtitles.py:3592
+msgid "Video filename"
+msgstr "Nazwa pliku wideo"
+
+#: SubsSupport\subtitles.py:329 SubsSupport\subtitles.py:3593
+#: SubsSupport\subtitles.py:3595
+msgid "User defined"
+msgstr "Zdefiniowany przez użytkownika"
+
+#: SubsSupport\subtitles.py:329 SubsSupport\subtitles.py:3597
+msgid "Next to video"
+msgstr "Obok wideo"
+
+#: SubsSupport\subtitles.py:337
+msgid "Movie"
+msgstr "Film"
+
+#: SubsSupport\subtitles.py:337
+msgid "TV show"
+msgstr "Program telewizyjny"
+
+#: SubsSupport\subtitles.py:418
+msgid "jump to next subtitle"
+msgstr "przejdź do następnego napisu"
+
+#: SubsSupport\subtitles.py:419
+msgid "jump to previous subtitle"
+msgstr "przejdź do poprzedniego napisu"
+
+#: SubsSupport\subtitles.py:420
+msgid "increase subtitles delay"
+msgstr "zwiększ opóźnienie napisów"
+
+#: SubsSupport\subtitles.py:421
+msgid "decrease subtitles delay"
+msgstr "zmniejsz opóźnienie napisów"
+
+#: SubsSupport\subtitles.py:425
+msgid "reset subtitles delay/fps"
+msgstr "zresetuj opóźnienie napisów/fps"
+
+#: SubsSupport\subtitles.py:426 SubsSupport\subtitlesdvb.py:157
+msgid "change subtitles fps"
+msgstr "zmień napisy fps"
+
+#: SubsSupport\subtitles.py:430
+msgid "displays this menu"
+msgstr "wyświetla to menu"
+
+#: SubsSupport\subtitles.py:431
+msgid "exit"
+msgstr "wyjdź"
+
+#: SubsSupport\subtitles.py:458 SubsSupport\subtitles.py:461
+#: SubsSupport\subtitles.py:463 SubsSupport\subtitlesdvb.py:138
+#: SubsSupport\subtitlesdvb.py:273 SubsSupport\subtitlesdvb.py:278
+#: SubsSupport\subtitlesdvb.py:280 SubsSupport\subtitlesdvb.py:282
+#: SubsSupport\subtitlesdvb.py:286 SubsSupport\subtitlesdvb.py:288
+#: SubsSupport\subtitlesdvb.py:290
+msgid "Subtitles FPS"
+msgstr "Napisy FPS"
+
+#: SubsSupport\subtitles.py:458 SubsSupport\subtitles.py:2944
+#: SubsSupport\subtitlesdvb.py:273 SubsSupport\subtitlesdvb.py:300
+msgid "unknown"
+msgstr "nieznana"
+
+#: SubsSupport\subtitles.py:461 SubsSupport\subtitlesdvb.py:278
+#: SubsSupport\subtitlesdvb.py:280 SubsSupport\subtitlesdvb.py:282
+#: SubsSupport\subtitlesdvb.py:286
+msgid "original"
+msgstr "oryginał"
+
+#: SubsSupport\subtitles.py:469 SubsSupport\subtitles.py:471
+#: SubsSupport\subtitles.py:474 SubsSupport\subtitles.py:476
+msgid "Subtitles Delay"
+msgstr "Opóźnienie napisów"
+
+#: SubsSupport\subtitles.py:520
+msgid "change external subtitles status"
+msgstr "zmień status napisów zewnętrznych"
+
+#: SubsSupport\subtitles.py:548 SubsSupport\subtitles.py:550
+msgid "No external subtitles are loaded"
+msgstr "Nie załadowano żadnych zewnętrznych napisów"
+
+#: SubsSupport\subtitles.py:781
+msgid "show subtitles menu"
+msgstr "pokaż menu napisów"
+
+#: SubsSupport\subtitles.py:1077 SubsSupport\subtitlesdvb.py:65
+msgid "Cannot load subtitles. Invalid path"
+msgstr "Nie można załadować napisów. Nieprawidłowa ścieżka"
+
+#: SubsSupport\subtitles.py:1081 SubsSupport\subtitlesdvb.py:67
+msgid "Cannot decode subtitles. Try another encoding group"
+msgstr "Nie można zdekodować napisów. Spróbuj innej grupy kodowania"
+
+#: SubsSupport\subtitles.py:1085 SubsSupport\subtitlesdvb.py:69
+msgid "Cannot parse subtitles. Not supported subtitles format"
+msgstr "Nie można przeanalizować napisów. Nieobsługiwany format napisów"
+
+#: SubsSupport\subtitles.py:1089 SubsSupport\subtitlesdvb.py:71
+msgid "Cannot parse subtitles. Invalid subtitles format"
+msgstr "Nie można przeanalizować napisów. Nieprawidłowy format napisów"
+
+#: SubsSupport\subtitles.py:1881
+msgid "Currently choosed subtitles"
+msgstr "Aktualnie wybrane napisy"
+
+#: SubsSupport\subtitles.py:1937
+msgid "Embedded Subtitles"
+msgstr "Osadzone napisy"
+
+#: SubsSupport\subtitles.py:1948 SubsSupport\subtitles.py:1951
+msgid "Encoding:"
+msgstr "Kodowanie:"
+
+#: SubsSupport\subtitles.py:1951
+msgid "cannot decode"
+msgstr "nie można rozszyfrować"
+
+#: SubsSupport\subtitles.py:1953
+msgid "None"
+msgstr "Brak"
+
+#: SubsSupport\subtitles.py:1958 SubsSupport\subtitles.py:2910
+msgid "Choose subtitles"
+msgstr "Wybierz napisy"
+
+#: SubsSupport\subtitles.py:1960
 msgid "Search subtitles"
 msgstr "Szukaj napisów"
 
-#: subtitles.py:2423
-msgid "Subtitles will be downloaded in"
-msgstr "Napisy będą pobieran do"
+#: SubsSupport\subtitles.py:1963
+msgid "Change encoding"
+msgstr "Zmień kodowanie"
 
-#: subtitles.py:2423
+#: SubsSupport\subtitles.py:1964
+msgid "Subtitles settings"
+msgstr "Ustawienia napisów"
+
+#: SubsSupport\subtitles.py:1966 SubsSupport\subtitles.py:1968
+msgid "Subtitles settings (embedded)"
+msgstr "Ustawienia napisów (osadzone)"
+
+#: SubsSupport\subtitles.py:1970
+msgid "Turn off subtitles"
+msgstr "Wyłącz napisy"
+
+#: SubsSupport\subtitles.py:2044 SubsSupport\subtitles.py:2575
+msgid "Some subtitles providers are not working"
+msgstr "Niektórzy dostawcy napisów nie działają"
+
+#: SubsSupport\subtitles.py:2045 SubsSupport\subtitles.py:2576
+msgid "For more details please check search settings"
+msgstr "Aby uzyskać więcej szczegółów, sprawdź ustawienia wyszukiwania"
+
+#: SubsSupport\subtitles.py:2047 SubsSupport\subtitles.py:2578
+msgid "Do you want to show this message again?"
+msgstr "Czy chcesz ponownie wyświetlić tę wiadomość?"
+
+#: SubsSupport\subtitles.py:2095 SubsSupport\subtitles.py:2233
+msgid "Font type (Regular)"
+msgstr "Typ czcionki (zwykły)"
+
+#: SubsSupport\subtitles.py:2096
+msgid "Font color (Regular)"
+msgstr "Kolor czcionki (zwykły)"
+
+#: SubsSupport\subtitles.py:2097
+msgid "Font transparency (Regular)"
+msgstr "Przezroczystość czcionki (zwykła)"
+
+#: SubsSupport\subtitles.py:2098 SubsSupport\subtitles.py:2234
+msgid "Font type (Italic)"
+msgstr "Rodzaj czcionki (kursywa)"
+
+#: SubsSupport\subtitles.py:2099
+msgid "Font color (Italic"
+msgstr "Kolor czcionki (kursywa"
+
+#: SubsSupport\subtitles.py:2100
+msgid "Font transparency (Italic)"
+msgstr "Przezroczystość czcionki (kursywa)"
+
+#: SubsSupport\subtitles.py:2101 SubsSupport\subtitles.py:2235
+msgid "Font type (Bold)"
+msgstr "Rodzaj czcionki (pogrubiony)"
+
+#: SubsSupport\subtitles.py:2102
+msgid "Font color (Bold)"
+msgstr "Kolor czcionki (pogrubiony)"
+
+#: SubsSupport\subtitles.py:2103
+msgid "Font transparency (Bold)"
+msgstr "Przezroczystość czcionki (pogrubienie)"
+
+#: SubsSupport\subtitles.py:2104 SubsSupport\subtitles.py:2236
+msgid "Font size"
+msgstr "Rozmiar czcionki"
+
+#: SubsSupport\subtitles.py:2105 SubsSupport\subtitles.py:2237
+msgid "Position"
+msgstr "Pozycja"
+
+#: SubsSupport\subtitles.py:2106
+msgid "Shadow"
+msgstr "Cień"
+
+#: SubsSupport\subtitles.py:2108
+msgid "Shadow type"
+msgstr "Typ cienia"
+
+#: SubsSupport\subtitles.py:2110 SubsSupport\subtitles.py:2239
+msgid "Shadow X-offset"
+msgstr "Przesunięcie cienia X"
+
+#: SubsSupport\subtitles.py:2111 SubsSupport\subtitles.py:2240
+msgid "Shadow Y-offset"
+msgstr "Przesunięcie cienia Y"
+
+#: SubsSupport\subtitles.py:2113
+msgid "Shadow size"
+msgstr "Rozmiar cienia"
+
+#: SubsSupport\subtitles.py:2114
+msgid "Shadow color"
+msgstr "Kolor cienia"
+
+#: SubsSupport\subtitles.py:2115
+msgid "Background"
+msgstr "Tło"
+
+#: SubsSupport\subtitles.py:2117
+msgid "Background type"
+msgstr "Typ tła"
+
+#: SubsSupport\subtitles.py:2119
+msgid "Background X-offset"
+msgstr "Tło X-przesunięcie"
+
+#: SubsSupport\subtitles.py:2120
+msgid "Background Y-offset"
+msgstr "Tło Y-przesunięcie"
+
+#: SubsSupport\subtitles.py:2121
+msgid "Background color"
+msgstr "Kolor tła"
+
+#: SubsSupport\subtitles.py:2122
+msgid "Background transparency"
+msgstr "Przeźroczystość tła"
+
+#: SubsSupport\subtitles.py:2126
+msgid "External Subtitles settings"
+msgstr "Ustawienia Napisów Zewnętrznych"
+
+#: SubsSupport\subtitles.py:2160
+msgid "Subtitles setting"
+msgstr "Ustawienia napisów"
+
+#: SubsSupport\subtitles.py:2166 SubsSupport\subtitles.py:2266
+msgid "Pause video on opening subtitles menu"
+msgstr "Wstrzymaj wideo po otwarciu menu napisów"
+
+#: SubsSupport\subtitles.py:2169 SubsSupport\subtitles.py:2267
+msgid "Encoding"
+msgstr "Strona kodowa"
+
+#: SubsSupport\subtitles.py:2170
+msgid "Show expert settings"
+msgstr "Pokaż ustawienia eksperckie"
+
+#: SubsSupport\subtitles.py:2173
+msgid "Hide delay"
+msgstr "Ukryj opóźnienie"
+
+#: SubsSupport\subtitles.py:2174
+msgid "Sync delay"
+msgstr "Opóźnienie synchronizacji"
+
+#: SubsSupport\subtitles.py:2175
+msgid "Player delay"
+msgstr "Opóźnienie gracza"
+
+#: SubsSupport\subtitles.py:2176
+msgid "Refresh delay"
+msgstr "Opóźnienie odświeżania"
+
+#: SubsSupport\subtitles.py:2177
+msgid "PTS check delay"
+msgstr "Opóźnienie kontroli PTS"
+
+#: SubsSupport\subtitles.py:2238
+msgid "Color"
+msgstr "Kolor"
+
+#: SubsSupport\subtitles.py:2409
+msgid "Choose from embedded subtitles"
+msgstr "Wybierz spośród osadzonych napisów"
+
+#: SubsSupport\subtitles.py:2414
+msgid "Choose from downloaded subtitles"
+msgstr "Wybierz z pobranych napisów"
+
+#: SubsSupport\subtitles.py:2419
+msgid "Choose from web subtitles"
+msgstr "Wybierz spośród napisów internetowych"
+
+#: SubsSupport\subtitles.py:2458 SubsSupport\subtitles.py:4352
+msgid "Subtitles will be downloaded in"
+msgstr "Napisy zostaną pobrane w"
+
+#: SubsSupport\subtitles.py:2458 SubsSupport\subtitles.py:4352
 msgid "seconds"
 msgstr "sekund"
 
-#: subtitles.py:2469
+#: SubsSupport\subtitles.py:2534
 msgid "Choose Subtitles"
-msgstr "Wybierz napisy"
+msgstr "Wybierz Napisy"
 
-#: subtitles.py:2602
-msgid "unknown"
-msgstr "nieznany"
+#: SubsSupport\subtitles.py:2691
+msgid "Name"
+msgstr "Nazwa"
 
-#: subtitles.py:2711
-#, fuzzy
-msgid ""
-"There are more subtitles in unpacked archive\n"
-" please select which one do you want to use"
-msgstr ""
-"W rozpakowanym archiwum znaleziono więcej plików\n"
-" z napisami. Wybierz, których chesz używać"
+#: SubsSupport\subtitles.py:2693
+msgid "Download date"
+msgstr "Data pobrania"
 
-#: subtitles.py:2715
-msgid ""
-"Subtitles with this name already exist\n"
-"Do you want to overwrite them"
-msgstr ""
-"Napisy o tej nazwie już istnieją.\n"
-"Chcesz je nadpisać"
+#: SubsSupport\subtitles.py:2696
+msgid "Remove (file)"
+msgstr "Usuń (plik)"
 
-#: subtitles.py:3095
-msgid "Suggestions"
-msgstr "Sugestie"
-
-#: subtitles.py:3095
-msgid "press green"
-msgstr "naciśnij zielony"
-
-#: subtitles.py:3099
-msgid "History"
-msgstr "Historia"
-
-#: subtitles.py:3099
-msgid "press red"
-msgstr "naciśnij czerwony"
-
-#: subtitles.py:3473
-msgid "Subtitles search"
-msgstr "Wyszukiwanie napisów"
-
-#: subtitles.py:3490
-msgid "yes"
-msgstr "tak"
-
-#: subtitles.py:3490
-msgid "no"
-msgstr "nie"
-
-#: subtitles.py:3491 subtitles.py:4044
-msgid "Title"
-msgstr "Tytuł"
-
-#: subtitles.py:3492 subtitles.py:4045
-msgid "Type"
-msgstr "Typ"
-
-#: subtitles.py:3494 subtitles.py:4047
-msgid "Year"
-msgstr "Rok"
-
-#: subtitles.py:3496 subtitles.py:4049
-msgid "Season"
-msgstr "Sezon"
-
-#: subtitles.py:3497 subtitles.py:4050
-msgid "Episode"
-msgstr "Odcinek"
-
-#: subtitles.py:3499
-msgid "Preferred languages"
-msgstr "Preferowany język"
-
-#: subtitles.py:3500 subtitles.py:4052
-msgid "Use File path"
-msgstr "Użyj katalogu filmu"
-
-#: subtitles.py:3504
-msgid "Size"
-msgstr "Rozmiar"
-
-#: subtitles.py:3504
-msgid "S"
-msgstr ""
-
-#: subtitles.py:3522
-msgid "Update Expression"
-msgstr "Aktualizuj wyrażenie"
-
-#: subtitles.py:3524
-msgid "Search"
-msgstr "Szukaj"
-
-#: subtitles.py:3526
+#: SubsSupport\subtitles.py:2697 SubsSupport\subtitles.py:3954
+#: SubsSupport\subtitles.py:4123
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: subtitles.py:3605
+#: SubsSupport\subtitles.py:2733
+msgid "Downloaded Subtitles"
+msgstr "Pobrane napisy"
+
+#: SubsSupport\subtitles.py:2762
+msgid "Entries count:"
+msgstr "Liczba wpisów:"
+
+#: SubsSupport\subtitles.py:2766
+msgid "Remove Entry (List+File)"
+msgstr "Usuń wpis (lista + plik)"
+
+#: SubsSupport\subtitles.py:2768
+msgid "Remove Entry (List)"
+msgstr "Usuń wpis (lista)"
+
+#: SubsSupport\subtitles.py:2778
+msgid "There was an error while removing subtitle, please check log"
+msgstr "Wystąpił błąd podczas usuwania napisów, sprawdź dziennik"
+
+#: SubsSupport\subtitles.py:2796
+msgid "will be removed from file system"
+msgstr "zostanie usunięty z systemu plików"
+
+#: SubsSupport\subtitles.py:2796 SubsSupport\subtitles.py:2803
+msgid "Subtitle"
+msgstr "Podtytuł"
+
+#: SubsSupport\subtitles.py:2797 SubsSupport\subtitles.py:2804
+msgid "Do you want to proceed?"
+msgstr "Czy chcesz kontynuować?"
+
+#: SubsSupport\subtitles.py:2803
+msgid "will be removed from list"
+msgstr "zostanie usunięty z listy"
+
+#: SubsSupport\subtitles.py:2840
+msgid "Downloaded Subtitles - Settings"
+msgstr "Pobrane napisy - Ustawienia"
+
+#: SubsSupport\subtitles.py:2845
+msgid "Max history entries"
+msgstr "Maksymalna liczba wpisów w historii"
+
+#: SubsSupport\subtitles.py:2846
+msgid "Remove action"
+msgstr "Usuń akcję"
+
+#: SubsSupport\subtitles.py:2847
+msgid "Ask on remove action"
+msgstr "Zapytaj o usunięcie akcji"
+
+#: SubsSupport\subtitles.py:2853
+msgid "Select Directory"
+msgstr "Wybierz katalog"
+
+#: SubsSupport\subtitles.py:3280
+msgid "Suggestions"
+msgstr "Sugestie"
+
+#: SubsSupport\subtitles.py:3280
+msgid "press green"
+msgstr "naciśnij zielony"
+
+#: SubsSupport\subtitles.py:3287
+msgid "press red"
+msgstr "naciśnij czerwony"
+
+#: SubsSupport\subtitles.py:3287 SubsSupport\subtitles.py:3953
+#: SubsSupport\subtitles.py:4122
+msgid "History"
+msgstr "Historia"
+
+#: SubsSupport\subtitles.py:3609 SubsSupport\subtitles.py:3638
+msgid "Save to"
+msgstr "Zapisz jako"
+
+#: SubsSupport\subtitles.py:3610 SubsSupport\subtitles.py:3639
+msgid "Save as"
+msgstr "Zapisz jako"
+
+#: SubsSupport\subtitles.py:3611 SubsSupport\subtitles.py:3641
+msgid "Append language to filename"
+msgstr "Dodaj język do nazwy pliku"
+
+#: SubsSupport\subtitles.py:3619
+msgid "Filename"
+msgstr "Nazwa pliku"
+
+#: SubsSupport\subtitles.py:3620
+msgid "Path"
+msgstr "Ścieżka"
+
+#: SubsSupport\subtitles.py:3621
+msgid "Reset"
+msgstr "Resetuj"
+
+#: SubsSupport\subtitles.py:3645
+msgid "Download options"
+msgstr "Opcje Pobrania"
+
+#: SubsSupport\subtitles.py:3682
+msgid "Edit Filename"
+msgstr "Edytuj nazwę pliku"
+
+#: SubsSupport\subtitles.py:3690
+msgid "Edit download path"
+msgstr "Edytuj ścieżkę pobierania"
+
+#: SubsSupport\subtitles.py:3695
+msgid "Filename cannot be empty!"
+msgstr "Nazwa pliku nie może być pusta!"
+
+#: SubsSupport\subtitles.py:3699
+msgid "Path doesn't exist!"
+msgstr "Ścieżka nie istnieje!"
+
+#: SubsSupport\subtitles.py:3948
+msgid "S"
+msgstr "S"
+
+#: SubsSupport\subtitles.py:3951 SubsSupport\subtitles.py:4120
+msgid "Update"
+msgstr "Aktualizuj"
+
+#: SubsSupport\subtitles.py:3952 SubsSupport\subtitles.py:4121
+msgid "Search"
+msgstr "Szukaj"
+
+#: SubsSupport\subtitles.py:4053
+msgid "Subtitles search"
+msgstr "Wyszukiwanie napisów"
+
+#: SubsSupport\subtitles.py:4072
+msgid "no"
+msgstr "nie"
+
+#: SubsSupport\subtitles.py:4072
+msgid "yes"
+msgstr "tak"
+
+#: SubsSupport\subtitles.py:4073 SubsSupport\subtitles.py:4982
+msgid "Title"
+msgstr "Tytuł"
+
+#: SubsSupport\subtitles.py:4074 SubsSupport\subtitles.py:4983
+msgid "Type"
+msgstr "Typ"
+
+#: SubsSupport\subtitles.py:4076 SubsSupport\subtitles.py:4985
+msgid "Year"
+msgstr "Rok"
+
+#: SubsSupport\subtitles.py:4078 SubsSupport\subtitles.py:4987
+msgid "Season"
+msgstr "Sezon"
+
+#: SubsSupport\subtitles.py:4079 SubsSupport\subtitles.py:4988
+msgid "Episode"
+msgstr "Odcinek"
+
+#: SubsSupport\subtitles.py:4081
+msgid "Preferred languages"
+msgstr "Preferowane języki"
+
+#: SubsSupport\subtitles.py:4082 SubsSupport\subtitles.py:4990
+msgid "Use File path"
+msgstr "Użyj ścieżki pliku"
+
+#: SubsSupport\subtitles.py:4192
 msgid ""
 "Update search parameters if not correct\n"
 " and press green button for search"
 msgstr ""
-"Aktualizuj parametry wyszukiwania\n"
-" i naciśnij zieony aby wyszukać"
+"Zaktualizuj parametry wyszukiwania, jeśli nie są poprawne\n"
+"i naciśnij zielony przycisk, aby wyszukać"
 
-#: subtitles.py:3612 subtitles.py:3643
+#: SubsSupport\subtitles.py:4201 SubsSupport\subtitles.py:4238
 msgid "loading subtitles list"
 msgstr "ładowanie listy napisów"
 
-#: subtitles.py:3663
+#: SubsSupport\subtitles.py:4202 SubsSupport\subtitles.py:4239
+msgid "subtitles found"
+msgstr "znaleziono napisy"
+
+#: SubsSupport\subtitles.py:4203 SubsSupport\subtitles.py:4240
+msgid "Press OK to Stop"
+msgstr "Naciśnij OK, aby zatrzymać"
+
+#: SubsSupport\subtitles.py:4272
 msgid "No subtitles found :("
 msgstr "Nie znaleziono napisów :("
 
-#: subtitles.py:3664
+#: SubsSupport\subtitles.py:4273
 msgid "Try update(simplify) search expression and try again.."
-msgstr "Spróbuj zmienić (uprościć) szukane wyrażenie i spróbuj ponownie.."
+msgstr ""
+"Spróbuj zaktualizować(uprościć) wyrażenie wyszukiwania i spróbuj ponownie."
 
-#: subtitles.py:3679
+#: SubsSupport\subtitles.py:4317
 msgid "downloading subtitles..."
 msgstr "pobieranie napisów..."
 
-#: subtitles.py:3692
-msgid "Select download location"
-msgstr "Wybierz katalog docelowy"
+#: SubsSupport\subtitles.py:4340
+msgid ""
+"There are more subtitles in unpacked archive\n"
+" please select which one do you want to use"
+msgstr ""
+"Więcej napisów znajduje się w rozpakowanym archiwum\n"
+"Wybierz, którego chcesz użyć"
 
-#: subtitles.py:3708
+#: SubsSupport\subtitles.py:4345
+msgid ""
+"Subtitles with this name already exist\n"
+"Do you want to overwrite them"
+msgstr ""
+"Napisy o tej nazwie już istnieją\n"
+"Czy chcesz je nadpisać"
+
+#: SubsSupport\subtitles.py:4397
+msgid "Cannot save download history, for details look in log"
+msgstr ""
+"Nie można zapisać historii pobierania, szczegóły można znaleźć w dzienniku"
+
+#: SubsSupport\subtitles.py:4416
 msgid "captcha doesn't match, try again..."
-msgstr "zły kod obrazka, spróbuj jeszcze raz..."
+msgstr "captcha nie pasuje, spróbuj ponownie..."
 
-#: subtitles.py:3710
+#: SubsSupport\subtitles.py:4418
 msgid "invalid credentials provided, correct them and try again"
-msgstr "niepoprawne dane do logowania, popraw i spróbuj ponownie"
+msgstr ""
+"podano nieprawidłowe dane uwierzytelniające, popraw je i spróbuj ponownie"
 
-#: subtitles.py:3712
+#: SubsSupport\subtitles.py:4420
 msgid "no credentials provided, set them and try again"
-msgstr "brak danych do logowania, podaj dane i spróbuj ponownie"
+msgstr ""
+"nie podano żadnych danych uwierzytelniających, ustaw je i spróbuj ponownie"
 
-#: subtitles.py:3828 subtitles.py:3829 subtitles.py:3830
+#: SubsSupport\subtitles.py:4422
+msgid "download error ocurred, for details see /tmp/subssearch.log"
+msgstr "wystąpił błąd pobierania, szczegóły znajdziesz w /tmp/subssearch.log"
+
+#: SubsSupport\subtitles.py:4442
+msgid "Download (user defined)"
+msgstr "Pobierz (zdefiniowane przez użytkownika)"
+
+#: SubsSupport\subtitles.py:4443
+msgid "Download (next to video)"
+msgstr "Pobierz (obok filmu)"
+
+#: SubsSupport\subtitles.py:4444
+msgid "Download (more...)"
+msgstr "Pobierz (więcej...)"
+
+#: SubsSupport\subtitles.py:4447
+msgid "Download and Load (user defined) "
+msgstr "Pobierz i załaduj (zdefiniowane przez użytkownika) "
+
+#: SubsSupport\subtitles.py:4448
+msgid "Download and Load (next to video)"
+msgstr "Pobierz i załaduj (obok filmu)"
+
+#: SubsSupport\subtitles.py:4449
+msgid "Download and Load (more...)"
+msgstr "Pobierz i załaduj (więcej...)"
+
+#: SubsSupport\subtitles.py:4571 SubsSupport\subtitles.py:4572
+#: SubsSupport\subtitles.py:4573
 msgid "Preferred subtitles language"
-msgstr "Preferovany język napisów"
+msgstr "Preferowany język napisów"
 
-#: subtitles.py:3831
-msgid "Preffered Movie provider"
-msgstr "Preferovany dostawca dla filmów"
+#: SubsSupport\subtitles.py:4574
+msgid "Preferred Movie provider"
+msgstr "Preferowany dostawca filmów"
 
-#: subtitles.py:3832
-msgid "Preffered TV show provider"
-msgstr "Preferovany dostawca dla seriali"
+#: SubsSupport\subtitles.py:4575
+msgid "Preferred TV show provider"
+msgstr "Preferowany dostawca programów telewizyjnych"
 
-#: subtitles.py:3833
+#: SubsSupport\subtitles.py:4576
 msgid "Manual search"
-msgstr "Ręczne wyszukiwanie"
+msgstr "Wyszukiwanie ręczne"
 
-#: subtitles.py:3834
+#: SubsSupport\subtitles.py:4577
 msgid "Subtitles provider timeout"
-msgstr "Limit czasu dostawcy napisów"
+msgstr "Przekroczono limit czasu dostawcy napisów"
 
-#: subtitles.py:3835
+#: SubsSupport\subtitles.py:4578
+msgid "Check search parameters before subtitles search"
+msgstr "Sprawdź parametry wyszukiwania przed wyszukiwaniem napisów"
+
+#: SubsSupport\subtitles.py:4579
 msgid "Sort subtitles list by"
-msgstr "Sortuj listę napisów po"
+msgstr "Sortuj listę napisów według"
 
-#: subtitles.py:3836
+#: SubsSupport\subtitles.py:4580
 msgid "Save subtitles as"
 msgstr "Zapisz napisy jako"
 
-#: subtitles.py:3837
-msgid "Add subtitle's language to filename"
-msgstr "Dodaj język napisów do nazwy"
+#: SubsSupport\subtitles.py:4581
+msgid "Save subtitles as (fallback)"
+msgstr "Zapisz napisy jako (awaryjne)"
 
-#: subtitles.py:3839
+#: SubsSupport\subtitles.py:4582
+msgid "Add subtitle's language to filename"
+msgstr "Dodaj język napisów do nazwy pliku"
+
+#: SubsSupport\subtitles.py:4583
 msgid "Save subtitles to"
 msgstr "Zapisz napisy do"
 
-#: subtitles.py:3841 subtitles.py:3843
+#: SubsSupport\subtitles.py:4584
 msgid "Subtitles download path"
-msgstr "Katalog pobierania napisów"
+msgstr "Ścieżka pobierania napisów"
 
-#: subtitles.py:3844
+#: SubsSupport\subtitles.py:4585
 msgid "Subtitles temp path"
-msgstr "Katalog tymczasowy dla napisów"
+msgstr "Ścieżka tymczasowa napisów"
 
-#: subtitles.py:3845
-msgid "Always ask where to download subtitles"
-msgstr "Zawsze pytaj, gdzie zapisać napisy"
-
-#: subtitles.py:3846
+#: SubsSupport\subtitles.py:4586
 msgid "Always ask before overwriting existing subtitles"
-msgstr "Pytaj przed nadpisaniem istniejących napisów"
+msgstr "Zawsze pytaj przed nadpisaniem istniejących napisów"
 
-#: subtitles.py:3847
-msgid "Check search parameters before subtitles search"
-msgstr "Sprawdź parametry wyszukiwania przed wyszukaniem napisów"
+#: SubsSupport\subtitles.py:4587
+msgid "Load subtitles after download"
+msgstr "Załaduj napisy po pobraniu"
 
-#: subtitles.py:3851
+#: SubsSupport\subtitles.py:4589
+msgid "Save downloaded subtitles to history"
+msgstr "Zapisz pobrane napisy w historii"
+
+#: SubsSupport\subtitles.py:4591
+msgid "Load/Save download history directory"
+msgstr "Załaduj/zapisz historię pobierania katalogu"
+
+#: SubsSupport\subtitles.py:4674
 msgid "Provider name"
 msgstr "Nazwa dostawcy"
 
-#: subtitles.py:3851
+#: SubsSupport\subtitles.py:4675
 msgid "Supported languages"
 msgstr "Obsługiwane języki"
 
-#: subtitles.py:3851
+#: SubsSupport\subtitles.py:4676
 msgid "State"
-msgstr "Stan"
+msgstr "Województwo"
 
-#: subtitles.py:3858
+#: SubsSupport\subtitles.py:4680
+msgid "Switch List"
+msgstr "Lista przełączników"
+
+#: SubsSupport\subtitles.py:4701
+msgid "Subtitles search settings"
+msgstr "Ustawienia wyszukiwania napisów"
+
+#: SubsSupport\subtitles.py:4712
+msgid "error"
+msgstr "błąd"
+
+#: SubsSupport\subtitles.py:4715
 msgid "enabled"
-msgstr "włączony"
+msgstr "włączone"
 
-#: subtitles.py:3858
+#: SubsSupport\subtitles.py:4718
 msgid "disabled"
-msgstr "wyłączony"
+msgstr "wyłączone"
 
-#: subtitles.py:3990
+#: SubsSupport\subtitles.py:4840
+msgid "library"
+msgstr "biblioteka"
+
+#: SubsSupport\subtitles.py:4840
+msgid "missing"
+msgstr "brakujący"
+
+#: SubsSupport\subtitles.py:4914
 msgid "Source title not provided"
 msgstr "Nie podano tytułu źródła"
 
-#: subtitles.py:3992 subtitles.py:4069
+#: SubsSupport\subtitles.py:4916 SubsSupport\subtitles.py:5008
 msgid "Source title"
-msgstr "Tytuł źródła"
+msgstr "Tytuł źródłowy"
 
-#: subtitles.py:3994
-msgid "Search parameters"
-msgstr "Parametry wyszukiwania"
-
-#: subtitles.py:3995
-msgid "Press OK to confirm"
-msgstr "Naciśnij OK aby zatwierdzić"
-
-#: subtitles.py:4040
+#: SubsSupport\subtitles.py:4978
 msgid "Update Search params"
 msgstr "Aktualizuj parametry wyszukiwania"
 
-#: subtitles.py:4239
+#: SubsSupport\subtitles.py:5149
 msgid "settings"
 msgstr "ustawienia"
 
-#: seek.py:297
-#, python-format
-msgid "unsupported archive %s"
-msgstr "nieobsługiwane archiwum %s"
+#: SubsSupport\subtitlesdvb.py:40
+msgid "Auto sync to current event"
+msgstr "Automatyczna synchronizacja z bieżącym wydarzeniem"
 
-#: seekers/xbmc_subtitles.py:122 seekers/xbmc_subtitles.py:296
-#: seekers/xbmc_subtitles.py:389
-msgid "Username"
-msgstr "Nazwa użytkownika"
+#: SubsSupport\subtitlesdvb.py:136 SubsSupport\subtitlesdvb.py:253
+msgid "Subtitles Position"
+msgstr "Pozycja napisów"
 
-#: seekers/xbmc_subtitles.py:123 seekers/xbmc_subtitles.py:297
-#: seekers/xbmc_subtitles.py:390
-msgid "Password"
-msgstr "Hasło"
+#: SubsSupport\subtitlesdvb.py:137 SubsSupport\subtitlesdvb.py:267
+msgid "Subtitles Time"
+msgstr "Czas napisów"
+
+#: SubsSupport\subtitlesdvb.py:139
+msgid "Event Name"
+msgstr "Nazwa wydarzenia"
+
+#: SubsSupport\subtitlesdvb.py:140 SubsSupport\subtitlesdvb.py:306
+msgid "Event Time"
+msgstr "Czas wydarzenia"
+
+#: SubsSupport\subtitlesdvb.py:141 SubsSupport\subtitlesdvb.py:319
+msgid "Event Duration"
+msgstr "Czas trwania wydarzenia"
+
+#: SubsSupport\subtitlesdvb.py:144
+msgid "close plugin"
+msgstr "zamknij wtyczkę"
+
+#: SubsSupport\subtitlesdvb.py:145
+msgid "show/hide subtitles status"
+msgstr "pokaż/ukryj status napisów"
+
+#: SubsSupport\subtitlesdvb.py:146
+msgid "play/pause subtitles playback"
+msgstr "odtwórz/wstrzymaj odtwarzanie napisów"
+
+#: SubsSupport\subtitlesdvb.py:147
+msgid "pause subtitles playback"
+msgstr "wstrzymaj odtwarzanie napisów"
+
+#: SubsSupport\subtitlesdvb.py:148
+msgid "resumes subtitles playback"
+msgstr "wznawia odtwarzanie napisów"
+
+#: SubsSupport\subtitlesdvb.py:149
+msgid "restarts current subtitle"
+msgstr "uruchamia ponownie bieżący napis"
+
+#: SubsSupport\subtitlesdvb.py:150
+msgid "skip to next subtitle"
+msgstr "przejdź do następnego napisu"
+
+#: SubsSupport\subtitlesdvb.py:151
+msgid "skip to next subtitle (minute jump)"
+msgstr "przejdź do następnego napisu (skok o minutę)"
+
+#: SubsSupport\subtitlesdvb.py:152
+msgid "skip to next subtitle by setting time in minutes"
+msgstr "przejdź do następnego napisu ustawiając czas w minutach"
+
+#: SubsSupport\subtitlesdvb.py:153
+msgid "skip to previous subtitle"
+msgstr "przejdź do poprzedniego napisu"
+
+#: SubsSupport\subtitlesdvb.py:154
+msgid "skip to previous subtitle (minute jump)"
+msgstr "przejdź do poprzedniego napisu (skok o minutę)"
+
+#: SubsSupport\subtitlesdvb.py:155
+msgid "skip previous subtitle by setting time in minutes"
+msgstr "pomiń poprzedni napis, ustawiając czas w minutach"
+
+#: SubsSupport\subtitlesdvb.py:156
+msgid "skip subtitle to current event position"
+msgstr "pomiń napisy i przejdź do bieżącej pozycji wydarzenia"
+
+#: SubsSupport\subtitlesdvb.py:304
+msgid "Time"
+msgstr "Czas"
+
+#: SubsSupport\subtitlesdvb.py:317
+msgid "Duration"
+msgstr "Czas trwania"
+
+#: SubsSupport\subtitlesdvb.py:356
+msgid "cannot sync to event, event is not available"
+msgstr "nie można zsynchronizować ze zdarzeniem, zdarzenie jest niedostępne"

@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import print_function
 import requests
-try:
-    from ..utilities import log as _log
-except ImportError:
-    def _log(module, msg):
-        print(f"[{module}] {msg}")  # Temporary logging function
-
-
+import re
+from ..utilities import log as _log
+from six.moves import urllib
 import six
-
 
 ses = requests.Session()
 
@@ -76,7 +72,7 @@ LANGUAGES = (
     ("Chinese (Traditional)", "17", "zh", "chi", "100", 30207),
     ("Chinese (Simplified)", "17", "zh", "chi", "100", 30207))
 
-opensubtitles2_languages = {
+subscene_languages = {
     'Chinese BG code': 'Chinese',
     'Brazillian Portuguese': 'Portuguese (Brazil)',
     'Serbian': 'SerbianLatin',
@@ -86,8 +82,8 @@ opensubtitles2_languages = {
 
 
 def get_language_info(language):
-    if language in opensubtitles2_languages:
-        language = opensubtitles2_languages[language]
+    if language in subscene_languages:
+        language = subscene_languages[language]
 
     for lang in LANGUAGES:
         if lang[0] == language:

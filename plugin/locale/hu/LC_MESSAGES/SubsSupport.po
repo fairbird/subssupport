@@ -3,218 +3,218 @@ msgstr ""
 "Project-Id-Version: SubsSupport _ enigma2-plugin by mx3L\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-25 19:11+0200\n"
-"PO-Revision-Date: 2025-02-12 07:38+0100\n"
+"PO-Revision-Date: 2025-02-12 07:24+0100\n"
 "Last-Translator: Warder <ciksa@seznam.cz>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
-"Language: sk\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: .\n"
 
 #: SubsSupport\compat.py:220 SubsSupport\subtitles.py:2361
 msgid "List of storage devices"
-msgstr "Zoznam úložných zariadení"
+msgstr "Tárolóeszközök"
 
 #: SubsSupport\compat.py:222 SubsSupport\subtitles.py:2363
 msgid "Parent directory"
-msgstr "Nadradený priečinok"
+msgstr "Szülőkönyvtár"
 
 #: SubsSupport\compat.py:241 SubsSupport\subtitles.py:2382
 msgid "nothing connected"
-msgstr "nič pripojené"
+msgstr "semmi sem kapcsolódik"
 
 #: SubsSupport\e2_utils.py:123
 msgid "Language selection"
-msgstr "Výber jazyka"
+msgstr "Nyelvválasztás"
 
 #: SubsSupport\e2_utils.py:254
 msgid "Type text of picture"
-msgstr "Zadajte text obrázka"
+msgstr "Írja be a kép szövegét"
 
 #: SubsSupport\e2_utils.py:400
 msgid "unpack error: cannot get subname"
-msgstr "chyba pri rozbaľovaní: nemožno získať podnázov"
+msgstr "kicsomagolási hiba: nem lehet lekérni az alnevet"
 
 #: SubsSupport\e2_utils.py:416
 msgid "unpack error: cannot open archive"
-msgstr "chyba rozbaľovania: nie je možné otvoriť archív"
+msgstr "kicsomagolási hiba: nem lehet megnyitni az archívumot"
 
 #: SubsSupport\e2_utils.py:533 SubsSupport\subtitles.py:4677
 msgid "Save"
-msgstr "Uložiť"
+msgstr "Mentés"
 
 #: SubsSupport\e2_utils.py:534 SubsSupport\subtitles.py:4678
 msgid "Cancel"
-msgstr "Zrušiť"
+msgstr "Mégsem"
 
 #: SubsSupport\e2_utils.py:535 SubsSupport\subtitles.py:4679
 msgid "Reset Defaults"
-msgstr "Obnoviť predvolené nastavenia"
+msgstr "﻿Az alapértelmezett értékek visszaállítása"
 
 #: SubsSupport\plugin.py:81 SubsSupport\subtitles.py:2261
 msgid "General settings"
-msgstr "Všeobecné nastavenia"
+msgstr "Általános beállítások"
 
 #: SubsSupport\plugin.py:82
 msgid "External subtitles settings"
-msgstr "Nastavenia externých titulkov"
+msgstr "Külső feliratok beállításai"
 
 #: SubsSupport\plugin.py:83 SubsSupport\subtitles.py:2244
 msgid "Embedded subtitles settings"
-msgstr "Nastavenia vložených titulkov"
+msgstr "Beágyazott feliratok beállításai"
 
 #: SubsSupport\plugin.py:84
 msgid "Search settings"
-msgstr "Nastavenia vyhľadávania"
+msgstr "Keresési beállítások"
 
 #: SubsSupport\plugin.py:85 SubsSupport\subtitlesdvb.py:36
 msgid "DVB player settings"
-msgstr "Nastavenia prehrávača DVB"
+msgstr "DVB lejátszó beállításai"
 
 #: SubsSupport\plugin.py:96 SubsSupport\plugin.py:147 SubsSupport\plugin.py:150
 msgid "SubsSupport settings"
-msgstr "Nastavenia SubsSupport"
+msgstr "SubsSupport beállítások"
 
 #: SubsSupport\plugin.py:128
 msgid ""
 "You have OpenPli-based image, please change embedded subtitles settings in "
 "Settings / System / Subtitles settings"
 msgstr ""
-"Máte obraz založený na OpenPli, zmeňte prosím nastavenia vložených titulkov "
-"v Nastavenia / Systém / Nastavenia titulkov"
+"OpenPli-alapú képpel rendelkezik, kérjük, módosítsa a beágyazott feliratok "
+"beállításait a Beállítások / Rendszer / Feliratok beállításai alatt"
 
 #: SubsSupport\plugin.py:147
 msgid "Change subssupport settings"
-msgstr "Zmena nastavenia podpory"
+msgstr "Az altámogatási beállítások módosítása"
 
 #: SubsSupport\plugin.py:148
 msgid "Download subtitles for your videos"
-msgstr "Stiahnite si titulky pre svoje videá"
+msgstr "Tölts le feliratokat a videóidhoz"
 
 #: SubsSupport\plugin.py:148 SubsSupport\plugin.py:151
 msgid "SubsSupport downloader"
-msgstr "SubsSupport downloader"
+msgstr "SubsSupport letöltő"
 
 #: SubsSupport\plugin.py:149
 msgid "watch DVB broadcast with subtitles"
-msgstr "sledovať vysielanie DVB s titulkami"
+msgstr "nézni DVB adást felirattal"
 
 #: SubsSupport\plugin.py:149 SubsSupport\plugin.py:152
 msgid "SubsSupport DVB player"
-msgstr "Podporovaný prehrávač DVB"
+msgstr "SubsSupport DVB lejátszó"
 
 #: SubsSupport\subtitles.py:209
 msgid "top"
-msgstr "hore"
+msgstr "felső"
 
 #: SubsSupport\subtitles.py:211
 msgid "bottom"
-msgstr "dole"
+msgstr "alsó"
 
 #: SubsSupport\subtitles.py:216
 msgid "red"
-msgstr "červená"
+msgstr "vörös"
 
 #: SubsSupport\subtitles.py:217
 msgid "grey"
-msgstr "šedá"
+msgstr "szürke"
 
 #: SubsSupport\subtitles.py:218
 msgid "green"
-msgstr "zelená"
+msgstr "zöld"
 
 #: SubsSupport\subtitles.py:219
 msgid "purple"
-msgstr "ružová"
+msgstr "lila"
 
 #: SubsSupport\subtitles.py:220
 msgid "yellow"
-msgstr "žltá"
+msgstr "sárga"
 
 #: SubsSupport\subtitles.py:221
 msgid "white"
-msgstr "biela"
+msgstr "fehér"
 
 #: SubsSupport\subtitles.py:222
 msgid "blue"
-msgstr "modrá"
+msgstr "kék"
 
 #: SubsSupport\subtitles.py:223
 msgid "black"
-msgstr "čierna"
+msgstr "fekete"
 
 #: SubsSupport\subtitles.py:238
 msgid "opaque"
-msgstr "nepriehľadné"
+msgstr "átlátszatlan"
 
 #: SubsSupport\subtitles.py:240
 msgid "transparent"
-msgstr "priesvitné"
+msgstr "átlátszó"
 
 #: SubsSupport\subtitles.py:266
 msgid "border"
-msgstr "okraj"
+msgstr "országhatár"
 
 #: SubsSupport\subtitles.py:266
 msgid "offset"
-msgstr "poČiare"
+msgstr "eltolás"
 
 #: SubsSupport\subtitles.py:273
 msgid "dynamic"
-msgstr "dynamický"
+msgstr "dinamikus"
 
 #: SubsSupport\subtitles.py:273
 msgid "static"
-msgstr "statický"
+msgstr "statikus"
 
 #: SubsSupport\subtitles.py:314
 msgid "List"
-msgstr "Zoznam"
+msgstr "Lista"
 
 #: SubsSupport\subtitles.py:314
 msgid "List + File"
-msgstr "Zoznam + súbor"
+msgstr "Lista + Fájl"
 
 #: SubsSupport\subtitles.py:323 SubsSupport\subtitles.py:324
 #: SubsSupport\subtitles.py:341 SubsSupport\subtitles.py:3531
 #: SubsSupport\subtitles.py:3541 SubsSupport\subtitles.py:3546
 msgid "All"
-msgstr "Všetko"
+msgstr "Összes"
 
 #: SubsSupport\subtitles.py:326 SubsSupport\subtitles.py:2692
 #: SubsSupport\subtitles.py:3947 SubsSupport\subtitles.py:4080
 #: SubsSupport\subtitles.py:4989
 msgid "Provider"
-msgstr "Poskytovateľ"
+msgstr "Szolgáltató"
 
 #: SubsSupport\subtitles.py:326 SubsSupport\subtitles.py:3945
 msgid "Language"
-msgstr "Jazyk"
+msgstr "Nyelv"
 
 #: SubsSupport\subtitles.py:327 SubsSupport\subtitles.py:328
 msgid "Default"
-msgstr "Predvolený"
+msgstr "Alapértelmezett"
 
 #: SubsSupport\subtitles.py:327 SubsSupport\subtitles.py:328
 #: SubsSupport\subtitles.py:3590 SubsSupport\subtitles.py:3946
 msgid "Release"
-msgstr "Uvoľniť"
+msgstr "Kiadás"
 
 #: SubsSupport\subtitles.py:327 SubsSupport\subtitles.py:3592
 msgid "Video filename"
-msgstr "Názov súboru videa"
+msgstr "Videó fájlnév"
 
 #: SubsSupport\subtitles.py:329 SubsSupport\subtitles.py:3593
 #: SubsSupport\subtitles.py:3595
 msgid "User defined"
-msgstr "Definované užívateľom"
+msgstr "Felhasználó által meghatározott"
 
 #: SubsSupport\subtitles.py:329 SubsSupport\subtitles.py:3597
 msgid "Next to video"
-msgstr "Prehrať ďalšie video"
+msgstr "A videó mellett"
 
 #: SubsSupport\subtitles.py:337
 msgid "Movie"
@@ -222,39 +222,39 @@ msgstr "Film"
 
 #: SubsSupport\subtitles.py:337
 msgid "TV show"
-msgstr "Televízna relácia"
+msgstr "tévéműsor"
 
 #: SubsSupport\subtitles.py:418
 msgid "jump to next subtitle"
-msgstr "skok na ďalší titulok"
+msgstr "ugrás a következő feliratra"
 
 #: SubsSupport\subtitles.py:419
 msgid "jump to previous subtitle"
-msgstr "skok na predchádzajúci titulok"
+msgstr "ugrás az előző feliratra"
 
 #: SubsSupport\subtitles.py:420
 msgid "increase subtitles delay"
-msgstr "zvýšiť oneskorenie titulkov"
+msgstr "növeli a feliratok késleltetését"
 
 #: SubsSupport\subtitles.py:421
 msgid "decrease subtitles delay"
-msgstr "zníženie oneskorenia titulkov"
+msgstr "csökkenti a feliratok késleltetését"
 
 #: SubsSupport\subtitles.py:425
 msgid "reset subtitles delay/fps"
-msgstr "resetovanie oneskorenia titulkov/fps"
+msgstr "felirat késleltetés/fps visszaállítása"
 
 #: SubsSupport\subtitles.py:426 SubsSupport\subtitlesdvb.py:157
 msgid "change subtitles fps"
-msgstr "zmena titulkov fps"
+msgstr "felirat módosítása fps"
 
 #: SubsSupport\subtitles.py:430
 msgid "displays this menu"
-msgstr "zobrazí túto ponuku"
+msgstr "ezt a menüt jeleníti meg"
 
 #: SubsSupport\subtitles.py:431
 msgid "exit"
-msgstr "ukončiť"
+msgstr "kijárat"
 
 #: SubsSupport\subtitles.py:458 SubsSupport\subtitles.py:461
 #: SubsSupport\subtitles.py:463 SubsSupport\subtitlesdvb.py:138
@@ -263,401 +263,403 @@ msgstr "ukončiť"
 #: SubsSupport\subtitlesdvb.py:286 SubsSupport\subtitlesdvb.py:288
 #: SubsSupport\subtitlesdvb.py:290
 msgid "Subtitles FPS"
-msgstr "Titulky FPS"
+msgstr "Feliratok FPS"
 
 #: SubsSupport\subtitles.py:458 SubsSupport\subtitles.py:2944
 #: SubsSupport\subtitlesdvb.py:273 SubsSupport\subtitlesdvb.py:300
 msgid "unknown"
-msgstr "neznáme"
+msgstr "ismeretlen"
 
 #: SubsSupport\subtitles.py:461 SubsSupport\subtitlesdvb.py:278
 #: SubsSupport\subtitlesdvb.py:280 SubsSupport\subtitlesdvb.py:282
 #: SubsSupport\subtitlesdvb.py:286
 msgid "original"
-msgstr "originál"
+msgstr "eredeti"
 
 #: SubsSupport\subtitles.py:469 SubsSupport\subtitles.py:471
 #: SubsSupport\subtitles.py:474 SubsSupport\subtitles.py:476
 msgid "Subtitles Delay"
-msgstr "Oneskorenie titulkov"
+msgstr "Feliratok késleltetése"
 
 #: SubsSupport\subtitles.py:520
 msgid "change external subtitles status"
-msgstr "zmena stavu externých titulkov"
+msgstr "módosíthatja a külső feliratok állapotát"
 
 #: SubsSupport\subtitles.py:548 SubsSupport\subtitles.py:550
 msgid "No external subtitles are loaded"
-msgstr "Nie sú načítané žiadne externé titulky"
+msgstr "Nincs külső felirat betöltve"
 
 #: SubsSupport\subtitles.py:781
 msgid "show subtitles menu"
-msgstr "zobraziť ponuku titulkov"
+msgstr "felirat menü megjelenítése"
 
 #: SubsSupport\subtitles.py:1077 SubsSupport\subtitlesdvb.py:65
 msgid "Cannot load subtitles. Invalid path"
-msgstr "Nie je možné načítať titulky. Nesprávna cesta"
+msgstr "Nem lehet feliratot betölteni. Érvénytelen elérési út"
 
 #: SubsSupport\subtitles.py:1081 SubsSupport\subtitlesdvb.py:67
 msgid "Cannot decode subtitles. Try another encoding group"
-msgstr "Nie je možné dekódovať titulky. Skúste inú skupinu kódovania"
+msgstr ""
+"Nem lehet dekódolni a feliratokat. Próbáljon ki egy másik kódolási csoportot"
 
 #: SubsSupport\subtitles.py:1085 SubsSupport\subtitlesdvb.py:69
 msgid "Cannot parse subtitles. Not supported subtitles format"
-msgstr "Nie je možné analyzovať titulky. Nepodporovaný formát titulkov"
+msgstr "A feliratokat nem lehet elemezni. Nem támogatott feliratformátum"
 
 #: SubsSupport\subtitles.py:1089 SubsSupport\subtitlesdvb.py:71
 msgid "Cannot parse subtitles. Invalid subtitles format"
-msgstr "Nie je možné analyzovať titulky. Neplatný formát titulkov"
+msgstr "A feliratokat nem lehet elemezni. Érvénytelen feliratformátum"
 
 #: SubsSupport\subtitles.py:1881
 msgid "Currently choosed subtitles"
-msgstr "Aktuálne vybrané titulky"
+msgstr "Jelenleg kiválasztott feliratok"
 
 #: SubsSupport\subtitles.py:1937
 msgid "Embedded Subtitles"
-msgstr "Vložené titulky"
+msgstr "Beágyazott feliratok"
 
 #: SubsSupport\subtitles.py:1948 SubsSupport\subtitles.py:1951
 msgid "Encoding:"
-msgstr "Kódovanie:"
+msgstr "Kódolás:"
 
 #: SubsSupport\subtitles.py:1951
 msgid "cannot decode"
-msgstr "nemožno dekódovať"
+msgstr "nem tudja dekódolni"
 
 #: SubsSupport\subtitles.py:1953
 msgid "None"
-msgstr "Žiadne"
+msgstr "Nincs"
 
 #: SubsSupport\subtitles.py:1958 SubsSupport\subtitles.py:2910
 msgid "Choose subtitles"
-msgstr "Výber titulkov"
+msgstr "Válasszon feliratokat"
 
 #: SubsSupport\subtitles.py:1960
 msgid "Search subtitles"
-msgstr "Vyhľadávanie titulkov"
+msgstr "Feliratok keresése"
 
 #: SubsSupport\subtitles.py:1963
 msgid "Change encoding"
-msgstr "Zmena kódovania"
+msgstr "Változtassa meg a kódolást"
 
 #: SubsSupport\subtitles.py:1964
 msgid "Subtitles settings"
-msgstr "Nastavenia titulkov"
+msgstr "Felirat beállítások"
 
 #: SubsSupport\subtitles.py:1966 SubsSupport\subtitles.py:1968
 msgid "Subtitles settings (embedded)"
-msgstr "Nastavenia titulkov (vložené)"
+msgstr "Feliratbeállítások (beágyazott)"
 
 #: SubsSupport\subtitles.py:1970
 msgid "Turn off subtitles"
-msgstr "Vypnutie titulkov"
+msgstr "Feliratok kikapcsolása"
 
 #: SubsSupport\subtitles.py:2044 SubsSupport\subtitles.py:2575
 msgid "Some subtitles providers are not working"
-msgstr "Niektorí poskytovatelia titulkov nefungujú"
+msgstr "Egyes feliratszolgáltatók nem működnek"
 
 #: SubsSupport\subtitles.py:2045 SubsSupport\subtitles.py:2576
 msgid "For more details please check search settings"
-msgstr "Ďalšie podrobnosti nájdete v nastaveniach vyhľadávania"
+msgstr "További részletekért ellenőrizze a keresési beállításokat"
 
 #: SubsSupport\subtitles.py:2047 SubsSupport\subtitles.py:2578
 msgid "Do you want to show this message again?"
-msgstr "Chcete túto správu zobraziť znova?"
+msgstr "Szeretné újra megjeleníteni ezt az üzenetet?"
 
 #: SubsSupport\subtitles.py:2095 SubsSupport\subtitles.py:2233
 msgid "Font type (Regular)"
-msgstr "Typ písma (Regular)"
+msgstr "Betűtípus (normál)"
 
 #: SubsSupport\subtitles.py:2096
 msgid "Font color (Regular)"
-msgstr "Farba písma (Regular)"
+msgstr "Betűszín (normál)"
 
 #: SubsSupport\subtitles.py:2097
 msgid "Font transparency (Regular)"
-msgstr "Priehľadnosť písma (Regular)"
+msgstr "Betűtípus átlátszósága (normál)"
 
 #: SubsSupport\subtitles.py:2098 SubsSupport\subtitles.py:2234
 msgid "Font type (Italic)"
-msgstr "Typ písma (Kurzíva)"
+msgstr "Betűtípus (dőlt)"
 
 #: SubsSupport\subtitles.py:2099
 msgid "Font color (Italic"
-msgstr "Farba písma (Kurzíva)"
+msgstr "Betűszín (dőlt"
 
 #: SubsSupport\subtitles.py:2100
 msgid "Font transparency (Italic)"
-msgstr "Priehľadnosť písma (Italic)"
+msgstr "Betűtípus átlátszósága (dőlt)"
 
 #: SubsSupport\subtitles.py:2101 SubsSupport\subtitles.py:2235
 msgid "Font type (Bold)"
-msgstr "Typ písma (tučné)"
+msgstr "Betűtípus (félkövér)"
 
 #: SubsSupport\subtitles.py:2102
 msgid "Font color (Bold)"
-msgstr "Farba písma (tučná)"
+msgstr "Betűszín (félkövér)"
 
 #: SubsSupport\subtitles.py:2103
 msgid "Font transparency (Bold)"
-msgstr "Priehľadnosť písma (Bold)"
+msgstr "Betűtípus átlátszósága (félkövér)"
 
 #: SubsSupport\subtitles.py:2104 SubsSupport\subtitles.py:2236
 msgid "Font size"
-msgstr "Veľkosť písma"
+msgstr "Betűméret"
 
 #: SubsSupport\subtitles.py:2105 SubsSupport\subtitles.py:2237
 msgid "Position"
-msgstr "Pozícia"
+msgstr "Pozíció"
 
 #: SubsSupport\subtitles.py:2106
 msgid "Shadow"
-msgstr "Bez tieňa"
+msgstr "Árnyék"
 
 #: SubsSupport\subtitles.py:2108
 msgid "Shadow type"
-msgstr "Typ tieňa"
+msgstr "Árnyék típusa"
 
 #: SubsSupport\subtitles.py:2110 SubsSupport\subtitles.py:2239
 msgid "Shadow X-offset"
-msgstr "Tieň titulkov X odsadenie"
+msgstr "Shadow X-eltolás"
 
 #: SubsSupport\subtitles.py:2111 SubsSupport\subtitles.py:2240
 msgid "Shadow Y-offset"
-msgstr "Tieň titulkov Y odsadenie"
+msgstr "Árnyék Y-eltolás"
 
 #: SubsSupport\subtitles.py:2113
 msgid "Shadow size"
-msgstr "Veľkosť tieňa"
+msgstr "Árnyék mérete"
 
 #: SubsSupport\subtitles.py:2114
 msgid "Shadow color"
-msgstr "Farba tieňa"
+msgstr "Árnyék színe"
 
 #: SubsSupport\subtitles.py:2115
 msgid "Background"
-msgstr "Pozadie"
+msgstr "Háttér"
 
 #: SubsSupport\subtitles.py:2117
 msgid "Background type"
-msgstr "Typ pozadia"
+msgstr "Háttér típusa"
 
 #: SubsSupport\subtitles.py:2119
 msgid "Background X-offset"
-msgstr "Odsadenie pozadia X"
+msgstr "Háttér X-eltolás"
 
 #: SubsSupport\subtitles.py:2120
 msgid "Background Y-offset"
-msgstr "Odsadenie pozadia Y"
+msgstr "Háttér Y-eltolás"
 
 #: SubsSupport\subtitles.py:2121
 msgid "Background color"
-msgstr "Farba pozadia"
+msgstr "Háttérszín"
 
 #: SubsSupport\subtitles.py:2122
 msgid "Background transparency"
-msgstr "Priehľadnosť pozadia"
+msgstr "Háttér átlátszósága"
 
 #: SubsSupport\subtitles.py:2126
 msgid "External Subtitles settings"
-msgstr "Nastavenia externých titulkov"
+msgstr "Külső feliratok beállításai"
 
 #: SubsSupport\subtitles.py:2160
 msgid "Subtitles setting"
-msgstr "Nastavenie titulkov"
+msgstr "Feliratok beállítása"
 
 #: SubsSupport\subtitles.py:2166 SubsSupport\subtitles.py:2266
 msgid "Pause video on opening subtitles menu"
-msgstr "Pozastavenie videa pri otvorení ponuky titulkov"
+msgstr "A videó szüneteltetése a feliratmenü megnyitásakor"
 
 #: SubsSupport\subtitles.py:2169 SubsSupport\subtitles.py:2267
 msgid "Encoding"
-msgstr "Kódovanie"
+msgstr "Kódolás"
 
 #: SubsSupport\subtitles.py:2170
 msgid "Show expert settings"
-msgstr "Zobraziť expertné nastavenia"
+msgstr "Szakértői beállítások megjelenítése"
 
 #: SubsSupport\subtitles.py:2173
 msgid "Hide delay"
-msgstr "Skryť oneskorenie"
+msgstr "Késleltetés elrejtése"
 
 #: SubsSupport\subtitles.py:2174
 msgid "Sync delay"
-msgstr "Oneskorenie synchronizácie"
+msgstr "Szinkronizálási késleltetés"
 
 #: SubsSupport\subtitles.py:2175
 msgid "Player delay"
-msgstr "Oneskorenie hráča"
+msgstr "Játékos késés"
 
 #: SubsSupport\subtitles.py:2176
 msgid "Refresh delay"
-msgstr "Oneskorenie obnovenia"
+msgstr "Frissítési késleltetés"
 
 #: SubsSupport\subtitles.py:2177
 msgid "PTS check delay"
-msgstr "Oneskorenie kontroly PTS"
+msgstr "PTS ellenőrzési késleltetés"
 
 #: SubsSupport\subtitles.py:2238
 msgid "Color"
-msgstr "Farba"
+msgstr "Szín"
 
 #: SubsSupport\subtitles.py:2409
 msgid "Choose from embedded subtitles"
-msgstr "Výber z vložených titulkov"
+msgstr "Válasszon a beágyazott feliratok közül"
 
 #: SubsSupport\subtitles.py:2414
 msgid "Choose from downloaded subtitles"
-msgstr "Výber zo stiahnutých titulkov"
+msgstr "Válasszon a letöltött feliratok közül"
 
 #: SubsSupport\subtitles.py:2419
 msgid "Choose from web subtitles"
-msgstr "Vyberte si z webových titulkov"
+msgstr "Válasszon a webfeliratok közül"
 
 #: SubsSupport\subtitles.py:2458 SubsSupport\subtitles.py:4352
 msgid "Subtitles will be downloaded in"
-msgstr "Titulky \"%s\" stiahnuté správne"
+msgstr "A feliratok letöltésre kerülnek"
 
 #: SubsSupport\subtitles.py:2458 SubsSupport\subtitles.py:4352
 msgid "seconds"
-msgstr "sekundy"
+msgstr "másodperc"
 
 #: SubsSupport\subtitles.py:2534
 msgid "Choose Subtitles"
-msgstr "Výber titulkov"
+msgstr "Válassza a Feliratok lehetőséget"
 
 #: SubsSupport\subtitles.py:2691
 msgid "Name"
-msgstr "Meno"
+msgstr "Név"
 
 #: SubsSupport\subtitles.py:2693
 msgid "Download date"
-msgstr "Dátum stiahnutia"
+msgstr "Letöltés dátuma"
 
 #: SubsSupport\subtitles.py:2696
 msgid "Remove (file)"
-msgstr "Odstrániť súbor"
+msgstr "Eltávolítás (fájl)"
 
 #: SubsSupport\subtitles.py:2697 SubsSupport\subtitles.py:3954
 #: SubsSupport\subtitles.py:4123
 msgid "Settings"
-msgstr "Nastavenia"
+msgstr "Beállítások"
 
 #: SubsSupport\subtitles.py:2733
 msgid "Downloaded Subtitles"
-msgstr "Stiahnuté titulky"
+msgstr "Letöltött feliratok"
 
 #: SubsSupport\subtitles.py:2762
 msgid "Entries count:"
-msgstr "Počet záznamov:"
+msgstr "Bejegyzések száma:"
 
 #: SubsSupport\subtitles.py:2766
 msgid "Remove Entry (List+File)"
-msgstr "Odstránenie položky (Zoznam+Súbor)"
+msgstr "Bejegyzés eltávolítása (lista+fájl)"
 
 #: SubsSupport\subtitles.py:2768
 msgid "Remove Entry (List)"
-msgstr "Odstránenie položky (zoznam)"
+msgstr "Bejegyzés eltávolítása (lista)"
 
 #: SubsSupport\subtitles.py:2778
 msgid "There was an error while removing subtitle, please check log"
-msgstr "Pri odstraňovaní titulkov došlo k chybe, skontrolujte prosím protokol"
+msgstr ""
+"Hiba történt a felirat eltávolítása közben. Kérjük, ellenőrizze a naplót"
 
 #: SubsSupport\subtitles.py:2796
 msgid "will be removed from file system"
-msgstr "bude odstránený zo systému súborov"
+msgstr "el lesz távolítva a fájlrendszerből"
 
 #: SubsSupport\subtitles.py:2796 SubsSupport\subtitles.py:2803
 msgid "Subtitle"
-msgstr "Podnadpis"
+msgstr "Alcím"
 
 #: SubsSupport\subtitles.py:2797 SubsSupport\subtitles.py:2804
 msgid "Do you want to proceed?"
-msgstr "Chceš pokračovať?"
+msgstr "Akarja folytatni?"
 
 #: SubsSupport\subtitles.py:2803
 msgid "will be removed from list"
-msgstr "bude odstránený zo zoznamu"
+msgstr "lekerül a listáról"
 
 #: SubsSupport\subtitles.py:2840
 msgid "Downloaded Subtitles - Settings"
-msgstr "Stiahnuté titulky - Nastavenia"
+msgstr "Letöltött feliratok – Beállítások"
 
 #: SubsSupport\subtitles.py:2845
 msgid "Max history entries"
-msgstr "Maximálny počet záznamov v histórii"
+msgstr "Maximális előzménybejegyzések"
 
 #: SubsSupport\subtitles.py:2846
 msgid "Remove action"
-msgstr "Odstránenie akcie"
+msgstr "Művelet eltávolítása"
 
 #: SubsSupport\subtitles.py:2847
 msgid "Ask on remove action"
-msgstr "Spýtajte sa na odstránenie akcie"
+msgstr "Kérdezze meg az eltávolítási műveletet"
 
 #: SubsSupport\subtitles.py:2853
 msgid "Select Directory"
-msgstr "Vybrať priečinok"
+msgstr "Válassza a Címtár lehetőséget"
 
 #: SubsSupport\subtitles.py:3280
 msgid "Suggestions"
-msgstr "Návrhy"
+msgstr "Javaslatok"
 
 #: SubsSupport\subtitles.py:3280
 msgid "press green"
-msgstr "stlačte zelenú farbu"
+msgstr "nyomja meg a zöldet"
 
 #: SubsSupport\subtitles.py:3287
 msgid "press red"
-msgstr "stlačiť červenú"
+msgstr "nyomd meg a pirosat"
 
 #: SubsSupport\subtitles.py:3287 SubsSupport\subtitles.py:3953
 #: SubsSupport\subtitles.py:4122
 msgid "History"
-msgstr "História"
+msgstr "Előzmények"
 
 #: SubsSupport\subtitles.py:3609 SubsSupport\subtitles.py:3638
 msgid "Save to"
-msgstr "Uložiť do"
+msgstr "Mentés ide"
 
 #: SubsSupport\subtitles.py:3610 SubsSupport\subtitles.py:3639
 msgid "Save as"
-msgstr "Uložiť ako"
+msgstr "Mentés másként"
 
 #: SubsSupport\subtitles.py:3611 SubsSupport\subtitles.py:3641
 msgid "Append language to filename"
-msgstr "Pripojenie jazyka k názvu súboru"
+msgstr "Nyelv hozzáfűzése a fájlnévhez"
 
 #: SubsSupport\subtitles.py:3619
 msgid "Filename"
-msgstr "Názov súboru"
+msgstr "Fájlnév"
 
 #: SubsSupport\subtitles.py:3620
 msgid "Path"
-msgstr "Cesta"
+msgstr "Útvonal"
 
 #: SubsSupport\subtitles.py:3621
 msgid "Reset"
-msgstr "Resetovať"
+msgstr "Visszaállítás"
 
 #: SubsSupport\subtitles.py:3645
 msgid "Download options"
-msgstr "Možnosti stiahnutia"
+msgstr "Letöltési lehetőségek"
 
 #: SubsSupport\subtitles.py:3682
 msgid "Edit Filename"
-msgstr "Upraviť názov súboru"
+msgstr "Fájlnév szerkesztése"
 
 #: SubsSupport\subtitles.py:3690
 msgid "Edit download path"
-msgstr "Úprava cesty na prevzatie"
+msgstr "Letöltési útvonal szerkesztése"
 
 #: SubsSupport\subtitles.py:3695
 msgid "Filename cannot be empty!"
-msgstr "Názov súboru nemôže byť prázdny!"
+msgstr "A fájlnév nem lehet üres!"
 
 #: SubsSupport\subtitles.py:3699
 msgid "Path doesn't exist!"
-msgstr "Cesta neexistuje!"
+msgstr "Út nem létezik!"
 
 #: SubsSupport\subtitles.py:3948
 msgid "S"
@@ -665,354 +667,357 @@ msgstr "S"
 
 #: SubsSupport\subtitles.py:3951 SubsSupport\subtitles.py:4120
 msgid "Update"
-msgstr "Aktualizovať"
+msgstr "Frissítés"
 
 #: SubsSupport\subtitles.py:3952 SubsSupport\subtitles.py:4121
 msgid "Search"
-msgstr "Hľadať"
+msgstr "Keresés"
 
 #: SubsSupport\subtitles.py:4053
 msgid "Subtitles search"
-msgstr "Vyhľadávanie titulkov"
+msgstr "Feliratok keresése"
 
 #: SubsSupport\subtitles.py:4072
 msgid "no"
-msgstr "nie"
+msgstr "nem"
 
 #: SubsSupport\subtitles.py:4072
 msgid "yes"
-msgstr "áno"
+msgstr "igen"
 
 #: SubsSupport\subtitles.py:4073 SubsSupport\subtitles.py:4982
 msgid "Title"
-msgstr "Názov"
+msgstr "Cím"
 
 #: SubsSupport\subtitles.py:4074 SubsSupport\subtitles.py:4983
 msgid "Type"
-msgstr "Typ"
+msgstr "Típus"
 
 #: SubsSupport\subtitles.py:4076 SubsSupport\subtitles.py:4985
 msgid "Year"
-msgstr "Rok"
+msgstr "Év"
 
 #: SubsSupport\subtitles.py:4078 SubsSupport\subtitles.py:4987
 msgid "Season"
-msgstr "Sezóna"
+msgstr "Évad"
 
 #: SubsSupport\subtitles.py:4079 SubsSupport\subtitles.py:4988
 msgid "Episode"
-msgstr "Epizóda"
+msgstr "Epizód"
 
 #: SubsSupport\subtitles.py:4081
 msgid "Preferred languages"
-msgstr "Uprednostňované jazyky"
+msgstr "Előnyben részesített nyelvek"
 
 #: SubsSupport\subtitles.py:4082 SubsSupport\subtitles.py:4990
 msgid "Use File path"
-msgstr "Použiť cestu k súboru"
+msgstr "Fájl elérési út használata"
 
 #: SubsSupport\subtitles.py:4192
 msgid ""
 "Update search parameters if not correct\n"
 " and press green button for search"
 msgstr ""
-"Aktualizácia parametrov vyhľadávania, ak nie sú správne\n"
-" a stlačte zelené tlačidlo pre vyhľadávanie"
+"Frissítse a keresési paramétereket, ha nem helyes\n"
+" és nyomja meg a zöld gombot a kereséshez"
 
 #: SubsSupport\subtitles.py:4201 SubsSupport\subtitles.py:4238
 msgid "loading subtitles list"
-msgstr "načítanie zoznamu titulkov"
+msgstr "feliratlista betöltése"
 
 #: SubsSupport\subtitles.py:4202 SubsSupport\subtitles.py:4239
 msgid "subtitles found"
-msgstr "nájdené titulky"
+msgstr "felirat található"
 
 #: SubsSupport\subtitles.py:4203 SubsSupport\subtitles.py:4240
 msgid "Press OK to Stop"
-msgstr "Stlačením tlačidla OK zastavíte"
+msgstr "Nyomja meg az OK gombot a leállításhoz"
 
 #: SubsSupport\subtitles.py:4272
 msgid "No subtitles found :("
-msgstr "Nenašli sa žiadne titulky :("
+msgstr "Nem található felirat :("
 
 #: SubsSupport\subtitles.py:4273
 msgid "Try update(simplify) search expression and try again.."
-msgstr "Skúste aktualizovať(zjednodušiť) vyhľadávací výraz a skúste to znova.."
+msgstr ""
+"Próbálja meg frissíteni (egyszerűsíteni) a keresési kifejezést, és próbálja "
+"újra."
 
 #: SubsSupport\subtitles.py:4317
 msgid "downloading subtitles..."
-msgstr "sťahovanie titulkov..."
+msgstr "feliratok letöltése..."
 
 #: SubsSupport\subtitles.py:4340
 msgid ""
 "There are more subtitles in unpacked archive\n"
 " please select which one do you want to use"
 msgstr ""
-"V rozbalenom archíve sú ďalšie titulky\n"
-"vyberte si, ktorý chcete použiť"
+"A kicsomagolt archívumban több felirat található\n"
+" kérjük, válassza ki, melyiket szeretné használni"
 
 #: SubsSupport\subtitles.py:4345
 msgid ""
 "Subtitles with this name already exist\n"
 "Do you want to overwrite them"
 msgstr ""
-"Titulky s týmto názvom už existujú\n"
-"Chcete ich prepísať"
+"Már léteznek ilyen nevű feliratok\n"
+"Felül akarja írni őket"
 
 #: SubsSupport\subtitles.py:4397
 msgid "Cannot save download history, for details look in log"
-msgstr "Nie je možné uložiť históriu sťahovania, podrobnosti nájdete v denníku"
+msgstr ""
+"A letöltési előzmények mentése nem lehetséges, a részletekért nézze meg a "
+"naplót"
 
 #: SubsSupport\subtitles.py:4416
 msgid "captcha doesn't match, try again..."
-msgstr "captcha sa nezhoduje, skúste to znova..."
+msgstr "a captcha nem egyezik, próbáld újra..."
 
 #: SubsSupport\subtitles.py:4418
 msgid "invalid credentials provided, correct them and try again"
-msgstr "zadané neplatné poverenia, opravte ich a skúste to znova"
+msgstr "érvénytelen hitelesítő adatokat, javítsa ki őket, és próbálja újra"
 
 #: SubsSupport\subtitles.py:4420
 msgid "no credentials provided, set them and try again"
-msgstr "neboli poskytnuté žiadne poverenia, nastavte ich a skúste to znova"
+msgstr "nincs megadva hitelesítő adat, állítsa be őket, és próbálja újra"
 
 #: SubsSupport\subtitles.py:4422
 msgid "download error ocurred, for details see /tmp/subssearch.log"
-msgstr ""
-"vyskytla sa chyba pri sťahovaní, podrobnosti nájdete v /tmp/subssearch.log"
+msgstr "letöltési hiba történt, a részletekért lásd: /tmp/subssearch.log"
 
 #: SubsSupport\subtitles.py:4442
 msgid "Download (user defined)"
-msgstr "Stiahnutie (definované používateľom)"
+msgstr "Letöltés (felhasználó által meghatározott)"
 
 #: SubsSupport\subtitles.py:4443
 msgid "Download (next to video)"
-msgstr "Na stiahnutie (vedľa videa)"
+msgstr "Letöltés (a videó mellett)"
 
 #: SubsSupport\subtitles.py:4444
 msgid "Download (more...)"
-msgstr "Na stiahnutie (viac...)"
+msgstr "Letöltés (tovább...)"
 
 #: SubsSupport\subtitles.py:4447
 msgid "Download and Load (user defined) "
-msgstr "Stiahnutie a načítanie (definované používateľom) "
+msgstr "Letöltés és betöltés (felhasználó által meghatározott) "
 
 #: SubsSupport\subtitles.py:4448
 msgid "Download and Load (next to video)"
-msgstr "Stiahnuť a načítať (vedľa videa)"
+msgstr "Letöltés és betöltés (a videó mellett)"
 
 #: SubsSupport\subtitles.py:4449
 msgid "Download and Load (more...)"
-msgstr "Stiahnuť a načítať (viac...)"
+msgstr "Letöltés és betöltés (tovább...)"
 
 #: SubsSupport\subtitles.py:4571 SubsSupport\subtitles.py:4572
 #: SubsSupport\subtitles.py:4573
 msgid "Preferred subtitles language"
-msgstr "Uprednostňovaný jazyk titulkov"
+msgstr "A feliratok preferált nyelve"
 
 #: SubsSupport\subtitles.py:4574
 msgid "Preferred Movie provider"
-msgstr "Uprednostňovaný poskytovateľ filmov"
+msgstr "Előnyben részesített filmszolgáltató"
 
 #: SubsSupport\subtitles.py:4575
 msgid "Preferred TV show provider"
-msgstr "Uprednostňovaný poskytovateľ televíznych programov"
+msgstr "Előnyben részesített tévéműsor-szolgáltató"
 
 #: SubsSupport\subtitles.py:4576
 msgid "Manual search"
-msgstr "Manuálne vyhľadávanie"
+msgstr "Kézi keresés"
 
 #: SubsSupport\subtitles.py:4577
 msgid "Subtitles provider timeout"
-msgstr "Časový limit poskytovateľa titulkov"
+msgstr "Feliratszolgáltató időtúllépés"
 
 #: SubsSupport\subtitles.py:4578
 msgid "Check search parameters before subtitles search"
-msgstr "Kontrola parametrov vyhľadávania pred vyhľadávaním titulkov"
+msgstr "A feliratkeresés előtt ellenőrizze a keresési paramétereket"
 
 #: SubsSupport\subtitles.py:4579
 msgid "Sort subtitles list by"
-msgstr "Zoradiť zoznam titulkov podľa"
+msgstr "Feliratlista rendezése szerint"
 
 #: SubsSupport\subtitles.py:4580
 msgid "Save subtitles as"
-msgstr "Uložiť titulky ako"
+msgstr "Felirat mentése másként"
 
 #: SubsSupport\subtitles.py:4581
 msgid "Save subtitles as (fallback)"
-msgstr "Uložiť titulky ako (náhradné riešenie)"
+msgstr "Feliratok mentése mint (tartalék)"
 
 #: SubsSupport\subtitles.py:4582
 msgid "Add subtitle's language to filename"
-msgstr "Pridanie jazyka titulkov do názvu súboru"
+msgstr "Adja hozzá a felirat nyelvét a fájlnévhez"
 
 #: SubsSupport\subtitles.py:4583
 msgid "Save subtitles to"
-msgstr "Uloženie titulkov do"
+msgstr "Feliratok mentése ide"
 
 #: SubsSupport\subtitles.py:4584
 msgid "Subtitles download path"
-msgstr "Cesta na stiahnutie titulkov"
+msgstr "Feliratok letöltési útvonala"
 
 #: SubsSupport\subtitles.py:4585
 msgid "Subtitles temp path"
-msgstr "Dočasná cesta k titulkom"
+msgstr "Feliratok temp útvonala"
 
 #: SubsSupport\subtitles.py:4586
 msgid "Always ask before overwriting existing subtitles"
-msgstr "Pred prepísaním existujúcich titulkov sa vždy opýtajte"
+msgstr "Mindig kérdezzen rá, mielőtt felülírja a meglévő feliratokat"
 
 #: SubsSupport\subtitles.py:4587
 msgid "Load subtitles after download"
-msgstr "Načítanie titulkov po stiahnutí"
+msgstr "Feliratok betöltése letöltés után"
 
 #: SubsSupport\subtitles.py:4589
 msgid "Save downloaded subtitles to history"
-msgstr "Uloženie prevzatých titulkov do histórie"
+msgstr "A letöltött feliratok mentése az előzmények közé"
 
 #: SubsSupport\subtitles.py:4591
 msgid "Load/Save download history directory"
-msgstr "Načítanie/uloženie adresára histórie sťahovania"
+msgstr "Letöltési előzmények könyvtár betöltése/mentése"
 
 #: SubsSupport\subtitles.py:4674
 msgid "Provider name"
-msgstr "Názov poskytovateľa"
+msgstr "Szolgáltató neve"
 
 #: SubsSupport\subtitles.py:4675
 msgid "Supported languages"
-msgstr "Podporované jazyky"
+msgstr "Támogatott nyelvek"
 
 #: SubsSupport\subtitles.py:4676
 msgid "State"
-msgstr "Štát"
+msgstr "Megye"
 
 #: SubsSupport\subtitles.py:4680
 msgid "Switch List"
-msgstr "Zoznam prepínačov"
+msgstr "Kapcsolólista"
 
 #: SubsSupport\subtitles.py:4701
 msgid "Subtitles search settings"
-msgstr "Nastavenia vyhľadávania titulkov"
+msgstr "Feliratok keresési beállításai"
 
 #: SubsSupport\subtitles.py:4712
 msgid "error"
-msgstr "chyba"
+msgstr "hiba"
 
 #: SubsSupport\subtitles.py:4715
 msgid "enabled"
-msgstr "zapnuté"
+msgstr "engedélyezve"
 
 #: SubsSupport\subtitles.py:4718
 msgid "disabled"
-msgstr "vypnuté"
+msgstr "letíltva"
 
 #: SubsSupport\subtitles.py:4840
 msgid "library"
-msgstr "knižnica"
+msgstr "könyvtár"
 
 #: SubsSupport\subtitles.py:4840
 msgid "missing"
-msgstr "chýba"
+msgstr "hiányzó"
 
 #: SubsSupport\subtitles.py:4914
 msgid "Source title not provided"
-msgstr "Názov zdroja nie je uvedený"
+msgstr "A forrás címe nincs megadva"
 
 #: SubsSupport\subtitles.py:4916 SubsSupport\subtitles.py:5008
 msgid "Source title"
-msgstr "Názov zdroja"
+msgstr "Forrás címe"
 
 #: SubsSupport\subtitles.py:4978
 msgid "Update Search params"
-msgstr "Aktualizácia parametrov vyhľadávania"
+msgstr "Frissítse a keresési paramétereket"
 
 #: SubsSupport\subtitles.py:5149
 msgid "settings"
-msgstr "nastavenia"
+msgstr "beállítások"
 
 #: SubsSupport\subtitlesdvb.py:40
 msgid "Auto sync to current event"
-msgstr "Automatická synchronizácia s aktuálnou udalosťou"
+msgstr "Automatikus szinkronizálás az aktuális eseményhez"
 
 #: SubsSupport\subtitlesdvb.py:136 SubsSupport\subtitlesdvb.py:253
 msgid "Subtitles Position"
-msgstr "Pozícia titulkov"
+msgstr "Feliratok pozíciója"
 
 #: SubsSupport\subtitlesdvb.py:137 SubsSupport\subtitlesdvb.py:267
 msgid "Subtitles Time"
-msgstr "Čas titulkov"
+msgstr "Feliratok ideje"
 
 #: SubsSupport\subtitlesdvb.py:139
 msgid "Event Name"
-msgstr "Názov podujatia"
+msgstr "Esemény neve"
 
 #: SubsSupport\subtitlesdvb.py:140 SubsSupport\subtitlesdvb.py:306
 msgid "Event Time"
-msgstr "Čas udalosti"
+msgstr "Esemény idő"
 
 #: SubsSupport\subtitlesdvb.py:141 SubsSupport\subtitlesdvb.py:319
 msgid "Event Duration"
-msgstr "Trvanie podujatia"
+msgstr "Esemény időtartama"
 
 #: SubsSupport\subtitlesdvb.py:144
 msgid "close plugin"
-msgstr "zatvoriť zásuvný modul"
+msgstr "bezárja a plugint"
 
 #: SubsSupport\subtitlesdvb.py:145
 msgid "show/hide subtitles status"
-msgstr "zobraziť/skryť stav titulkov"
+msgstr "felirat állapotának megjelenítése/elrejtése"
 
 #: SubsSupport\subtitlesdvb.py:146
 msgid "play/pause subtitles playback"
-msgstr "prehrávanie/pozastavenie prehrávania titulkov"
+msgstr "lejátszás/szünet a felirat lejátszása"
 
 #: SubsSupport\subtitlesdvb.py:147
 msgid "pause subtitles playback"
-msgstr "pozastavenie prehrávania titulkov"
+msgstr "a feliratok lejátszásának szüneteltetése"
 
 #: SubsSupport\subtitlesdvb.py:148
 msgid "resumes subtitles playback"
-msgstr "obnoví prehrávanie titulkov"
+msgstr "folytatja a feliratok lejátszását"
 
 #: SubsSupport\subtitlesdvb.py:149
 msgid "restarts current subtitle"
-msgstr "reštartuje aktuálny titulok"
+msgstr "újraindítja az aktuális feliratot"
 
 #: SubsSupport\subtitlesdvb.py:150
 msgid "skip to next subtitle"
-msgstr "preskočiť na ďalší titulok"
+msgstr "ugrás a következő feliratra"
 
 #: SubsSupport\subtitlesdvb.py:151
 msgid "skip to next subtitle (minute jump)"
-msgstr "preskočiť na ďalší titulok (minútový skok)"
+msgstr "ugrás a következő feliratra (perces ugrás)"
 
 #: SubsSupport\subtitlesdvb.py:152
 msgid "skip to next subtitle by setting time in minutes"
-msgstr "preskočiť na ďalší titulok nastavením času v minútach"
+msgstr "ugorjon a következő feliratra az idő percben történő beállításával"
 
 #: SubsSupport\subtitlesdvb.py:153
 msgid "skip to previous subtitle"
-msgstr "preskočiť na predchádzajúci titulok"
+msgstr "ugrás az előző alcímre"
 
 #: SubsSupport\subtitlesdvb.py:154
 msgid "skip to previous subtitle (minute jump)"
-msgstr "preskočiť na predchádzajúci titulok (minútový skok)"
+msgstr "ugrás az előző feliratra (perces ugrás)"
 
 #: SubsSupport\subtitlesdvb.py:155
 msgid "skip previous subtitle by setting time in minutes"
-msgstr "preskočiť predchádzajúci titulok nastavením času v minútach"
+msgstr "az előző felirat átugrása az idő percben történő beállításával"
 
 #: SubsSupport\subtitlesdvb.py:156
 msgid "skip subtitle to current event position"
-msgstr "preskočiť titulok na pozíciu aktuálnej udalosti"
+msgstr "a felirat ugrása az esemény aktuális pozíciójához"
 
 #: SubsSupport\subtitlesdvb.py:304
 msgid "Time"
-msgstr "Čas"
+msgstr "Idő"
 
 #: SubsSupport\subtitlesdvb.py:317
 msgid "Duration"
-msgstr "Trvanie"
+msgstr "Időtartam"
 
 #: SubsSupport\subtitlesdvb.py:356
 msgid "cannot sync to event, event is not available"
-msgstr "nemožno synchronizovať s udalosťou, udalosť nie je k dispozícii"
+msgstr "nem lehet szinkronizálni az eseménnyel, az esemény nem érhető el"

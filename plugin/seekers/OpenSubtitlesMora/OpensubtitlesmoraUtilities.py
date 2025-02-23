@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import print_function
 import requests
-try:
-    from ..utilities import log as _log
-except ImportError:
-    def _log(module, msg):
-        print(f"[{module}] {msg}")  # Temporary logging function
-
-
+import re
+from ..utilities import log as _log
+from six.moves import urllib
 import six
-
 
 ses = requests.Session()
 
@@ -76,7 +72,7 @@ LANGUAGES = (
     ("Chinese (Traditional)", "17", "zh", "chi", "100", 30207),
     ("Chinese (Simplified)", "17", "zh", "chi", "100", 30207))
 
-opensubtitles2_languages = {
+opensubtitlesmora_languages = {
     'Chinese BG code': 'Chinese',
     'Brazillian Portuguese': 'Portuguese (Brazil)',
     'Serbian': 'SerbianLatin',
@@ -86,8 +82,8 @@ opensubtitles2_languages = {
 
 
 def get_language_info(language):
-    if language in opensubtitles2_languages:
-        language = opensubtitles2_languages[language]
+    if language in opensubtitlesmora_languages:
+        language = opensubtitlesmora_languages[language]
 
     for lang in LANGUAGES:
         if lang[0] == language:
@@ -98,9 +94,9 @@ def log(module, msg):
     _log(module, msg.encode('utf-8'))
 
 
-def geturl(url1, headers=None, params=None):
+def geturl(url, headers=None, params=None):
     try:
-        res = ses.get(url1, headers=headers, verify=False, timeout=5)
+        res = ses.get(url, headers=headers, verify=False, timeout=5)
         print('res.status_code', res.status_code)
         if res.status_code == 200:
             return six.ensure_str(res.content)
