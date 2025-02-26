@@ -29,7 +29,7 @@ import re
 try:
     from .seekers import SubtitlesDownloadError, SubtitlesSearchError, \
         SubtitlesErrors, SubtitlesmoraSeeker, NovalermoraSeeker, ElsubtitleSeeker, OpenSubtitles2Seeker, TitulkyComSeeker, \
-        OpenSubtitlesSeeker, OpenSubtitlesMoraSeeker, PodnapisiSeeker, SubscenebestSeeker, SubdlSeeker, \
+        OpenSubtitlesSeeker, OpenSubtitlesMoraSeeker, PodnapisiSeeker, SubscenebestSeeker, Sub_Scene_comSeeker, SubdlSeeker, \
          TitloviSeeker, PrijevodiOnlineSeeker, MySubsSeeker, SubsourceSeeker
     from .seekers.seeker import BaseSeeker
     from .seekers.utilities import languageTranslate, langToCountry, \
@@ -38,7 +38,7 @@ try:
 except (ValueError, ImportError):
     from seekers import SubtitlesDownloadError, SubtitlesSearchError, \
         SubtitlesErrors, SubtitlesmoraSeeker, NovalermoraSeeker, ElsubtitleSeeker, OpenSubtitles2Seeker, TitulkyComSeeker, \
-        OpenSubtitlesMoraSeeker, OpenSubtitlesSeeker, PodnapisiSeeker, SubscenebestSeeker, SubdlSeeker, \
+        OpenSubtitlesMoraSeeker, OpenSubtitlesSeeker, PodnapisiSeeker, SubscenebestSeeker, Sub_Scene_comSeeker, SubdlSeeker, \
          TitloviSeeker, PrijevodiOnlineSeeker, MySubsSeeker, SubsourceSeeker
     from seekers.seeker import BaseSeeker
     from seekers.utilities import languageTranslate, langToCountry, \
@@ -49,6 +49,7 @@ import six
 
 
 SUBTITLES_SEEKERS = []
+SUBTITLES_SEEKERS.append(Sub_Scene_comSeeker)
 SUBTITLES_SEEKERS.append(NovalermoraSeeker)
 SUBTITLES_SEEKERS.append(SubtitlesmoraSeeker)
 SUBTITLES_SEEKERS.append(SubscenebestSeeker)

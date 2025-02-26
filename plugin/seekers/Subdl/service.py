@@ -14,6 +14,7 @@ import urllib.parse
 from ..utilities import log
 import html
 import urllib3
+from bs4 import BeautifulSoup
 import requests , json, re,random,string,time,warnings
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 warnings.simplefilter('ignore',InsecureRequestWarning)
@@ -80,6 +81,42 @@ def get_url2(url, referer=None):
     response.close()
     return content   
 
+def prepare_search_string(s):
+    s = s.replace("'", "").strip()
+    s = re.sub(r'\(\d\d\d\d\)$', '', s)  # remove year from title
+    s = quote_plus(s)
+    return s
+
+def getimdbid(title):
+    # Search query (movie name)
+    search_string = prepare_search_string(title)
+    url = f"https://www.imdb.com/find/?q={search_string}&s=tt"
+
+    # Set headers to mimic a browser visit
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+
+    # Send request to IMDb
+    response = requests.get(url, headers=headers)
+
+    # Parse HTML with BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Extract first search result
+    result = soup.find('a', href=True, class_='ipc-metadata-list-summary-item__t')
+
+    if result:
+        movie_link = result['href']
+        movie_id = movie_link.split('/')[2]  # Extract 'tt20201748' from '/title/tt20201748/'
+        movie_title = result.text.strip()
+
+        print(f"Movie ID: {movie_id}")
+        print(f"Title: {movie_title}")
+        print(f"IMDb Link: https://www.imdb.com/title/{movie_id}/")
+    else:
+        print("Movie not found.")
+    return movie_title
         
 def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack): #standard input
     languagefound = lang1
@@ -99,6 +136,8 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
         searchstring = "%s S%#02dE%#02d" % (tvshow, int(season), int(episode))
     else:
         searchstring = title.replace(' ', '%20').lower()
+        searchstring = getimdbid(title)
+        print(("searchstring_imdb", searchstring))
     log(__name__, "%s Search string = %s" % (debug_pretext, searchstring))
     get_subtitles_list(searchstring, title, language_info2, language_info1, subtitles_list)
     return subtitles_list, "", msg #standard output

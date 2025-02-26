@@ -70,7 +70,7 @@ subsource_languages = {
 
 def geturl(url):
     log(__name__, " Getting url: %s" % (url))
-    params = {"query": quote_plus(title) }
+    params = {"query": getimdbid(title) }
     try:
         response = requests.post(url, headers=HDR , data=json.dumps(params), timeout=10).text
         content = json.loads(response)
@@ -82,7 +82,7 @@ def geturl(url):
     
 def getSearchTitle(title, year=None): ## new Add
     url = __api + "searchMovie"
-    params = {"query": quote_plus(title) }
+    params = {"query": getimdbid(title) }
     content = requests.post(url, headers=HDR , data=json.dumps(params), timeout=10).text
     response_json = json.loads(content)
     success = response_json['success']
@@ -203,16 +203,46 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
 
 
 def prepare_search_string(s):
-    s = s.strip()
+    s = s.replace("'", "").strip()
     s = re.sub(r'\(\d\d\d\d\)$', '', s)  # remove year from title
     s = quote_plus(s)
     return s
 
+def getimdbid(title):
+    # Search query (movie name)
+    search_string = prepare_search_string(title)
+    url = f"https://www.imdb.com/find/?q={search_string}&s=tt"
+
+    # Set headers to mimic a browser visit
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+
+    # Send request to IMDb
+    response = requests.get(url, headers=headers)
+
+    # Parse HTML with BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Extract first search result
+    result = soup.find('a', href=True, class_='ipc-metadata-list-summary-item__t')
+
+    if result:
+        movie_link = result['href']
+        movie_id = movie_link.split('/')[2]  # Extract 'tt20201748' from '/title/tt20201748/'
+        movie_title = result.text.strip()
+
+        print(f"Movie ID: {movie_id}")
+        print(f"Title: {movie_title}")
+        print(f"IMDb Link: https://www.imdb.com/title/{movie_id}/")
+    else:
+        print("Movie not found.")
+    return movie_title
+    
 def search_movie(title, year, languages, filename):
     try:
-        title = title.strip()
-        search_string = prepare_search_string(title)
-        print(("getSearchTitle", getSearchTitle))
+        movie_title = getimdbid(title)
+        print(("movie_title", movie_title))
         #url = getSearchTitle(title, year)#.replace("%2B"," ")
         linkName = getSearchTitle(title, year)
         print(("linkName", linkName))

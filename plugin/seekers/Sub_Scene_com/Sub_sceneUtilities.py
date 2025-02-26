@@ -4,10 +4,8 @@ from __future__ import print_function
 import requests
 import re
 from ..utilities import log as _log
-
 from six.moves import urllib
 import six
-
 
 ses = requests.Session()
 
@@ -74,7 +72,7 @@ LANGUAGES = (
     ("Chinese (Traditional)", "17", "zh", "chi", "100", 30207),
     ("Chinese (Simplified)", "17", "zh", "chi", "100", 30207))
 
-moviesubtitles_languages = {
+subscene_languages = {
     'Chinese BG code': 'Chinese',
     'Brazillian Portuguese': 'Portuguese (Brazil)',
     'Serbian': 'SerbianLatin',
@@ -84,8 +82,8 @@ moviesubtitles_languages = {
 
 
 def get_language_info(language):
-    if language in moviesubtitles_languages:
-        language = moviesubtitles_languages[language]
+    if language in subscene_languages:
+        language = subscene_languages[language]
 
     for lang in LANGUAGES:
         if lang[0] == language:

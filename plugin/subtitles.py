@@ -272,11 +272,12 @@ def initExternalSettings(configsubsection):
     configsubsection.shadow.yOffset = ConfigSelection(default="-3", choices=shadowOffsetChoiceList)
     configsubsection.background = ConfigSubsection()
     configsubsection.background.enabled = ConfigOnOff(default=False)
-    configsubsection.background.type = ConfigSelection(default="dynamic", choices=[("dynamic", _("dynamic")), ("static", _("static"))])
+    configsubsection.background.type = ConfigSelection(default="dynamic", choices=[("dynamic", _("dynamic")), ("static", _("static")), ("fixed", _("fixed"))])
     configsubsection.background.xOffset = ConfigSelection(default="5", choices=backgroundOffsetChoiceList)
     configsubsection.background.yOffset = ConfigSelection(default="5", choices=backgroundOffsetChoiceList)
     configsubsection.background.color = ConfigSelection(default="000000", choices=colorChoiceList)
     configsubsection.background.alpha = ConfigSelection(default="80", choices=alphaChoiceList)
+    configsubsection.background.height = ConfigSelection(default="4", choices=["2", "3", "4", "5", "6", "7", "8"])
 
 
 def initEmbeddedSettings(configsubsection):
@@ -1228,7 +1229,7 @@ class SubsEmbeddedScreen(Screen):
 
 
 class SubtitlesWidget(GUIComponent):
-    STATE_NO_BACKGROUND, STATE_BACKGROUND = range(2)
+    STATE_NO_BACKGROUND, STATE_BACKGROUND, STATE_FIXED_BACKGROUND = range(3)
 
     def __init__(self, boundDynamic=True, boundXOffset=10, boundYOffset=10, boundSize=None, fontSize=25, positionPercent=94):
         GUIComponent.__init__(self)
@@ -1263,7 +1264,15 @@ class SubtitlesWidget(GUIComponent):
         return int((self.desktopSize[1] - self.calcWidgetHeight() - self.boundYOffset) / float(100) * self.positionPercent)
 
     def calcWidgetHeight(self):
-        return int(4 * self.font[1] + 15)
+        backgroundType = config.plugins.subtitlesSupport.external.background.type.value  # Get background type
+        
+        if backgroundType == "fixed":
+            heightFactor = int(config.plugins.subtitlesSupport.external.background.height.value)  # Use user setting
+        else:
+            heightFactor = 4  # Default value for dynamic & static
+        
+        return int(heightFactor * self.font[1] + 15)  # Calculate final height
+
 
     def update(self):
         ds = self.desktopSize
@@ -1293,15 +1302,13 @@ class SubtitlesWidget(GUIComponent):
                     self.instance.hide()
                     return
                 if self.boundDynamic:
-                    # hack so empty spaces are part of calculateSize calculation
                     self.instance2.setText(text.replace(' ', '.'))
                     ds = self.desktopSize
                     bs = self.boundSize
                     ws = self.instance2.calculateSize()
                     ws = (ws.width() + self.boundXOffset * 2, ws.height() + self.boundYOffset * 2)
                     wp = self.instance2.position()
-                    wp = (wp.x(), wp.y())
-                    wpy = wp[1] + (bs[1] - ws[1]) / 2
+                    wpy = wp.y() + (bs[1] - ws[1]) / 2
                     wpx = ds[0] / 2 - ws[0] / 2
                     self.instance.resize(eSize(int(ws[0]), int(ws[1])))
                     self.instance.move(ePoint(int(wpx), int(wpy)))
@@ -1314,6 +1321,16 @@ class SubtitlesWidget(GUIComponent):
                 self.instance.setVAlign(self.instance.alignCenter)
                 self.instance.setText(text)
                 self.instance.show()
+            elif self.state == self.STATE_FIXED_BACKGROUND:
+                self.instance.show()
+                self.instance2.setText(text)
+                self.instance2.show()
+                
+                # Ensure the fixed background maintains the correct height
+                bs = self.boundSize = (self.desktopSize[0], self.calcWidgetHeight())
+                self.instance.resize(eSize(int(bs[0]), int(bs[1])))
+                self.instance.move(ePoint(int(self.desktopSize[0] / 2 - bs[0] / 2), int(self.calcWidgetYPosition())))
+
 
     def setPosition(self, percent):
         self.positionPercent = percent
@@ -1333,11 +1350,21 @@ class SubtitlesWidget(GUIComponent):
         self.instance2.setForegroundColor(parseColor(color))
 
     def setBackgroundColor(self, color):
+        backgroundType = config.plugins.subtitlesSupport.external.background.type.value  # Correct config path
         if color[1:3] == "ff":
             self.state = self.STATE_NO_BACKGROUND
+        elif backgroundType == "fixed":  # Check for "fixed" background mode
+            self.state = self.STATE_FIXED_BACKGROUND
+            self.instance.setBackgroundColor(parseColor(color))
+            self.instance.show()  # Ensure background remains visible
         else:
             self.state = self.STATE_BACKGROUND
             self.instance.setBackgroundColor(parseColor(color))
+
+    def setFixedBackgroundHeight(self, height):
+        self.boundSize = (self.desktopSize[0], int(height) * self.font[1] + 15)
+        self.instance.resize(eSize(int(self.boundSize[0]), int(self.boundSize[1])))
+        self.instance.move(ePoint(int(self.desktopSize[0] / 2 - self.boundSize[0] / 2), int(self.calcWidgetYPosition())))
 
     def setBorderColor(self, color):
         self.instance.setBorderColor(parseColor(color))
@@ -1422,14 +1449,21 @@ class SubsScreen(Screen):
         elif self.__shadowType == 'offset' and (xOffset is not None and yOffset is not None):
             self["subtitles"].setShadowOffset(str(-xOffset) + ',' + str(-yOffset), self.scale)
 
-    def setBackground(self, type, alpha, color, xOffset=None, yOffset=None):
+    def setBackground(self, type, alpha, color, xOffset=None, yOffset=None, height=None):
         if type == 'dynamic':
             self["subtitles"].setBoundDynamic(True)
             self["subtitles"].setBoundOffset(xOffset, yOffset)
         else:
             self["subtitles"].setBoundDynamic(False)
+
+        # Apply background color
         color = "#" + alpha + color
         self["subtitles"].setBackgroundColor(color)
+
+        # Apply height only for "fixed" background
+        if type == "fixed" and height:
+            self["subtitles"].setFixedBackgroundHeight(height)
+
 
     def setColor(self, color):
         self.currentColor = color
@@ -1454,6 +1488,7 @@ class SubsScreen(Screen):
             shadowXOffset = shadowYOffset = shadowSize = 0
         backgroundType = self.externalSettings.background.type.getValue()
         backgroundAlpha = self.externalSettings.background.alpha.getValue()
+        backgroundHeight = self.externalSettings.background.height.getValue()
         backgroundColor = self.externalSettings.background.color.getValue()
         backgroundXOffset = self.externalSettings.background.xOffset.getValue()
         backgroundYOffset = self.externalSettings.background.yOffset.getValue()
@@ -1466,7 +1501,7 @@ class SubsScreen(Screen):
 
         self.setPosition(position)
         self.setShadow(shadowType, shadowColor, shadowSize, shadowXOffset, shadowYOffset)
-        self.setBackground(backgroundType, backgroundAlpha, backgroundColor, backgroundXOffset, backgroundYOffset)
+        self.setBackground(backgroundType, backgroundAlpha, backgroundColor, backgroundXOffset, backgroundYOffset, backgroundHeight)
         externalSettings = self.externalSettings
         self.setFonts({
             "regular": {
@@ -2156,6 +2191,7 @@ class SubsSetupExternal(BaseMenuScreen):
                 configList.append(getConfigListEntry(_("Background Y-offset"), externalSettings.background.yOffset))
             configList.append(getConfigListEntry(_("Background color"), externalSettings.background.color))
             configList.append(getConfigListEntry(_("Background transparency"), externalSettings.background.alpha))
+            configList.append(getConfigListEntry(_("Background height"), externalSettings.background.height))
         return configList
 
     def __init__(self, session, externalSettings):

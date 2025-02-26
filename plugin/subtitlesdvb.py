@@ -15,7 +15,8 @@ from Screens.HelpMenu import HelpableScreen
 from .compat import MessageBox, eConnectCallback
 from Screens.MinuteInput import MinuteInput
 from Screens.Screen import Screen
-
+from Components.ActionMap import ActionMap
+from Components.MenuList import MenuList
 from .e2_utils import getFps, fps_float, BaseMenuScreen, isFullHD, getDesktopSize
 from enigma import eTimer, getDesktop
 from .parsers.baseparser import ParseError
@@ -24,7 +25,9 @@ from skin import parseColor
 from .subtitles import SubsChooser, initSubsSettings, SubsScreen, \
     SubsLoader, PARSERS, ALL_LANGUAGES_ENCODINGS, ENCODINGS, \
     warningMessage
-
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from Components.MultiContent import MultiContentEntryText
+from Components.Sources.StaticText import StaticText
 
 config.plugins.subsSupport = ConfigSubsection()
 config.plugins.subsSupport.dvb = ConfigSubsection()
@@ -79,6 +82,103 @@ class SubsSupportDVB(object):
 
     def subsControllerCB(self):
         self.session.deleteDialog(self.subsScreen)
+
+
+
+class SubtitlePicker(Screen):
+    skin = """
+        <screen name="SubtitlePicker" position="center,center" size="900,800" title="Select Current Subtitle Line">
+            <widget name="subList" position="10,10" size="880,720" scrollbarMode="showOnDemand" halign="left" />
+            <eLabel position="10,740" size="200,40" font="Regular; 30" foregroundColor="#FF0000" backgroundColor="#000000" text="Cancel" />
+            <eLabel position="225,740" size="200,40" font="Regular; 30" foregroundColor="#00FF00" backgroundColor="#000000" text="Select" />
+        </screen>
+    """
+
+    def __init__(self, session, subsList, currentIndex):
+        """ Initialize SubtitlePicker screen """
+        Screen.__init__(self, session)
+
+        self.subsList = subsList
+        self.currentIndex = currentIndex
+
+        self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], {
+            "ok": self.selectSubtitle,
+            "green": self.selectSubtitle,
+            "cancel": self.close,
+            "red": self.close
+        }, -1)
+
+        self["subList"] = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
+        self["subList"].l.setItemHeight(40)  # Adjust row height
+        self["subList"].l.setFont(0, gFont("Regular", 24))  # Adjust font size
+        self["key_red"] = StaticText("Cancel")
+        self["key_green"] = StaticText("Select")
+        print(f"key_red: {self['key_red'].getText()}, key_green: {self['key_green'].getText()}")
+
+        self.updateSubtitleList()
+        self["key_red"].setText("Cancel")
+        self["key_green"].setText("Select")
+        self.onLayoutFinish.append(self.setInitialSelection)
+        print(f"Available widgets: {self.keys()}")
+    
+    def selectSubtitle(self):
+        """ ✅ Select the highlighted subtitle and return it """
+        index = self["subList"].getSelectedIndex()
+        if 0 <= index < len(self.subsList):
+            self.close(index)  # ✅ Closes picker and returns selected index
+
+
+    def updateSubtitleList(self):
+        """ Update subtitle list with separate columns for caption number, timestamp, and text """
+        menuItems = []
+
+        for sub in self.subsList:
+            #cap_number = str(sub.get("index", 0) + 1)  # Ensure index is a string
+            cap_number = f"{sub['index'] + 1}" 
+            time_stamp = self.format_time(sub['start'])  
+            subtitle_text = sub['text'].strip()
+
+            # Debugging to confirm values
+            #print(f"[DEBUG] cap_number: {cap_number}, time_stamp: {time_stamp}, subtitle_text: {subtitle_text}")
+
+            # Create multi-column list entry
+            item = [
+                MultiContentEntryText(pos=(10, 5), size=(80, 30), font=0, text=cap_number, flags=RT_HALIGN_LEFT),  # Caption number
+                MultiContentEntryText(pos=(80, 5), size=(200, 30), font=0, text=time_stamp, flags=RT_HALIGN_LEFT),  # Timestamp
+                MultiContentEntryText(pos=(300, 5), size=(600, 30), font=0, text=subtitle_text, flags=RT_HALIGN_LEFT)  # Subtitle text
+            ]
+
+            # Debug to check if item is created correctly
+            #print(f"[DEBUG] Adding to menuItems: {item}")
+
+            menuItems.append(item)
+
+        # Debug before setting the list
+        #print(f"[DEBUG] Final menuItems list: {menuItems}")
+
+        self["subList"].l.setList(menuItems)  # Set the list with separate columns
+        self["subList"].l.invalidate()  # Refresh UI
+
+    
+    def setInitialSelection(self):
+        """ ✅ Ensure the picker opens on the currently playing subtitle """
+        if 0 <= self.currentIndex < len(self.subsList):
+            self["subList"].moveToIndex(self.currentIndex)
+
+    def format_time(self, seconds):
+        """ Convert subtitle start time to hh:mm:ss,ms format """
+        hours = int(seconds // 3600)
+        minutes = int((seconds % 3600) // 60)
+        secs = int(seconds % 60)
+        millisecs = int((seconds - int(seconds)) * 1000)  # Extract milliseconds
+        return f"{hours:02d}:{minutes:02d}:{secs:02d},{millisecs:03d}"
+
+
+    def selectSubtitle(self):
+        """ ✅ Select the highlighted subtitle and return it """
+        index = self["subList"].getSelectedIndex()
+        if 0 <= index < len(self.subsList):
+            self.close(index)
 
 
 class SubsControllerDVB(Screen, HelpableScreen):
@@ -139,7 +239,7 @@ class SubsControllerDVB(Screen, HelpableScreen):
         self["eventName"] = Label(_("Event Name") + ":")
         self["eventTime"] = Label(_("Event Time") + ":")
         self["eventDuration"] = Label(_("Event Duration") + ":")
-        self['actions'] = HelpableActionMap(self, "SubtitlesDVBActions",
+        self["actions"] = HelpableActionMap(self, "SubtitlesDVBActions",
         {
             "closePlugin": (self.close, _("close plugin")),
             "showHideStatus": (self.showHideStatus, _("show/hide subtitles status")),
@@ -155,7 +255,14 @@ class SubsControllerDVB(Screen, HelpableScreen):
             "prevSubManual": (self.previousManual, _("skip previous subtitle by setting time in minutes")),
             "eventSync": (self.eventSync, _("skip subtitle to current event position")),
             "changeFps": (self.changeFps, _("change subtitles fps")),
-        }, 0)
+        }, -1)
+
+        # ✅ Adding a separate ColorActions ActionMap
+        self["color_actions"] = ActionMap(["ColorActions"],
+        {
+            "red": self.openSubtitlePicker,  # ✅ Ensure RED button opens SubtitlePicker
+        }, -1)
+
         try:
             from Screens.InfoBar import InfoBar
             InfoBar.instance.subtitle_window.hide()
@@ -172,6 +279,31 @@ class SubsControllerDVB(Screen, HelpableScreen):
             self.onFirstExecBegin.append(self.eventSync)
         self.onClose.append(self.engine.close)
         self.onClose.append(self.delTimers)
+
+    def openSubtitlePicker(self):
+        #print("[DEBUG] RED button pressed - Attempting to open SubtitlePicker")
+        try:
+            subtitleList = self.engine.getSubtitlesList()  # ✅ Get a list of subtitles
+            currentIndex = self.engine.getPosition()  # ✅ Get the current subtitle index
+
+            if not subtitleList:
+                print("[ERROR] No subtitles available to open SubtitlePicker")
+                return
+            print(f"[DEBUG] Opening SubtitlePicker with {len(subtitleList)} items")
+            self.session.openWithCallback(self.onSubtitlePicked, SubtitlePicker, subtitleList, currentIndex)
+            print("[DEBUG] SubtitlePicker opened successfully")
+        except Exception as e:
+            print(f"[ERROR] Failed to open SubtitlePicker: {e}")
+
+
+
+    def onSubtitlePicked(self, index=None):
+        if index is not None:
+            self.engine.setPosition(index)
+            self.engine.renderSub()  # Ensure the new subtitle is displayed immediately
+            self.engine.setRefTime()  # Reset timing to allow automatic progression
+            self.engine.startHideTimer()  # Restart timer for next subtitle
+            self.showStatus(True)  # Refresh UI
 
     def startEventTimer(self):
         self.eventTimer.start(500)
@@ -416,6 +548,7 @@ class SubsControllerDVB(Screen, HelpableScreen):
         self.subtitlesTimer.stop()
         del self.subtitlesTimer_conn
         del self.subtitlesTimer
+    
 
 
 class SubsEngineDVB(object):
@@ -434,6 +567,19 @@ class SubsEngineDVB(object):
         self.onRenderSub = []
         self.onHideSub = []
         self.onPositionUpdate = []
+        
+    def getSubtitlesList(self):
+        """Returns a list of available subtitles with timestamps."""
+        return [
+        {
+            "index": idx,
+            "text": sub["text"],
+            "start": sub["start"] / 90000,  # 90,000 ticks per second
+            "end": sub["end"] / 90000,
+        }
+        for idx, sub in enumerate(self.subsList)
+        ]
+
 
     def setSubsList(self, subsList):
         self.subsList = subsList

@@ -12,5 +12,5 @@ except ImportError:
 
 from .seeker import SubtitlesDownloadError, SubtitlesSearchError, SubtitlesErrors
 from .xbmc_subtitles import TitulkyComSeeker, \
-    OpenSubtitlesSeeker, OpenSubtitlesMoraSeeker, OpenSubtitles2Seeker, SubdlSeeker, PodnapisiSeeker, SubscenebestSeeker, SubtitlesmoraSeeker, \
+    OpenSubtitlesSeeker, OpenSubtitlesMoraSeeker, OpenSubtitles2Seeker, SubdlSeeker, PodnapisiSeeker, SubscenebestSeeker, Sub_Scene_comSeeker, SubtitlesmoraSeeker, \
      TitloviSeeker, PrijevodiOnlineSeeker, MySubsSeeker, SubsourceSeeker, NovalermoraSeeker, ElsubtitleSeeker
