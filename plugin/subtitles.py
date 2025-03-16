@@ -4962,11 +4962,12 @@ class SubsSearchSettings(Screen, ConfigListScreen):
             err_msg = "unknown error"
             if isinstance(providerError, Exception):
                 if isinstance(providerError, ImportError):
-                    # No module named ...
-                    err_msg = _("missing") + " python-%s " % (providerError.message.split()[-1]) + _("library")
+                    missing_lib = providerError.args[0].split()[-1] if providerError.args else "unknown"
+                    err_msg = _("missing") + f" python-{missing_lib} " + _("library")
                 else:
-                    err_msg = providerError.message
-        msg = "%s: %s" % (provider.provider_name, err_msg)
+                    err_msg = str(providerError)  # Use str() instead of .message
+        
+        msg = f"{provider.provider_name}: {err_msg}"
         self.session.open(MessageBox, msg, MessageBox.TYPE_WARNING, timeout=5)
 
     def openProviderSettings(self, provider):

@@ -7,17 +7,24 @@ import requests
 from .OpenSubtitles2Utilities import get_language_info
 import os.path
 import http.client
-import json
+import json, random
 import sys
-from bs4 import BeautifulSoup
 from urllib.request import HTTPCookieProcessor, build_opener, install_opener, Request, urlopen
 from urllib.parse import urlencode
 from ..utilities import languageTranslate, getFileSize, log
 from ..seeker import SubtitlesDownloadError, SubtitlesErrors
 
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Linux; Android 11; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 15_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.2 Mobile/15E148 Safari/604.1"
+]
 
+def get_random_ua():
+    return random.choice(USER_AGENTS)
 HDR = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firefox/115.0',
+    "User-Agent": get_random_ua(),
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
     'Accept-Language': 'fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3',
     'Content-Type': 'text/html; charset=UTF-8',
@@ -43,7 +50,7 @@ def get_opensubtitles_token():
     API_KEY = settings_provider.getSetting("OpenSubtitles_API_KEY")
     USERNAME = settings_provider.getSetting("OpenSubtitles_username")
     PASSWORD = settings_provider.getSetting("OpenSubtitles_password")
-    print(f"API Key: {API_KEY}, Username: {USERNAME}, Password: {PASSWORD}")
+    #print(f"API Key: {API_KEY}, Username: {USERNAME}, Password: {PASSWORD}")
     if not API_KEY or not USERNAME or not PASSWORD:
         print("Error: Missing OpenSubtitles credentials.")
         return None
@@ -106,7 +113,7 @@ def get_rating(downloads):
 
 def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack):  # standard input
     languagefound = lang1
-    print(languagefound)
+    #print(languagefound)
     language_info = get_language_info(languagefound)
     language_info1 = language_info['name']
     language_info2 = language_info['2et']
@@ -117,14 +124,22 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
 
     if len(tvshow) == 0 and year:  # Movie
         searchstring = "%s (%s)" % (title, year)
+        #print(("searchstring", searchstring))
+        get_subtitles_list_movie(searchstring, language_info2, language_info1, subtitles_list)
     elif len(tvshow) > 0 and title == tvshow:  # Movie not in Library
-        searchstring = "%s (%#02d%#02d)" % (tvshow, int(season), int(episode))
+        searchstring = "%s" % (tvshow)
+        #print(("searchstring", searchstring))
+        get_subtitles_list_tv(searchstring, tvshow, season, episode, language_info2, language_info1, subtitles_list)
     elif len(tvshow) > 0:  # TVShow
         searchstring = "%s S%#02dE%#02d" % (tvshow, int(season), int(episode))
+        #print(("searchstring", searchstring))
+        get_subtitles_list_tv(searchstring, tvshow, season, episode, language_info2, language_info1, subtitles_list)
     else:
         searchstring = title
+        #print(("searchstring", searchstring))
+        get_subtitles_list_movie(searchstring, language_info2, language_info1, subtitles_list)
     log(__name__, "%s Search string = %s" % (debug_pretext, searchstring))
-    get_subtitles_list(searchstring, language_info2, language_info1, subtitles_list)
+    #get_subtitles_list(searchstring, language_info2, language_info1, subtitles_list)
     return subtitles_list, "", msg  # standard output
 
 
@@ -133,9 +148,11 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
     token = get_opensubtitles_token()
     global settings_provider
     API_KEY = settings_provider.getSetting("OpenSubtitles_API_KEY")
-    
+    #print(f"API_KEY_down: {API_KEY}")
     language = subtitles_list[pos]["language_name"]
+    #print(f"language_down: {language}")
     file_id = subtitles_list[pos]["id"]
+    #print(f"file_id_down: {file_id}")
     url = f"{BASE_URL}/download"
     
     headers = {
@@ -149,7 +166,9 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
         response = requests.post(url, json=payload, headers=headers)
         response.raise_for_status()
         data = response.json()
+        #print(json.dumps(data, indent=4))
         download_url = data.get("link")
+        #print(f"download_url: {download_url}")
         remaining_downloads = data.get("remaining")
         print(f"remaining_downloads: {remaining_downloads}")
 
@@ -168,16 +187,9 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
         subtitleid = 0
         typeid = "zip"
         filmid = 0
-        #postparams = { '__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '' , '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid}
         postparams = urlencode({'__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '', '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid})
-        #class MyOpener(urllib.FancyURLopener):
-            #version = 'User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firefox/115.0'
-        #my_urlopener = MyOpener()
-        #my_urlopener.addheader('Referer', url)
         log(__name__, "%s Fetching subtitles using url with referer header '%s' and post parameters '%s'" % (debug_pretext, downloadlink, postparams))
-        #response = my_urlopener.open(downloadlink, postparams)
         response = s.get(downloadlink, data=postparams, headers=HDR, verify=False, allow_redirects=True)
-        #print(response.content)
         local_tmp_file = zip_subs
         try:
             log(__name__, "%s Saving subtitles to '%s'" % (debug_pretext, local_tmp_file))
@@ -186,7 +198,6 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
             local_file_handle = open(local_tmp_file, 'wb')
             local_file_handle.write(response.content)
             local_file_handle.close()
-            # Check archive type (rar/zip/else) through the file header (rar=Rar!, zip=PK) urllib3.request.urlencode
             myfile = open(local_tmp_file, "rb")
             myfile.seek(0)
             if (myfile.read(1).decode('utf-8') == 'R'):
@@ -214,78 +225,139 @@ def download_subtitles(subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, s
         return packed, language, subs_file  # standard output
 
 
-def get_subtitles_list(searchstring, languageshort, languagelong, subtitles_list):
-    print('searchstring_original:', searchstring)
-    search_string = searchstring.lower().replace(" ", "+").replace(".", "_dot_")
-    #search_string = searchstring.lower().replace(":", "-").replace(" ", "-").replace(".", "_dot_")
-    print('search_string:', search_string)
-    lang = languageshort
+def get_subtitles_list_movie(searchstring, languageshort, languagelong, subtitles_list):
+    """Fetch subtitle list for movies from OpenSubtitles API."""
     
-    url = '%s/fr/%s/search-all/q-%s/hearing_impaired-include/machine_translated-/trusted_sources-' % (main_url, lang, search_string)
-    print('url', url)
+    token = get_opensubtitles_token()
+    if not token:
+        print("Error: Failed to authenticate with OpenSubtitles API.")
+        return
+
+    global settings_provider
+    API_KEY = settings_provider.getSetting("OpenSubtitles_API_KEY")
+
+    url = f"{BASE_URL}/subtitles"
+    params = {
+        "query": searchstring,
+        "type": "movie",  # Explicitly specify movie type
+        "languages": languageshort
+    }
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Api-Key": API_KEY,
+        "Accept": "application/json",
+    }
 
     try:
-        log(__name__, "%s Getting url: %s" % (debug_pretext, url))
-        print(url)
-        content = requests.get(url, timeout=10)
-        soup = BeautifulSoup(content.text, "html.parser").tbody
-        rows = soup.find_all("tr")
+        response = requests.get(url, params=params, headers=headers)
+        response.raise_for_status()
+        data = response.json()
 
-        # Initialize a list to store the scraped data
-        scraped_data = []
+        # Extract subtitles from the response
+        for subtitle in data.get("data", []):
+            attributes = subtitle.get("attributes", {})
+            feature_details = attributes.get("feature_details", {})
+            uploader = attributes.get("uploader", {})
+            files = attributes.get("files", [])
 
-        # Loop through each row
-        for row in rows:
-            # Extract subtitle name (use only the desktop view text)
-            subtitle_name_tag = row.find('span', {'class': 'hidden md:block'})
-            if subtitle_name_tag:
-                subtitle_name = subtitle_name_tag.text.strip()
-            else:
-                subtitle_name = None
-            
-            # Extract number of downloads
-            downloads_tag = row.find('a', {'title': 'téléchargé'})
-            if downloads_tag:
-                downloads = downloads_tag.text.strip()
-            else:
-                downloads = None
-            
-            # Extract file_id from the download link
-            download_link = row.find('a', {'class': 'ddl_trigger_no'})
-            if download_link:
-                file_id = download_link['href'].split('/nocache/download/')[1].split('/')[0]
-            else:
-                file_id = None
-            
-            # Append the data to the list
-            scraped_data.append({
-                'subtitle_name': subtitle_name,
-                'downloads': downloads,
-                'file_id': file_id
+            file_id = files[0]["file_id"] if files else None
+            #print(f"file_id: {file_id}")
+            filename = attributes.get("release", "Unknown")
+            download_count = attributes.get("download_count", 0)
+            rating = get_rating(download_count)
+            imdb_id = feature_details.get("imdb_id", "N/A")
+            tmdb_id = feature_details.get("tmdb_id", "N/A")
+            uploader_name = uploader.get("name", "Anonymous")
+            upload_date = attributes.get("upload_date", "Unknown")
+            subtitle_url = attributes.get("url", "")
+
+            subtitles_list.append({
+                "rating": str(rating),
+                "no_files": len(files),
+                "filename": filename,
+                "sync": False,
+                "id": file_id,
+                "language_flag": f"flags/{languageshort}.gif",
+                "language_name": languagelong,
+                "imdb_id": imdb_id,
+                "tmdb_id": tmdb_id,
+                "uploader": uploader_name,
+                "upload_date": upload_date,
+                "url": subtitle_url
             })
-            
-            id = file_id
-            filename = subtitle_name
-            downloads = downloads
-            print(id)
-            print(filename)
-            print(downloads)
-            
-            try:
-                rating = get_rating(downloads)
-                #print(rating)
-            except:
-                rating = 0
-                pass
-            if not downloads == 0:
-                log(__name__, "%s Subtitles found: %s (id = %s)" % (debug_pretext, filename, id))
-                subtitles_list.append({'rating': str(rating), 'no_files': 1, 'filename': filename, 'sync': False, 'id': id, 'language_flag': 'flags/' + languageshort + '.gif', 'language_name': languagelong})
+            log(__name__, f"{debug_pretext} Subtitles found: {filename} (id = {file_id})")
 
-        # Print the scraped data
-        #for data in scraped_data:
-            #print(f"Subtitle Title: {data['Subtitle Title']}")
-            #print(f"Download Link: {data['Download Link']}")
-            #print("-" * 40)
-    except:
-        pass
+    except requests.exceptions.RequestException as e:
+        log(__name__, f"Error fetching subtitles: {e}")
+
+
+def get_subtitles_list_tv(searchstring, tvshow, season, episode, languageshort, languagelong, subtitles_list):
+    """Fetch subtitle list for TV episodes from OpenSubtitles API."""
+    
+    token = get_opensubtitles_token()
+    if not token:
+        print("Error: Failed to authenticate with OpenSubtitles API.")
+        return
+
+    global settings_provider
+    API_KEY = settings_provider.getSetting("OpenSubtitles_API_KEY")
+
+    url = f"{BASE_URL}/subtitles"
+    params = {
+        "query": tvshow,  # Use only the TV show title
+        "type": "episode",  # Specify TV episode search
+        "season_number": season,
+        "episode_number": episode,
+        "languages": languageshort
+    }
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Api-Key": API_KEY,
+        "Accept": "application/json",
+    }
+
+    try:
+        response = requests.get(url, params=params, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+
+        # Extract subtitles from the response
+        for subtitle in data.get("data", []):
+            attributes = subtitle.get("attributes", {})
+            feature_details = attributes.get("feature_details", {})
+            uploader = attributes.get("uploader", {})
+            files = attributes.get("files", [])
+
+            file_id = files[0]["file_id"] if files else None
+            #print(f"file_id: {file_id}")
+            filename = attributes.get("release", "Unknown")
+            download_count = attributes.get("download_count", 0)
+            rating = get_rating(download_count)
+            imdb_id = feature_details.get("imdb_id", "N/A")
+            tmdb_id = feature_details.get("tmdb_id", "N/A")
+            parent_title = feature_details.get("parent_title", "Unknown Show")
+            upload_date = attributes.get("upload_date", "Unknown")
+            subtitle_url = attributes.get("url", "")
+
+            subtitles_list.append({
+                "rating": str(rating),
+                "no_files": len(files),
+                "filename": filename,
+                "sync": False,
+                "id": file_id,
+                "language_flag": f"flags/{languageshort}.gif",
+                "language_name": languagelong,
+                "imdb_id": imdb_id,
+                "tmdb_id": tmdb_id,
+                "tv_show": parent_title,
+                "season": season,
+                "episode": episode,
+                "upload_date": upload_date,
+                "url": subtitle_url
+            })
+            log(__name__, f"{debug_pretext} Subtitles found: {filename} (id = {file_id})")
+
+    except requests.exceptions.RequestException as e:
+        log(__name__, f"Error fetching subtitles: {e}")
+
 

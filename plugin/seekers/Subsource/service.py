@@ -2,10 +2,7 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
-import difflib
-import os
-import re
-import string
+import difflib  # For fuzzy matching
 from bs4 import BeautifulSoup
 from .SubsourceUtilities import geturl, get_language_info
 from six.moves import html_parser
@@ -14,26 +11,33 @@ from six.moves.urllib.parse import quote_plus, urlencode
 from ..utilities import log
 import html
 import urllib3
-import requests, re
-import requests , json, re,random,string,time,warnings
+import os, requests , json, re, random, string, time, warnings
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
-from six.moves import html_parser
 warnings.simplefilter('ignore',InsecureRequestWarning)
 
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Linux; Android 11; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 15_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.2 Mobile/15E148 Safari/604.1"
+]
+
+def get_random_ua():
+    return random.choice(USER_AGENTS)
 
 HDR = {
     "accept": "application/json, text/plain, */*",
     "accept-language": "en-US,en;q=0.9",
     "content-type": "application/json",
     "priority": "u=1, i",
-    "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+    "User-Agent": get_random_ua()
     }
 HDRDL = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
     "accept-language": "en-US,en;q=0.9",
     "content-type": "application/x-www-form-urlencoded",
     "priority": "u=1, i",
-    "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+    "User-Agent": get_random_ua()
     }
 
 __api = "https://api.subsource.net/api/"
@@ -56,9 +60,6 @@ seasons = seasons + ["Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteen
 seasons = seasons + ["Twenty-first", "Twenty-second", "Twenty-third", "Twenty-fourth", "Twenty-fifth", "Twenty-sixth",
                      "Twenty-seventh", "Twenty-eighth", "Twenty-ninth"]
 
-movie_season_pattern = ("<a href=\"(?P<link>/subscene/[^\"]*)\">(?P<title>[^<]+)\((?P<year>\d{4})\)</a>\s+"
-                        "<div class=\"subtle count\">\s*(?P<numsubtitles>\d+\s+subtitles)</div>\s+")
-
 # Don't remove it we need it here
 subsource_languages = {
     'Chinese BG code': 'Chinese',
@@ -67,93 +68,87 @@ subsource_languages = {
     'Ukranian': 'Ukrainian',
     'Farsi/Persian': 'Persian'
 }
-
-def geturl(url):
-    log(__name__, " Getting url: %s" % (url))
-    params = {"query": getimdbid(title) }
-    try:
-        response = requests.post(url, headers=HDR , data=json.dumps(params), timeout=10).text
-        content = json.loads(response)
-        print(content)
-    except:
-        log(__name__, " Failed to get url:%s" % (url))
-        content = None
-    return(content)
     
-def getSearchTitle(title, year=None): ## new Add
+def getSearchTitle(title, year=None):
     url = __api + "searchMovie"
-    params = {"query": getimdbid(title) }
-    content = requests.post(url, headers=HDR , data=json.dumps(params), timeout=10).text
-    response_json = json.loads(content)
-    success = response_json['success']
-    found = response_json.get("found", [])
-    if (success == True):
-        for res in found:
+    params = {"query": prepare_search_string(title)}
+    
+    try:
+        content = requests.post(url, headers=HDR, data=json.dumps(params), timeout=10).text
+        response_json = json.loads(content)
+    except Exception as e:
+        print(f"Error fetching search results: {e}")
+        return None
+
+    if response_json.get("success"):
+        found_movies = response_json.get("found", [])
+        for res in found_movies:
             try:
-                name = res['title']
-                year = res['releaseYear']
-                linkName = res['linkName']
-                print(("hrefxxx", linkName))
-                print(("yearxx", year))
-                href = root_url + linkName
-                print(("href", href))
-                return linkName
+                name = res.get('title')
+                release_year = res.get('releaseYear')
+                linkName = res.get('linkName')
                 
-            except:
-                break
-        return linkName
-    else:
-        print("FAILED")
+                if not linkName:
+                    continue  # Skip if no linkName
+                
+                print(f"Found: {name} ({release_year}) -> {linkName}")
+                return linkName
 
-def find_movie(content, title, year):
-    url_found = None
-    h = html_parser.HTMLParser()
-    for matches in re.finditer(movie_season_pattern, content, re.IGNORECASE | re.DOTALL):
-        print((tuple(matches.groups())))
-        found_title = matches.group('title')
-        found_title = html.unescape(found_title) 
-        print(("found_title", found_title))  
-        log(__name__, "Found movie on search page: %s (%s)" % (found_title, matches.group('year')))
-        if found_title.lower().find(title.lower()) > -1:
-            if matches.group('year') == year:
-                log(__name__, "Matching movie found on search page: %s (%s)" % (found_title, matches.group('year')))
-                url_found = matches.group('link')
-                print(url_found)
-                break
-    return url_found
+            except KeyError as e:
+                print(f"Missing key: {e}")
+                continue  # Continue to the next result if one fails
 
+    print("FAILED")
+    return None  # Ensure None is returned if nothing is found
 
-def find_tv_show_season(content, tvshow, season):
-    url_found = None
-    possible_matches = []
-    all_tvshows = []
+def getSearchTitle_tv(title):
+    url = __api + "searchMovie"
+    params = {"query": prepare_search_string(title)}
+    
+    print(f"Searching for: {params}")  # Debugging step
 
-    h = html_parser.HTMLParser()
-    for matches in re.finditer(movie_season_pattern, content, re.IGNORECASE | re.DOTALL):
-        found_title = matches.group('title')
-        found_title = html.unescape(found_title)
-        print(("found_title2", found_title)) 
-        log(__name__, "Found tv show season on search page: %s" % found_title)
-        s = difflib.SequenceMatcher(None, string.lower(found_title + ' ' + matches.group('year')), tvshow.lower())
-        all_tvshows.append(matches.groups() + (s.ratio() * int(matches.group('numsubtitles')),))
-        if found_title.lower().find(tvshow.lower() + " ") > -1:
-            if found_title.lower().find(season.lower()) > -1:
-                log(__name__, "Matching tv show season found on search page: %s" % found_title)
-                possible_matches.append(matches.groups())
+    try:
+        content = requests.post(url, headers=HDR, data=json.dumps(params), timeout=10).text
+        response_json = json.loads(content)
+    except Exception as e:
+        print(f"Error fetching search results: {e}")
+        return None
 
-    if len(possible_matches) > 0:
-        possible_matches = sorted(possible_matches, key=lambda x: -int(x[3]))
-        url_found = possible_matches[0][0]
-        log(__name__, "Selecting matching tv show with most subtitles: %s (%s)" % (
-            possible_matches[0][1], possible_matches[0][3]))
-    else:
-        if len(all_tvshows) > 0:
-            all_tvshows = sorted(all_tvshows, key=lambda x: -int(x[4]))
-            url_found = all_tvshows[0][0]
-            log(__name__, "Selecting tv show with highest fuzzy string score: %s (score: %s subtitles: %s)" % (
-                all_tvshows[0][1], all_tvshows[0][4], all_tvshows[0][3]))
-                                                                   
-    return url_found                                                                     
+    if response_json.get("success"):
+        found_shows = response_json.get("found", [])
+
+        print(f"Total API Results: {len(found_shows)}")
+
+        # Print raw API titles before filtering
+        raw_titles = [show["title"] for show in found_shows]
+        print(f"Raw API Returned Titles ({len(raw_titles)}): {raw_titles}")
+
+        # Filter only TV shows
+        tv_shows = [show for show in found_shows if show.get("type") == "TVSeries"]
+        all_titles = [show["title"] for show in tv_shows]
+
+        print(f"Filtered TV Shows ({len(all_titles)}): {all_titles}")
+
+        # Select the best match for "Prison Break"
+        best_match = next((show for show in tv_shows if show["title"].strip().lower() == title.strip().lower()), None)
+
+        if best_match:
+            name = best_match["title"]
+            linkName = best_match["linkName"]
+            seasons = best_match.get("seasons", [])
+
+            if not linkName or not seasons:
+                print("No valid linkName or seasons found!")
+                return None
+
+            # Extract valid seasons
+            seasons_list = {s["number"]: s["id"] for s in seasons if s["number"] is not None}
+
+            print(f"Matched TV Show: {name} -> {linkName}, Seasons: {seasons_list}")
+            return {"title": linkName, "seasons": seasons_list}
+
+    print("FAILED: No matching TV show found.")
+    return None                             
 
 def getallsubs(content, allowed_languages, filename="", search_string=""):
     response_json = json.loads(content)
@@ -164,8 +159,6 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
     subtitles = []
     if (success == True):
         for sub in all_subs:
-        #numfiles = 1
-        #numfiles = movie.find('td', class_="a3").get_text(strip=True)
             fullLink = sub['fullLink']
             languagefound = sub['lang']
             sub_id = sub['subId']
@@ -188,10 +181,6 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
                         subtitles.append({'filename': subtitle_name, 'sync': sync, 'link': link,
                                      'language_name': language_info['name'], 'lang': language_info})
                         i = i + 1
-                #elif numfiles > 2:
-                    #subtitle_name = subtitle_name + ' ' + ("%d files" % int(matches.group('numfiles')))
-                    #subtitles.append({'rating': rating, 'filename': subtitle_name, 'sync': sync, 'link': link, 'language_name': language_info['name'], 'lang': language_info, 'comment': comment})
-                #i = i + 1
                 else:
                     subtitles.append({'filename': subtitle_name, 'sync': sync, 'link': link, 'language_name': language_info['name'], 'lang': language_info, 'sub_id':sub_id, 'linkName':linkName, 'year':year})
                     i = i + 1
@@ -201,88 +190,92 @@ def getallsubs(content, allowed_languages, filename="", search_string=""):
     else:
         print("FAILED")
 
-
 def prepare_search_string(s):
     s = s.replace("'", "").strip()
     s = re.sub(r'\(\d\d\d\d\)$', '', s)  # remove year from title
-    s = quote_plus(s)
+    s = quote_plus(s).replace("+"," ")
     return s
-
-def getimdbid(title):
-    # Search query (movie name)
-    search_string = prepare_search_string(title)
-    url = f"https://www.imdb.com/find/?q={search_string}&s=tt"
-
-    # Set headers to mimic a browser visit
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
-
-    # Send request to IMDb
-    response = requests.get(url, headers=headers)
-
-    # Parse HTML with BeautifulSoup
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    # Extract first search result
-    result = soup.find('a', href=True, class_='ipc-metadata-list-summary-item__t')
-
-    if result:
-        movie_link = result['href']
-        movie_id = movie_link.split('/')[2]  # Extract 'tt20201748' from '/title/tt20201748/'
-        movie_title = result.text.strip()
-
-        print(f"Movie ID: {movie_id}")
-        print(f"Title: {movie_title}")
-        print(f"IMDb Link: https://www.imdb.com/title/{movie_id}/")
-    else:
-        print("Movie not found.")
-    return movie_title
     
 def search_movie(title, year, languages, filename):
     try:
-        movie_title = getimdbid(title)
+        movie_title = prepare_search_string(title)
+        if year:
+            movie_title = f"{movie_title} {year}"  # Append year to improve matching
         print(("movie_title", movie_title))
-        #url = getSearchTitle(title, year)#.replace("%2B"," ")
-        linkName = getSearchTitle(title, year)
+
+        linkName = getSearchTitle(movie_title, year)  # Now includes year in the query
         print(("linkName", linkName))
+
+        if not linkName:
+            print(f"No match found for {title} ({year})")
+            return []
+
         url = root_url + linkName
         print(("true url", url))
-        params = {"movieName":linkName}
-        content = requests.post(__getMovie, headers=HDR , data=json.dumps(params), timeout=10).text
-        #print("true url", url)
-        #content = geturl(url)
-        print(("title", title))
-        #print("content", content)
-        if content != '':
+        params = {"movieName": linkName}
+
+        content = requests.post(__getMovie, headers=HDR, data=json.dumps(params), timeout=10).text
+        if content:
             _list = getallsubs(content, languages, filename)
             print(("_list", _list))
             return _list
         else:
             return []
+
     except Exception as error:
         print(("error", error))
+        return []
 
+def search_tvshow(title, season, episode, languages, filename):
+    try:
+        title = title.strip()
+        print(("title_search_tvshow", title))
+        search_result = getSearchTitle_tv(title)
+        print(("search_result", search_result))
 
-def search_tvshow(tvshow, season, episode, languages, filename):
-    tvshow = tvshow.strip()
-    search_string = prepare_search_string(tvshow)
-    search_string += " - " + seasons[int(season)] + " Season"
+        if not search_result:
+            print(f"TV Show '{title}' not found.")
+            return []
 
-    log(__name__, "Search tvshow = %s" % search_string)
-    url = main_url + "/subtitles/title?q=" + quote_plus(search_string) + '&r=true'
-    content, response_url = requests.get(url,headers=HDR,verify=False,allow_redirects=True).text
-    if content is not None:
-        log(__name__, "Multiple tv show seasons found, searching for the right one ...")
-        tv_show_seasonurl = find_tv_show_season(content, tvshow, seasons[int(season)])
-        if tv_show_seasonurl is not None:
-            log(__name__, "Tv show season found in list, getting subs ...")
-            url = main_url + tv_show_seasonurl
-            content, response_url = requests.get(url,headers=HDR,verify=False,allow_redirects=True).text
-            if content is not None:
-                search_string = "s%#02de%#02d" % (int(season), int(episode))
-                return getallsubs(content, languages, filename, search_string)
+        linkName = search_result["title"]
+        seasons = search_result["seasons"]
 
+        season = int(season)  # Ensure season is an integer
+
+        if season not in seasons:
+            print(f"Season {season} not found for {title}. Available seasons: {list(seasons.keys())}")
+            return []
+
+        season_id = seasons[season]
+        print(f"Using Season ID: {season_id} for {title} Season {season}")
+
+        # Fix the season format in the request payload
+        params = {
+            "langs": [],
+            "movieName": linkName,
+            "season": f"season-{season}"  # Correct API format
+        }
+        
+        try:
+            content = s.post(__getMovie, headers=HDR, data=json.dumps(params), timeout=10).text
+            response_json = json.loads(content)
+        except requests.exceptions.Timeout:
+            print(f"Timeout occurred when fetching subtitles for {title} Season {season}. Retrying once...")
+            try:
+                content = s.post(__getMovie, headers=HDR, data=json.dumps(params), timeout=15).text
+                response_json = json.loads(content)
+            except requests.exceptions.Timeout:
+                print(f"Failed again due to timeout.")
+                return []
+
+        if content and response_json.get("success"):
+            return getallsubs(content, languages, filename)
+
+        return []
+
+    except Exception as error:
+        print(f"Error in search_tvshow: {error}")
+        return []
 
 def search_manual(searchstr, languages, filename):
     search_string = prepare_search_string(searchstr)
@@ -291,7 +284,6 @@ def search_manual(searchstr, languages, filename):
 
     if content is not None:
         return getallsubs(content, languages, filename)
-
 
 def search_subtitles(file_original_path, title, tvshow, year, season, episode, set_temp, rar, lang1, lang2, lang3, stack):  # standard input
     log(__name__, "%s Search_subtitles = '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'" %
@@ -313,12 +305,8 @@ def search_subtitles(file_original_path, title, tvshow, year, season, episode, s
             print("error")
     return sublist, "", ""
 
-
 def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, session_id):  # standard input
     sub_id = subtitles_list[pos][ "sub_id" ]
-    #year = subtitles_list[pos][ "year" ]
-    #title = title.strip()
-    #search_string = prepare_search_string(title)
     language = subtitles_list[pos][ "language_name" ]
     linkName = subtitles_list[pos][ "linkName" ]
     print(("sub_id", sub_id))
@@ -327,14 +315,6 @@ def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, 
     params = {"movie":linkName,"lang":language,"id":sub_id}
     content = requests.post(__getSub, headers=HDR , data=json.dumps(params), timeout=10).text
     response_json = json.loads(content)
-    #content = requests.get(url,headers=HDR,verify=False,allow_redirects=True)
-    #downloadlink_pattern = '<!--<span><a class="button"\s+href="(.+)">'
-    #match = re.compile(downloadlink_pattern).findall(content)
-    #downloadlink = main_url + download_block
-    #print(("downloadlink", url))
-    #content = geturl(url)
-    #downloadlink_pattern = "<a class=\"button\"  href=\"(?P<match>/download/\d+)"
-    #match = re.compile(downloadlink_pattern).findall(content)
     success = response_json['success']
     if (success == True):
         fileName = response_json['sub']['fileName']
@@ -350,13 +330,7 @@ def download_subtitles (subtitles_list, pos, zip_subs, tmp_sub_dir, sub_folder, 
         typeid = "zip"
         filmid = 0
         postparams = { '__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '' , '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid}
-        #postparams = urllib3.request.urlencode({ '__EVENTTARGET': 's$lc$bcr$downloadLink', '__EVENTARGUMENT': '' , '__VIEWSTATE': viewstate, '__PREVIOUSPAGE': previouspage, 'subtitleId': subtitleid, 'typeId': typeid, 'filmId': filmid})
-        #class MyOpener(urllib.FancyURLopener):
-            #version = 'User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:109.0) Gecko/20100101 Firefox/115.0'
-        #my_urlopener = MyOpener()
-        #my_urlopener.addheader('Referer', url)
         log(__name__ , "%s Fetching subtitles using url '%s' with referer header '%s' and post parameters '%s'" % (debug_pretext, downloadlink, main_url, postparams))
-        #response = my_urlopener.open(downloadlink, postparams)
         response = requests.get(downloadlink,data=postparams,headers=HDRDL,verify=False,allow_redirects=True) 
         local_tmp_file = zip_subs
         try:
