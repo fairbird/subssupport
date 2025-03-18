@@ -28,18 +28,18 @@ import re
 
 try:
     from .seekers import SubtitlesDownloadError, SubtitlesSearchError, \
-        SubtitlesErrors, SubtitlesmoraSeeker, NovalermoraSeeker, ElsubtitleSeeker, OpenSubtitles2Seeker, TitulkyComSeeker, \
+        SubtitlesErrors, SubtitlesmoraSeeker, NovalermoraSeeker, ElsubtitleSeeker, SubtitlecatSeeker, OpenSubtitles2Seeker, TitulkyComSeeker, \
         OpenSubtitlesSeeker, OpenSubtitlesMoraSeeker, PodnapisiSeeker, SubscenebestSeeker, LocalDriveSeeker, Sub_Scene_comSeeker, SubdlSeeker, \
-         TitloviSeeker, PrijevodiOnlineSeeker, MySubsSeeker, SubsourceSeeker, FoursubSeeker
+         TitloviSeeker, PrijevodiOnlineSeeker, MySubsSeeker, SubsourceSeeker, FoursubSeeker, YtssubsSeeker
     from .seekers.seeker import BaseSeeker
     from .seekers.utilities import languageTranslate, langToCountry, \
         getCompressedFileType, detectSearchParams
     from .utils import SimpleLogger, toString
 except (ValueError, ImportError):
     from seekers import SubtitlesDownloadError, SubtitlesSearchError, \
-        SubtitlesErrors, SubtitlesmoraSeeker, NovalermoraSeeker, ElsubtitleSeeker, OpenSubtitles2Seeker, TitulkyComSeeker, \
+        SubtitlesErrors, SubtitlesmoraSeeker, NovalermoraSeeker, ElsubtitleSeeker, SubtitlecatSeeker, OpenSubtitles2Seeker, TitulkyComSeeker, \
         OpenSubtitlesMoraSeeker, OpenSubtitlesSeeker, PodnapisiSeeker, SubscenebestSeeker, LocalDriveSeeker, Sub_Scene_comSeeker, SubdlSeeker, \
-         TitloviSeeker, PrijevodiOnlineSeeker, MySubsSeeker, SubsourceSeeker, FoursubSeeker
+         TitloviSeeker, PrijevodiOnlineSeeker, MySubsSeeker, SubsourceSeeker, FoursubSeeker, YtssubsSeeker
     from seekers.seeker import BaseSeeker
     from seekers.utilities import languageTranslate, langToCountry, \
         getCompressedFileType, detectSearchParams
@@ -50,6 +50,8 @@ import six
 
 SUBTITLES_SEEKERS = []
 SUBTITLES_SEEKERS.append(LocalDriveSeeker)
+SUBTITLES_SEEKERS.append(YtssubsSeeker)
+SUBTITLES_SEEKERS.append(SubtitlecatSeeker)
 SUBTITLES_SEEKERS.append(SubsourceSeeker)
 SUBTITLES_SEEKERS.append(SubdlSeeker)
 SUBTITLES_SEEKERS.append(OpenSubtitles2Seeker)

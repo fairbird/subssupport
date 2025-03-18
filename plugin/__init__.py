@@ -7,7 +7,7 @@ __copyright__ = 'Copyright (c) 2014 mx3L'
 __license__ = "GPL-v2"
 __mod__ = "MNASR"
 __mod_email__ = "popking159@gmail.com"
-__version__ = "1.7.0_r15"
+__version__ = "1.7.0_r16"
 
 
 import gettext

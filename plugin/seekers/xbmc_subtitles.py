@@ -111,6 +111,19 @@ class XBMCSubtitlesAdapter(BaseSeeker):
         except Exception:
             pass
 
+try:
+    from .Subtitlecat import subtitlecat
+except ImportError as e:
+    subtitlecat = e
+
+class SubtitlecatSeeker(XBMCSubtitlesAdapter):
+    id = 'subtitlecat'
+    module = subtitlecat
+    if isinstance(module, Exception):
+        error, module = module, None
+    provider_name = 'Subtitlecat'
+    supported_langs = allLang()
+    default_settings = {}
 
 try:
     from .Titulky import titulkycom
@@ -127,6 +140,22 @@ class TitulkyComSeeker(XBMCSubtitlesAdapter):
     supported_langs = ['sk', 'cs']
     default_settings = {'Titulkyuser': {'label': _("Username"), 'type': 'text', 'default': "", 'pos': 0},
                         'Titulkypass': {'label': _("Password"), 'type': 'password', 'default': "", 'pos': 1}, }
+
+try:
+    from .Ytssubs import ytssubs
+except ImportError as e:
+    ytssubs = e
+    
+class YtssubsSeeker(XBMCSubtitlesAdapter):
+    id = 'ytssubs'
+    module = ytssubs
+    if isinstance(module, Exception):
+        error, module = module, None
+    provider_name = 'Ytssubs'
+    supported_langs = allLang()
+    default_settings = {}
+    movie_search = True
+    tvshow_search = False
 
 try:
     from .LocalDrive import localdrive
